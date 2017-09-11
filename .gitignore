@@ -104,10 +104,4 @@ venv.bak/
 
 local.py
 db.sqlite3
-workspace.xml
-tasks.xml
-*.iml
-gradle.xml
-libraries
-dataSources.ids
-datasources.xml
+.idea
