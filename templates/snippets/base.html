@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>{% block title %}GForum{% endblock %}</title>
     {% include 'snippets/bootstrap.html' %}
+    {% include 'snippets/javascript.html' %}
 </head>
 <body>
 {% include "snippets/nav.html" %}
 
-<div class="container-fluid">
-    {% block content %}
+<div class="container">
 
-    {% endblock %}
+{% block content %}
+
+{% endblock %}
 </div>
-
-
 </body>
 </html>
