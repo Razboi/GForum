@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}GForum{% endblock %}</title>
+    {% include 'snippets/bootstrap.html' %}
+</head>
+<body>
+{% include "snippets/nav.html" %}
+
+<div class="container-fluid">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+</body>
+</html>
