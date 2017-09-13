@@ -1,0 +1,18 @@
+{% extends "snippets/base.html" %}
+{% block title %}Posts{% endblock %}
+{% block content %}
+
+
+
+{% for object in object_list %}
+<ul>
+    <h1>{{ object.name }}</h1>
+    <h3>{{ object.author }}</h3>
+    <p>{{ object.content }}</p>
+    <b>{{ object.created }}</b>
+    <h1>{{object.forum}}</h1>
+
+</ul>
+{% endfor %}
+
+{% endblock %}
