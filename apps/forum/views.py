@@ -7,3 +7,9 @@ class ForumList(ListView):
 
     def get_queryset(self, **kwargs):
         return Forum.objects.all()
+
+
+class ForumDetails(DetailView):
+
+    def get_queryset(self, **kwargs):
+        return Forum.objects.all()

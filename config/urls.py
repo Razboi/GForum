@@ -23,7 +23,7 @@ from apps.forum.views import ForumList
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', ForumList.as_view(), name="index"),
-    # url(r'^$', include("apps.forum.urls", namespace="forum")),
+    url(r'^forum/', include("apps.forum.urls", namespace="forum")),
 ]
 
 if settings.DEBUG:

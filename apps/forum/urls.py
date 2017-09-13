@@ -1,7 +1,7 @@
 from django.conf.urls import url
-from .views import ForumList
+from .views import ForumDetails
 
 
 urlpatterns = [
-    # url(r'^', ForumList.as_view(), name="forums_list"),
+    url(r'^(?P<slug>[\w-]+)/$', ForumDetails.as_view(), name="details"),
 ]
