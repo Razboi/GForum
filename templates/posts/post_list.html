@@ -1,9 +1,10 @@
 {% extends "snippets/base.html" %}
-{% block title %}Posts{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 
-
-<a href="#"><button type="button">Create Post</button></a>
+<h1>{{ title }}</h1>
+<br>
+<a href="{% url 'post:create' %}"><button type="button">Create Post</button></a>
 {% for object in object_list %}
 <ul>
     <h1><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h1>

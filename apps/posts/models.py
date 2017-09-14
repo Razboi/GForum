@@ -24,6 +24,10 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post:details", kwargs={"slug": self.slug, "forum": self.forum})
 
+    @property
+    def title(self):
+        return self.name
+
 
 def pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
