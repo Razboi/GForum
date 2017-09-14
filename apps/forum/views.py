@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Forum, Post
+from .models import Forum
+from apps.posts.models import Post
 
 
 class ForumList(ListView):

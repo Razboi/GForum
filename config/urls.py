@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', ForumList.as_view(), name="index"),
     url(r'^forum/', include("apps.forum.urls", namespace="forum")),
+    url(r'^post/', include("apps.posts.urls", namespace="post")),
 ]
 
 if settings.DEBUG:
