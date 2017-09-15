@@ -1,0 +1,15 @@
+
+<h2>Comments</h2>
+
+<a href="#"><button type="button">Add Comment</button></a>
+<br>
+{% for comment in comment_list %}
+
+<div class="container-fluid" id="commentContainer">
+
+<b>{{ comment.author }}</b>
+
+<p>{{ comment.content }}</p>
+
+</div>
+{% endfor %}
