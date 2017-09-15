@@ -2,9 +2,13 @@
 {% block title %}{{object.name}}{% endblock %}
 {% block content %}
 
+<h1><a href="{% url 'forum:details' slug=slug %}"> {{object.forum}}</a></h1>
+{% if user.is_authenticated and request.user == object.author %}
+<b><a href="{% url 'post:update' slug=object.slug %}">Edit</a></b>
+{% endif %}
+
 <h1>{{ object.name }}</h1>
 Posted by <b>{{ object.author }}</b>
 <p>{{ object.content }}</p>
-
 
 {% endblock %}
