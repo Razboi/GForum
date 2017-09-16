@@ -3,7 +3,7 @@ from .models import Comment
 
 
 class CommentCreateForm(forms.ModelForm):
-    content = forms.Textarea()
+    content = forms.CharField(label="", widget=forms.Textarea())
 
     class Meta:
         model = Comment

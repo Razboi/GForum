@@ -7,6 +7,8 @@ from .forms import PostCreateForm
 from apps.forum.models import Forum
 from apps.comments.models import Comment
 
+from apps.comments.forms import CommentCreateForm
+
 
 class PostDetails(DetailView):
 
@@ -25,6 +27,8 @@ class PostDetails(DetailView):
 
         comments = Comment.objects.filter(post=post)
         context["comment_list"] = comments
+
+        context["form"] = CommentCreateForm
         return context
 
 

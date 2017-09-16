@@ -1,7 +1,11 @@
 
 <h2>Comments</h2>
 
-<a href="#"><button type="button">Add Comment</button></a>
+<form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Save</button>
+</form>
 <br>
 {% for comment in comment_list %}
 
