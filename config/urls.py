@@ -17,7 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth.views import LoginView
 
 from apps.forum.views import ForumList
 
@@ -27,7 +26,7 @@ urlpatterns = [
     url(r'^forum/', include("apps.forum.urls", namespace="forum")),
     url(r'^post/', include("apps.posts.urls", namespace="post")),
     url(r'^comment/', include("apps.comments.urls", namespace="comment")),
-    url(r'^login/$', LoginView.as_view(), name="login"),
+    url(r'^accounts/', include("apps.accounts.urls", namespace="accounts")),
 ]
 
 if settings.DEBUG:
