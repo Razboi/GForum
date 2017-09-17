@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Post
@@ -60,3 +60,18 @@ class UpdatePost(LoginRequiredMixin, UpdateView):
         context = super(UpdatePost, self).get_context_data(*args, **kwargs)
         context["title"] = "Edit Post"
         return context
+
+
+class DeletePost(LoginRequiredMixin, DeleteView):
+    model = Post
+    template_name = "snippets/delete_confirmation.html"
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
+
+    # after deleting the post gets the post's forum and redirects to its url
+    def get_success_url(self):
+        slug = self.kwargs.get("slug")
+        post = Post.objects.get(slug=slug)
+        forum = post.forum
+        return forum.get_absolute_url()

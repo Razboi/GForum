@@ -19,3 +19,7 @@ class Comment(models.Model):
         slug = self.post.slug
         forum = self.post.forum
         return reverse("post:details", kwargs={"slug": slug, "forum": forum})
+
+    def __str__(self):
+        basic_description = str(self.author) + " | " + str(self.post.name)
+        return basic_description

@@ -1,19 +1,27 @@
-
 <h2>Comments</h2>
 
+{% if user.is_authenticated %}
 <form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
     {{ form.as_p }}
-
     <button type="submit">Save</button>
 </form>
+{% else %}
+
+<b><a href="#">Login</a> to post comments</b>
+
+{% endif %}
 <br>
+
 {% for comment in comment_list %}
 
 <div class="container-fluid" id="commentContainer">
 
-<b>{{ comment.author }}</b>
-
-<p>{{ comment.content }}</p>
-
+    <b>{{ comment.author }}</b>
+    <p>{{ comment.content }}</p>
+    {% if comment.author == request.user %}
+    <a href="{% url 'comment:update' pk=comment.pk %}">Edit</a>
+    <a href="{% url 'comment:delete' pk=comment.pk %}">Delete</a>
+    {% endif %}
 </div>
+
 {% endfor %}
