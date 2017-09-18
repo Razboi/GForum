@@ -8,30 +8,27 @@
     <!-- Wrapper -->
     <div class="collapse navbar-collapse" id="mainNavbar">
 
-        <!-- Left elements -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">Subscriptions</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Science</a>
-                    <a class="dropdown-item" href="#">Funny</a>
-                    <a class="dropdown-item" href="#">Programming</a>
-                </div>
-            </li>
-        </ul>
 
         <!-- Right elements -->
         <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="#">{{ request.user }} <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Settings</a>
+                <a class="nav-link" href="#"><i class="fa fa-envelope-o"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Messages</a>
+                <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:register' %}">Sign Up</a>
+            </li>
+            {% endif %}
         </ul>
 
     </div>

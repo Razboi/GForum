@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.core.urlresolvers import reverse
@@ -17,7 +18,11 @@ def login_view(request):
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         login(request, user)
-        return redirect("index")
+        next_url = request.GET.get("next")
+        if next_url:
+            return HttpResponseRedirect(next_url)
+        else:
+            return redirect("index")
 
     return render(request, template_name, context)
 
@@ -37,11 +42,11 @@ def register_view(request):
     template_name = "accounts/form.html"
     context = {
         "form": form,
-        "title": "Register"
+        "title": "Sign Up"
     }
     return render(request, template_name, context)
 
 
 def logout_view(request):
     logout(request)
-    return render(request, "form.html", {})
+    return redirect("index")

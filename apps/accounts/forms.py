@@ -5,8 +5,8 @@ User = get_user_model()
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(label="", max_length=25, widget=forms.TextInput(attrs={"placeholder": "Username"}))
+    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={"placeholder": "Password"}))
 
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get("username")
@@ -21,8 +21,9 @@ class UserLoginForm(forms.Form):
 
 
 class UserRegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
+    username = forms.CharField(label="", max_length=25, widget=forms.TextInput(attrs={"placeholder": "Username"}))
+    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={"placeholder": "Password"}))
+    password2 = forms.CharField(label="", widget=forms.PasswordInput(attrs={"placeholder": "Password Confirmation"}))
 
     class Meta:
         model = User
