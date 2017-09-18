@@ -36,6 +36,7 @@ class UpdateComment(LoginRequiredMixin, UpdateView):
 
 class DeleteComment(LoginRequiredMixin, DeleteView):
     model = Comment
+    template_name = "snippets/delete_confirmation.html"
 
     def get_queryset(self):
         return Comment.objects.filter(author=self.request.user)
