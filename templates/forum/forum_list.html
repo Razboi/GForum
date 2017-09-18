@@ -4,7 +4,7 @@
 
 <h1>GForum</h1>
 
-<ul>
+<ul id="forum_list">
 {% for object in object_list %}
 
     <li><a href="{{object.get_absolute_url}}">{{ object.name }}</a></li>
