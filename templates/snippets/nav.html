@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- Brand and toggle -->
-    <a class="navbar-brand" href="{% url 'index' %}">GForum</a>
+    <a class="navbar-brand" href="{% url 'index' %}">
+      {% load static %}<img src="{% static 'images/world-logo.png' %}" alt="Logo"/>GForum</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +14,9 @@
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="#" id="nav_username">{{ request.user }} <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" id="nav_username">
+                    <img class="rounded-circle" src="{{ user.userprofile.image.url }}">
+                    <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fa fa-envelope-o fa-2x"></i></a>
