@@ -32,7 +32,7 @@ p {
 	display: block;
 	color: black;
 	padding: 8px 16px;
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /* -------------------------------------------------------------*/
@@ -74,9 +74,14 @@ p {
 /* --------------------------- BUTTONS -------------------------*/
 
 .btn-default {
+	margin-bottom: 10px;
 	cursor: pointer;
 	border: 1px solid lightgrey;
 	background-color: white;
+}
+
+#create_post_button {
+	float: right;
 }
 
 .btn-default:hover {
@@ -90,13 +95,13 @@ p {
 #forum_list {
 	font-size: 25px;
 	list-style-type: none;
-	margin-top: 40px;
+	margin-top: 65px;
 	padding: 0;
 	width: 100%;
 	border: 10px solid transparent;
 	background-clip: padding-box, border-box;
-  	background-origin: padding-box, border-box;
-  	background-image: linear-gradient(45deg, #fff, #fff), linear-gradient(45deg, #3acfd5, #3a4ed5);
+  background-origin: padding-box, border-box;
+  background-image: linear-gradient(45deg, #fff, #fff), linear-gradient(45deg, #3acfd5, #3a4ed5);
 }
 
 #forum_list li:hover {
@@ -104,8 +109,34 @@ p {
 	background-color: #f6f6f6;
 }
 
-#forum_title {
-	color: #05658F;
+.forum_details_title {
+	margin-bottom: 25px;
+	color: #5B6DDE;
+	font-size: 47px;
+	text-align: center;
+	animation: fadein 2s;
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+#forum_list_title {
+	text-align: center;
+	font-size: 45px;
+	-webkit-animation: color-change 17s infinite;
+}
+
+@-webkit-keyframes color-change {
+	0% { color: #3a4ed5; }
+  50% { color: #3acfd5; }
+	100% { color: #3a4ed5; }
 }
 
 /* -------------------------------------------------------------*/
@@ -113,7 +144,7 @@ p {
 
 #post_list {
 	list-style-type: none;
-	margin-top: 40px;
+	margin-top: 55px;
 	padding: 20px;
 	width: 100%;
 	border: 1px solid lightgrey;
@@ -129,10 +160,61 @@ p {
 	color: grey;
 }
 
+.post_content {
+	margin-top: 80px;
+}
+
+.post_content h1 {
+	color: #2A9CCD;
+}
+
+.post_content p {
+	margin: 20px 0px 20px 7px;
+	font-size: 22px;
+}
+
+.edit_and_delete {
+	text-decoration: none !important;
+	color: #2A9CCD;
+	margin-right: 5px;
+}
+
+.back_to_forum {
+	margin-top: -20px;
+}
+
+.back_to_forum i {
+	color: #5B6DDE;
+}
+
+#post_info {
+	color: grey;
+}
+
 /* -------------------------------------------------------------*/
 /* --------------------------- COMMENT -------------------------*/
 
 #commentContainer {
 	margin-top: 30px;
-	border: 0.5px solid white;
+	border: 1px solid lightgrey;
+	background: white;
+}
+
+#commentContainer p {
+	margin: 10px 0px 10px 5px;
+	font-size: 19px;
+}
+
+.comments_section {
+	margin-top: 50px;
+}
+
+#comment_info {
+	color: grey;
+}
+
+#comment_author {
+	
+	margin-right: 5px;
+	color: #2A9CCD;
 }

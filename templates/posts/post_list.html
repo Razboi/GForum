@@ -2,9 +2,10 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 
-<h1 id="forum_title">{{ title }}</h1>
+<h1 class="forum_details_title">{{ title }}</h1>
 <br>
-<a href="{% url 'post:create' %}"><button type="button" class="btn btn-default">Create Post</button></a>
+<a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">
+  Create Post</button></a>
 {% for object in object_list %}
 <ul id="post_list">
     <h1><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h1>

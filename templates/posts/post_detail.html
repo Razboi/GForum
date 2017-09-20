@@ -2,18 +2,23 @@
 {% block title %}{{object.name}}{% endblock %}
 {% block content %}
 
-<h1><a href="{% url 'forum:details' slug=slug %}"> {{object.forum}}</a></h1>
+<h1 class="back_to_forum"><a href="{% url 'forum:details' slug=slug %}"><i class="fa fa-step-backward"></i></a></h1>
+
+<div class="post_content">
+  <span id="post_info">
+    <h1>{{ object.name }}</h1>Submitted <b>{{ object.created|timesince }} ago</b> by <b>{{ object.author }}</b>
+  </span>
+  <p>{{ object.content }}</p>
+
 {% if user.is_authenticated and request.user == object.author %}
-<b><a href="{% url 'post:update' slug=object.slug %}">Edit</a></b>
-<b><a href="{% url 'post:delete' slug=object.slug %}">Delete</a></b>
+  <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete">Edit</a></b>
+  <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete">Delete</a></b>
 {% endif %}
-
-<h1>{{ object.name }}</h1>
-Posted by <b>{{ object.author }}</b>
-<p>{{ object.content }}</p>
-
+</div>
 <hr>
 
-{% include "comments/comment_list.html" %}
+<div class="comments_section">
+  {% include "comments/comment_list.html" %}
+</div>
 
 {% endblock %}

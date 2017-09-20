@@ -22,7 +22,7 @@ class Post(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("post:details", kwargs={"slug": self.slug, "forum": self.forum})
+        return reverse("post:details", kwargs={"slug": self.slug, "forum": self.forum.slug})
 
     @property
     def title(self):
