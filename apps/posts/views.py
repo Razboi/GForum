@@ -10,6 +10,19 @@ from apps.comments.models import Comment
 from apps.comments.forms import CommentCreateForm
 
 
+class PostSearch(ListView):
+
+    def get_queryset(self, **kwargs):
+        search = self.request.GET.get("q")
+        results = Post.objects.filter(name__icontains=search)
+        return results
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PostSearch, self).get_context_data(*args, **kwargs)
+        context["title"] = "Search Results"
+        return context
+
+
 class PostDetails(DetailView):
 
     def get_queryset(self, **kwargs):
