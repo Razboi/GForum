@@ -11,6 +11,19 @@ p {
 	word-wrap: break-word;
 }
 
+header {
+	display: flex;
+	color: black;
+}
+
+header:before,
+header:after {
+	content: "";
+	margin: auto 1em;
+	border-bottom: solid 2px;
+	flex: 1;
+}
+
 /* -------------------------------------------------------------*/
 /* --------------------------- BASE -------------------------*/
 
@@ -111,6 +124,7 @@ p {
 
 #create_post_button {
 	float: right;
+	margin-top: 35px;
 }
 
 .btn-default:hover {
@@ -133,19 +147,60 @@ p {
   background-image: linear-gradient(45deg, #fff, #fff), linear-gradient(45deg, #3acfd5, #3a4ed5);
 }
 
-#forum_list li:hover {
-	border-bottom: 2px lightgrey solid;
-	background-color: #f6f6f6;
+#forum_list li {
+	border-bottom: 1px solid lightgrey;
 }
 
-.forum_details_title {
-	margin-bottom: 20px;
+#forum_list li:hover {
+	border-bottom: 2px #3A4FD5 solid;
+
+}
+
+#forum_list li:hover a {
+	color: #3A4FD5;
+}
+
+.forum_details_title h1{
+	/*margin-bottom: 20px;
 	margin-top: -15px;
 	color: #3A4FD5;
 	font-size: 47px;
 	text-align: center;
+	animation: fadein 2s;*/
+
+	position: relative;
+	padding: 0.25em 1em;
+	overflow: hidden;
+	background: linear-gradient(black, black) no-repeat top center,
+	linear-gradient(black, black) no-repeat bottom center;
+  background-size: calc(100% - 1.65em) 1px;
+	color: #3A4FD5;
 	animation: fadein 2s;
+	font-size: 44px;
+	border-color: black !important;
 }
+
+.forum_details_title h1:before,
+.forum_details_title h1:after {
+	content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border: solid black 1px;
+
+  border-top: none;
+  border-bottom: none;
+  transform: skew(45deg)
+}
+
+
+.forum_details_title h1:after {
+	transform: skew(-45deg)
+}
+
+
 
 @keyframes fadein {
 	from {
@@ -174,7 +229,7 @@ p {
 
 #post_list {
 	list-style-type: none;
-	margin-top: 55px;
+	margin-top: 85px;
 	padding: 20px;
 	width: 100%;
 	border: 1px solid lightgrey;
@@ -224,15 +279,27 @@ p {
 /* -------------------------------------------------------------*/
 /* --------------------------- COMMENT -------------------------*/
 
-#commentContainer {
+.commentContainer {
 	margin-top: 30px;
 	border: 1px solid lightgrey;
 	background: white;
 }
 
-#commentContainer p {
+.commentContainer p {
 	margin: 10px 0px 10px 5px;
 	font-size: 19px;
+}
+
+.reply {
+	margin-left: 40px;
+	max-width: 1040px;
+	border-left: 3px solid lightgrey;
+}
+
+.reply2 {
+	margin-left: 80px;
+	max-width: 1000px;
+	border-left: 5px solid lightgrey;
 }
 
 .comments_section {

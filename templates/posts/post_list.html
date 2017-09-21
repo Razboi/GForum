@@ -1,9 +1,10 @@
 {% extends "snippets/base.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
+<header class="forum_details_title">
+  <h1>{{ title }}</h1>
+</header>
 
-<h1 class="forum_details_title">{{ title }}</h1>
-<br>
 <a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">
   Create Post</button></a>
 {% for object in object_list %}
