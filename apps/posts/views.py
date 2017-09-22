@@ -38,7 +38,7 @@ class PostDetails(DetailView):
         forum_slug = forum.slug
         context["slug"] = forum_slug
 
-        comments = Comment.objects.filter(post=post, is_reply=False)
+        comments = Comment.objects.filter(post=post)
         context["comment_list"] = comments
 
         context["form"] = CommentCreateForm

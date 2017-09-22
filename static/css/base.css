@@ -296,12 +296,6 @@ header:after {
 	border-left: 3px solid lightgrey;
 }
 
-.reply2 {
-	margin-left: 80px;
-	max-width: 1000px;
-	border-left: 5px solid lightgrey;
-}
-
 .comments_section {
 	margin-top: 50px;
 }
@@ -319,4 +313,13 @@ header:after {
 #comment_form .form-control {
 	max-width: 400px;
 	height: 150px;
+}
+
+.reply_parent {
+	color: #3A4FD5;
+}
+
+.comment_identifier {
+	color: orange;
+	float: right;
 }

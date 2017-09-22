@@ -14,12 +14,18 @@ class CreateReply(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         instance = form.save(commit=False)
+        # set author
         instance.author = self.request.user
+        # set parent post
         slug = self.kwargs.get("slug")
         instance.post = Post.objects.get(slug=slug)
+        # set is_reply
         instance.is_reply = True
-        parent = self.kwargs.get("pk")
-        instance.parent = Comment.objects.get(pk=parent)
+        # set parent
+        parent_pk = self.kwargs.get("pk")
+        instance.parent = Comment.objects.get(pk=parent_pk)
+        # set identifier
+        instance.identifier = len(Comment.objects.filter(post=instance.post)) +1
         return super(CreateReply, self).form_valid(form)
 
 
@@ -33,6 +39,7 @@ class CreateComment(LoginRequiredMixin, CreateView):
         instance.author = self.request.user
         slug = self.kwargs.get("slug")
         instance.post = Post.objects.get(slug=slug)
+        instance.identifier = len(Comment.objects.filter(post=instance.post)) +1
         return super(CreateComment, self).form_valid(form)
 
 

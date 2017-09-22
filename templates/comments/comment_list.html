@@ -1,69 +1,49 @@
-
 <div class="container comments_section">
 
-<h2>Comments<small> ({{object.comment_set.all|length}})</small></h2>
-
-{% if user.is_authenticated %}
-
-<form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
-    <span id="comment_form">{{ form.as_p }}</span>
-    <button type="submit" class="btn btn-default">Save</button>
-</form>
-
-{% else %}
-
-<b><a href="{% url 'accounts:login' %}">Login</a> to post comments</b>
-
-{% endif %}
-
-<br>
-
-<!--- Comments --->
-{% for comment in comment_list %}
-<div class="container-fluid commentContainer">
-  <b id="comment_author">{{ comment.author }}</b><span id="comment_info"> {{ comment.created|timesince }} ago</span>
-  <p>{{ comment.content }}</p>
-  {% if comment.author == request.user %}
-  <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
-  <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
-  {% endif %}
+  <h2>Comments<small> ({{object.comment_set.all|length}})</small></h2>
 
   {% if user.is_authenticated %}
-  <b><a href="{% url 'comment:reply' slug=object.slug pk=comment.pk %}" class="edit_and_delete">Reply</a></b>
-  {% endif %}
-</div>
+    <form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
+        <span id="comment_form">{{ form.as_p }}</span>
+        <button type="submit" class="btn btn-default">Save</button>
+    </form>
 
-<!--- Replies to comments --->
-{% for reply in comment.replies.all %}
-<div class="container-fluid commentContainer reply">
-  <b id="comment_author">{{ reply.author }}</b><span id="comment_info"> {{ reply.created|timesince }} ago</span>
-  <p>{{ reply.content }}</p>
-  {% if reply.author == request.user %}
-  <b><a href="{% url 'comment:update' pk=reply.pk %}" class="edit_and_delete">Edit</a></b>
-  <b><a href="{% url 'comment:delete' pk=reply.pk %}" class="edit_and_delete">Delete</a></b>
+  {% else %}
+    <b><a href="{% url 'accounts:login' %}">Login</a> to post comments</b>
   {% endif %}
 
-  {% if user.is_authenticated %}
-  <b><a href="{% url 'comment:reply' slug=object.slug pk=reply.pk %}" class="edit_and_delete">Reply</a></b>
-  {% endif %}
-</div>
+  <!--- Comments --->
+  {% for comment in comment_list %}
+    {% if comment.is_reply %}
+      <div class="container-fluid commentContainer reply">
+        <span class="comment_identifier">#{{ comment.identifier }} </span><b id="comment_author">{{ comment.author }}</b>
+        <span id="comment_info"> {{ comment.created|timesince }} ago</span>
+        <br /><span class="reply_parent">@{{ comment.parent.identifier }}</span>
+        <p>{{ comment.content }}</p>
+        {% if comment.author == request.user %}
+          <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
+          <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
+        {% endif %}
 
-<!--- Replies to replies --->
-{% for reply in reply.replies.all %}
-<div class="container-fluid commentContainer reply2">
-  <b id="comment_author">{{ reply.author }}</b><span id="comment_info"> {{ reply.created|timesince }} ago</span>
-  <p>{{ reply.content }}</p>
-  {% if reply.author == request.user %}
-  <b><a href="{% url 'comment:update' pk=reply.pk %}" class="edit_and_delete">Edit</a></b>
-  <b><a href="{% url 'comment:delete' pk=reply.pk %}" class="edit_and_delete">Delete</a></b>
-  {% endif %}
+        {% if user.is_authenticated and comment.author != request.user %}
+          <b><a href="{% url 'comment:reply' slug=object.slug pk=comment.pk %}" class="edit_and_delete">Reply</a></b>
+        {% endif %}
+      </div>
 
-  {% if user.is_authenticated %}
-  <b><a href="{% url 'comment:reply' slug=object.slug pk=reply.pk %}" class="edit_and_delete">Reply</a></b>
-  {% endif %}
-</div>
-{% endfor %}
-{% endfor %}
-{% endfor %}
+    {% else %}
+      <div class="container-fluid commentContainer">
+        <span class="comment_identifier">#{{ comment.identifier }} </span><b id="comment_author">{{ comment.author }}</b>
+        <span id="comment_info"> {{ comment.created|timesince }} ago</span>
+        <p>{{ comment.content }}</p>
+        {% if comment.author == request.user %}
+          <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
+          <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
+        {% endif %}
 
+        {% if user.is_authenticated and comment.author != request.user %}
+          <b><a href="{% url 'comment:reply' slug=object.slug pk=comment.pk %}" class="edit_and_delete">Reply</a></b>
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endfor %}
 </div>

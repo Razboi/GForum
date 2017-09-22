@@ -15,6 +15,7 @@ class Comment(models.Model):
     updated = models.DateTimeField(auto_now=True)
     parent = models.ForeignKey("self", null=True, blank=True, related_name="replies")
     is_reply = models.BooleanField(default=False)
+    identifier = models.IntegerField(null=True, blank=True)
 
     # this will redirect the user to the post in which they commented (created a comment)
     def get_absolute_url(self):
