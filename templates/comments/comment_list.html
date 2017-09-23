@@ -18,8 +18,14 @@
       <div class="container-fluid commentContainer reply">
         <span class="comment_identifier">#{{ comment.identifier }} </span><b id="comment_author">{{ comment.author }}</b>
         <span id="comment_info"> {{ comment.created|timesince }} ago</span>
-        <br /><span class="reply_parent">@{{ comment.parent.identifier }}</span>
+        <br /><div id="reply_parent">@{{ comment.parent.identifier }}</div>
+        <div class="parent_content">
+          <b>{{ comment.parent.author }}</b>
+          <p>{{ comment.parent.content }}</p>
+        </div>
+
         <p>{{ comment.content }}</p>
+
         {% if comment.author == request.user %}
           <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
           <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
@@ -28,6 +34,7 @@
         {% if user.is_authenticated and comment.author != request.user %}
           <b><a href="{% url 'comment:reply' slug=object.slug pk=comment.pk %}" class="edit_and_delete">Reply</a></b>
         {% endif %}
+
       </div>
 
     {% else %}

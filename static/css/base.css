@@ -283,17 +283,12 @@ header:after {
 	margin-top: 30px;
 	border: 1px solid lightgrey;
 	background: white;
+	position: relative;
 }
 
 .commentContainer p {
 	margin: 10px 0px 10px 5px;
 	font-size: 19px;
-}
-
-.reply {
-	margin-left: 40px;
-	max-width: 1040px;
-	border-left: 3px solid lightgrey;
 }
 
 .comments_section {
@@ -315,10 +310,32 @@ header:after {
 	height: 150px;
 }
 
-.reply_parent {
-	color: #3A4FD5;
+.parent_content {
+	color: white;
+	background: rgba(0, 0, 0, 0.7);
+	display: none;
+	z-index: 2;
+	position: absolute;
+	padding: 10px;
+	border-radius: 5px;
+	opacity: 0.9;
+	min-width: 150px;
+	top: 80px;
 }
 
+#reply_parent {
+	color: #3A4FD5;
+	width: 22px;
+	height: 22px;
+}
+
+#reply_parent:hover {
+	cursor: pointer;
+}
+
+#reply_parent:hover + .parent_content {
+	display: block;
+}
 .comment_identifier {
 	color: orange;
 	float: right;
