@@ -262,6 +262,7 @@ header:after {
 	text-decoration: none !important;
 	color: #2A9CCD;
 	margin-right: 5px;
+	cursor: pointer;
 }
 
 .back_to_forum {
@@ -295,17 +296,17 @@ header:after {
 	margin-top: 50px;
 }
 
-#comment_info {
+.comment_info {
 	color: grey;
 }
 
-#comment_author {
+.comment_author {
 
 	margin-right: 5px;
 	color: #2A9CCD;
 }
 
-#comment_form .form-control {
+.comment-form {
 	max-width: 400px;
 	height: 150px;
 }
@@ -323,20 +324,48 @@ header:after {
 	top: 80px;
 }
 
-#reply_parent {
+.reply_parent {
 	color: #3A4FD5;
 	width: 22px;
 	height: 22px;
 }
 
-#reply_parent:hover {
+.reply_parent:hover {
 	cursor: pointer;
 }
 
-#reply_parent:hover + .parent_content {
+.reply_parent:hover + .parent_content {
 	display: block;
 }
 .comment_identifier {
 	color: orange;
 	float: right;
+}
+
+.reply_form {
+	padding-bottom: 10px;
+}
+
+.comment_replies_link {
+	color: grey !important;
+	margin-left: 5px;
+	cursor: pointer;
+	text-decoration: none !important;
+}
+
+.comment_replies_link i {
+	color: #3A4FD5;
+	font-size: 19px;
+}
+
+.show_replies {
+	display: none;
+}
+
+.reply_container {
+	border: 1px solid lightgrey;
+	border-left: 5px solid grey;
+	padding: 5px 5px 5px 10px;
+	margin: 15px;
+	margin-left: 5%;
 }

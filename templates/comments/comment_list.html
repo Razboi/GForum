@@ -4,7 +4,7 @@
 
   {% if user.is_authenticated %}
     <form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
-        <span id="comment_form">{{ form.as_p }}</span>
+        {{ form.as_p }}
         <button type="submit" class="btn btn-default">Save</button>
     </form>
 
@@ -14,43 +14,54 @@
 
   <!--- Comments --->
   {% for comment in comment_list %}
-    {% if comment.is_reply %}
-      <div class="container-fluid commentContainer reply">
-        <span class="comment_identifier">#{{ comment.identifier }} </span><b id="comment_author">{{ comment.author }}</b>
-        <span id="comment_info"> {{ comment.created|timesince }} ago</span>
-        <br /><div id="reply_parent">@{{ comment.parent.identifier }}</div>
+    <!--- Comment info --->
+    <div class="container-fluid commentContainer">
+      <span class="comment_identifier">#{{ comment.identifier }} </span><b class="comment_author">{{ comment.author }}</b>
+      <span class="comment_info"> {{ comment.created|timesince }} ago</span>
+
+      <!--- If its a reply show parent identifier and content on hover --->
+      {% if comment.is_reply %}
+        <br /><div class="reply_parent">@{{ comment.parent.identifier }}</div>
+        <!--- Parent content --->
         <div class="parent_content">
           <b>{{ comment.parent.author }}</b>
           <p>{{ comment.parent.content }}</p>
         </div>
+      {% endif %}
 
-        <p>{{ comment.content }}</p>
+      <!--- Content --->
+      <p>{{ comment.content }}</p>
+      <!--- Options --->
+      {% if comment.author == request.user %}
+        <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
+        <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
+      {% endif %}
 
-        {% if comment.author == request.user %}
-          <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
-          <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
-        {% endif %}
+      <!--- Reply option and form --->
+      {% if user.is_authenticated and comment.author != request.user %}
+        <b><a href="javascript:" class="edit_and_delete reply_link">Reply</a></b>
+        <form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">{% csrf_token %}
+            <span class="comment_form">{{ form.as_p }}</span>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary cancel_reply">Cancel</button>
+        </form>
+      {% endif %}
 
-        {% if user.is_authenticated and comment.author != request.user %}
-          <b><a href="{% url 'comment:reply' slug=object.slug pk=comment.pk %}" class="edit_and_delete">Reply</a></b>
-        {% endif %}
+      {% if comment.replies.all %}
+        <a href="javascript:" class=comment_replies_link>{{comment.replies.all|length}} Replies <i class="fa fa-caret-down"></i></a>
+        <div class="show_replies">
+          {% for reply in comment.replies.all %}
+            <div class="reply_container">
+              <span class="comment_identifier">#{{ reply.identifier }} </span><b class="comment_author">{{ reply.author }}</b>
+              <span class="comment_info"> {{ reply.created|timesince }} ago</span>
 
-      </div>
+              <!--- Content --->
+              <p>{{ reply.content }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
 
-    {% else %}
-      <div class="container-fluid commentContainer">
-        <span class="comment_identifier">#{{ comment.identifier }} </span><b id="comment_author">{{ comment.author }}</b>
-        <span id="comment_info"> {{ comment.created|timesince }} ago</span>
-        <p>{{ comment.content }}</p>
-        {% if comment.author == request.user %}
-          <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
-          <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
-        {% endif %}
-
-        {% if user.is_authenticated and comment.author != request.user %}
-          <b><a href="{% url 'comment:reply' slug=object.slug pk=comment.pk %}" class="edit_and_delete">Reply</a></b>
-        {% endif %}
-      </div>
-    {% endif %}
+    </div>
   {% endfor %}
 </div>
