@@ -2,7 +2,9 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 
-{% for object in object_list %}
+<a href="{% url 'messages:create' %}" ><button class="btn btn-default create_message" type="button">
+<i class="fa fa-pencil"></i></button></a>
+{% for object in object_list reversed %}
 <div class="message_container">
     <h1 class="message_title">{{ object.subject }}</h1>
     <span class="message_author">from <b>{{ object.author }}</b> {{ object.created|timesince }} ago</span>

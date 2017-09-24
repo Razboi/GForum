@@ -399,3 +399,16 @@ header:after {
 .message_info {
 	color: grey;
 }
+
+.create_message {
+	border-radius: 100%;
+	height: 50px;
+	width: 50px;
+	background: #3A4FD5;
+	color: white;
+	border: 2px solid lightgrey;
+}
+
+.create_message:hover {
+	background: #3447bf;
+}
