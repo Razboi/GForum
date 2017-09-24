@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^post/', include("apps.posts.urls", namespace="post")),
     url(r'^comment/', include("apps.comments.urls", namespace="comment")),
     url(r'^accounts/', include("apps.accounts.urls", namespace="accounts")),
+    url(r'^messages/', include("apps.private_messages.urls", namespace="messages")),
 ]
 
 if settings.DEBUG:

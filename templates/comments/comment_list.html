@@ -39,7 +39,8 @@
 
       <!--- Reply option and form --->
       {% if user.is_authenticated and comment.author != request.user %}
-        <b><a href="javascript:" class="edit_and_delete reply_link">Reply</a></b>
+        <b><a href="javascript:" class="edit_and_delete report_link">Report</a></b>
+        <b><a href="javascript:" class="edit_and_delete reply_link">Reply</a></b>  
         <form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">{% csrf_token %}
             <span class="comment_form">{{ form.as_p }}</span>
             <button type="submit" class="btn btn-primary">Save</button>
@@ -48,7 +49,8 @@
       {% endif %}
 
       {% if comment.replies.all %}
-        <a href="javascript:" class=comment_replies_link>{{comment.replies.all|length}} Replies <i class="fa fa-caret-down"></i></a>
+        <a href="javascript:" class=comment_replies_link>{{comment.replies.all|length}}
+          {% if comment.replies.all|length > 1 %}Replies{% else %}Reply{% endif %} <i class="fa fa-caret-down"></i></a>
         <div class="show_replies">
           {% for reply in comment.replies.all %}
             <div class="reply_container">

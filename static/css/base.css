@@ -348,7 +348,7 @@ header:after {
 
 .comment_replies_link {
 	color: grey !important;
-	margin-left: 5px;
+	margin-left: 10px;
 	cursor: pointer;
 	text-decoration: none !important;
 }
@@ -368,4 +368,34 @@ header:after {
 	padding: 5px 5px 5px 10px;
 	margin: 15px;
 	margin-left: 5%;
+}
+
+/* -------------------------------------------------------------*/
+/* --------------------------- Private Messages -------------------------*/
+
+.message_container {
+	background: white;
+	border: 1px solid lightgrey;
+	padding: 20px;
+}
+
+.message_title {
+	color: #2A9CCD;
+}
+
+.message_content {
+	margin: 20px 0px 20px 15px;
+	font-size: 22px;
+}
+
+.message_author {
+	color: grey;
+}
+
+.message_author b {
+	color: #2A9CCD;
+}
+
+.message_info {
+	color: grey;
 }

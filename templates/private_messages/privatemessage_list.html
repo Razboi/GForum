@@ -1,0 +1,17 @@
+{% extends "snippets/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+
+{% for object in object_list %}
+<div class="message_container">
+    <h1 class="message_title">{{ object.subject }}</h1>
+    <span class="message_author">from <b>{{ object.author }}</b> {{ object.created|timesince }} ago</span>
+    <p class="message_content">
+      {{ object.content }}
+    </p>
+    <b><a href="#" class="edit_and_delete">Reply</a></b>
+    <b><a href="#" class="edit_and_delete">Delete</a></b>
+</div>
+{% endfor %}
+
+{% endblock %}
