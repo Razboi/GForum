@@ -2,8 +2,27 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.core.urlresolvers import reverse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .forms import UserLoginForm, UserRegisterForm
+from apps.posts.models import Post
+from apps.comments.models import Comment
+
+
+class UserProfile(ListView):
+    template_name = "accounts/user_profile.html"
+
+    def get_queryset(self):
+        return None
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfile, self).get_context_data(**kwargs)
+        context["title"] = str(self.request.user.username) + " profile"
+        posts = Post.objects.filter(author=self.request.user)
+        context["posts_list"] = posts
+        comments = Comment.objects.filter(author=self.request.user)
+        context["comments_list"] = comments
+        return context
 
 
 def login_view(request):

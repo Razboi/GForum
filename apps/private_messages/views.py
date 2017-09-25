@@ -9,7 +9,7 @@ from .forms import PMCreateForm, PMReplyForm
 User = get_user_model()
 
 
-class PMList(ListView):
+class PMList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return PrivateMessage.objects.filter(contact=self.request.user)
@@ -21,7 +21,7 @@ class PMList(ListView):
         return context
 
 
-class SentList(ListView):
+class SentList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return PrivateMessage.objects.filter(author=self.request.user)
 
@@ -32,7 +32,7 @@ class SentList(ListView):
         return context
 
 
-class CreatePM(CreateView):
+class CreatePM(LoginRequiredMixin, CreateView):
     form_class = PMCreateForm
     template_name = "snippets/form.html"
 
@@ -45,7 +45,7 @@ class CreatePM(CreateView):
         return super(CreatePM, self).form_valid(form)
 
 
-class DeletePM(DeleteView):
+class DeletePM(LoginRequiredMixin, DeleteView):
     model = PrivateMessage
     template_name = "snippets/delete_confirmation.html"
 
@@ -56,7 +56,7 @@ class DeletePM(DeleteView):
         return reverse("messages:inbox")
 
 
-class ReplyPM(CreateView):
+class ReplyPM(LoginRequiredMixin, CreateView):
     form_class = PMReplyForm
     template_name = "snippets/form.html"
 
