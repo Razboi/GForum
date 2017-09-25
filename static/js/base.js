@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $(".reply_form").hide();
+  $(".show_replies").hide();
 
   function showReplyForm()
   {
@@ -12,6 +13,7 @@ $(document).ready(function(){
   };
 
   $(".reply_link").click(showReplyForm);
+  $(".reply_pm").click(showReplyForm);
   $(".cancel_reply").click(cancelReply);
 
   function showReplies()
@@ -20,5 +22,6 @@ $(document).ready(function(){
     $(this).find("i").toggleClass("fa-caret-down fa-caret-up");
   };
 
-  $(".comment_replies_link").click(showReplies);
+  $(".replies_link").click(showReplies);
+
 });

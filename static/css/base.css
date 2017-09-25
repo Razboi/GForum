@@ -346,20 +346,16 @@ header:after {
 	padding-bottom: 10px;
 }
 
-.comment_replies_link {
+.replies_link {
 	color: grey !important;
 	margin-left: 10px;
 	cursor: pointer;
 	text-decoration: none !important;
 }
 
-.comment_replies_link i {
+.replies_link i {
 	color: #3A4FD5;
 	font-size: 19px;
-}
-
-.show_replies {
-	display: none;
 }
 
 .reply_container {
@@ -373,10 +369,14 @@ header:after {
 /* -------------------------------------------------------------*/
 /* --------------------------- Private Messages -------------------------*/
 
+.message_list_container {
+	margin-top: 60px;
+}
+
 .message_container {
 	background: white;
 	border: 1px solid lightgrey;
-	padding: 20px;
+	padding: 10px 20px 5px 20px;
 }
 
 .message_title {
@@ -407,8 +407,24 @@ header:after {
 	background: #3A4FD5;
 	color: white;
 	border: 2px solid lightgrey;
+	float: right;
+	margin-top: -10px;
 }
 
 .create_message:hover {
 	background: #3447bf;
+}
+
+.message_labels_container {
+	list-style: none;
+	margin-bottom: -60px;
+	padding: none;
+}
+
+.message_labels_container li {
+	display: inline-block;
+	border: 1px solid lightgrey;
+	border-bottom: 0px !important;
+	background: white;
+	padding: 0px !important;
 }

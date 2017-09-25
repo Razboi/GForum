@@ -3,17 +3,86 @@
 {% block content %}
 
 <a href="{% url 'messages:create' %}" ><button class="btn btn-default create_message" type="button">
+
 <i class="fa fa-pencil"></i></button></a>
-{% for object in object_list reversed %}
-<div class="message_container">
-    <h1 class="message_title">{{ object.subject }}</h1>
-    <span class="message_author">from <b>{{ object.author }}</b> {{ object.created|timesince }} ago</span>
-    <p class="message_content">
-      {{ object.content }}
-    </p>
-    <b><a href="#" class="edit_and_delete">Reply</a></b>
-    <b><a href="#" class="edit_and_delete">Delete</a></b>
-</div>
+<ul class="message_labels_container">
+    <li><a href="{% url 'messages:inbox' %}">Inbox</a></li>
+    <li><a href="{% url 'messages:sent' %}" >Sent</a></li>
+</ul>
+<!-- Private Messages -->
+<div class="message_list_container">
+  {% for object in object_list reversed %}
+    <div class="message_container">
+        <h1 class="message_title">{{ object.subject }}</h1>
+        <!-- If inbox show author, if sent show contact -->
+        {% if sent %}
+          <span class="message_author">to <b>{{ object.contact }}</b> {{ object.created|timesince }} ago</span>
+        {% else %}
+          <span class="message_author">from <b>{{ object.author }}</b> {{ object.created|timesince }} ago</span>
+        {% endif %}
+        <!-- Content -->
+        <p class="message_content">
+          {{ object.content }}
+        </p>
+        <!-- If inbox show options -->
+        {% if not sent %}
+          <b><a href="#" class="edit_and_delete">Delete</a></b>
+          <b><a href="#" class="edit_and_delete reply_pm">Reply</a></b>
+
+          <form class="reply_form" action="{% url 'messages:reply' contact=object.author.username pk=object.pk %}" method="post">{% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary cancel_reply">Cancel</button>
+          </form>
+        {% endif %}
+        <!-- If a sent message has replies show the option to display them -->
+        <!--
+          {% if object.replies.all %}
+            <a href="javascript:" class=replies_link>Show Thread<i class="fa fa-caret-down"></i></a>
+          {% endif %}
+          <div class="show_replies">
+            {% for reply in object.replies.all %}
+              <div class="thread_message">
+                <h1 class="message_title">{{ reply.subject }}</h1>
+                  <span class="message_author">from <b>{{ reply.author }}</b> to <b>{{ reply.contact }}</b> {{ reply.created|timesince }} ago</span>
+                <p class="message_content">
+                  {{ reply.content }}
+                </p>
+              </div>
+            {% endfor %}
+          </div>
+         -->
+
+          {% if object.replies.all or object.parent.replies.all %}
+            <a href="javascript:" class=replies_link>Show Thread<i class="fa fa-caret-down"></i></a>
+          <div class="show_replies">
+          {% if not object.parent %}
+            {% for reply in object.replies.all %}
+              <div class="thread_message">
+                <h1 class="message_title">{{ reply.subject }}</h1>
+                  <span class="message_author">from <b>{{ reply.author }}</b> to <b>{{ reply.contact }}</b> {{ reply.created|timesince }} ago</span>
+                <p class="message_content">
+                  {{ reply.content }}
+                </p>
+              </div>
+            {% endfor %}
+
+          {% else %}
+          {% for reply in object.parent.replies.all %}
+              <div class="thread_message">
+                <h1 class="message_title">{{ reply.subject }}</h1>
+                  <span class="message_author">from <b>{{ reply.author }}</b> to <b>{{ reply.contact }}</b> {{ reply.created|timesince }} ago</span>
+                <p class="message_content">
+                  {{ reply.content }}
+                </p>
+              </div>
+          {% endfor %}
+          {% endif %}
+          </div>
+          {% endif %}
+
+    </div>
 {% endfor %}
+</div>
 
 {% endblock %}

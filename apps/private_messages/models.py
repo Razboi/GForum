@@ -12,7 +12,12 @@ class PrivateMessage(models.Model):
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    parent = models.ForeignKey("self", null=True, blank=True, related_name="replies")
+    is_reply = models.BooleanField(default=False)
 
     def __str__(self):
         basic_description = str(self.author) + " to " + str(self.contact) + " | " + str(self.subject)
         return basic_description
+
+    def get_absolute_url(self):
+        return reverse("messages:inbox")
