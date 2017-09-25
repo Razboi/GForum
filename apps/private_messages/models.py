@@ -20,4 +20,4 @@ class PrivateMessage(models.Model):
         return basic_description
 
     def get_absolute_url(self):
-        return reverse("messages:inbox")
+        return reverse("messages:sent")
