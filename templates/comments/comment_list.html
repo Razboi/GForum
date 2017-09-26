@@ -40,7 +40,7 @@
 
       <!--- Reply option and form --->
       {% if user.is_authenticated and comment.author != request.user %}
-        <b><a href="javascript:" class="edit_and_delete report_link">Report</a></b>
+        <b><a href="{% url 'reports:comment' pk=comment.pk %}" class="edit_and_delete report_link">Report</a></b>
         <b><a href="javascript:" class="edit_and_delete reply_link">Reply</a></b>
         <form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">{% csrf_token %}
             <span class="comment_form">{{ form.as_p }}</span>

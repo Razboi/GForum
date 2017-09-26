@@ -13,6 +13,8 @@
 {% if user.is_authenticated and request.user == object.author %}
   <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete">Edit</a></b>
   <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete">Delete</a></b>
+{% else %}
+  <b><a href="{% url 'reports:post' pk=object.pk %}" class="edit_and_delete">Report</a></b>
 {% endif %}
 </div>
 <hr>
