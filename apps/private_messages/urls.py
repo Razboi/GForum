@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import PMList, CreatePM, SentList, ReplyPM, DeletePM
+from .views import PMList, CreatePM, SentList, ReplyPM, DeletePM, ProfilePM
 
 urlpatterns = [
     url(r'^inbox/$', PMList.as_view(), name="inbox"),
@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^create/$', CreatePM.as_view(), name="create"),
     url(r'^reply/(?P<contact>[\w-]+)/(?P<pk>\d+)/$', ReplyPM.as_view(), name="reply"),
     url(r'^delete/(?P<pk>\d+)/$', DeletePM.as_view(), name="delete"),
+    url(r'^create/(?P<contact>[\w-]+)/$', ProfilePM.as_view(), name="profile_message"),
 ]

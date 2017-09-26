@@ -3,10 +3,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth import get_user_model
 
 from .forms import UserLoginForm, UserRegisterForm
 from apps.posts.models import Post
 from apps.comments.models import Comment
+
+User = get_user_model()
 
 
 class UserProfile(ListView):
@@ -17,10 +20,13 @@ class UserProfile(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(UserProfile, self).get_context_data(**kwargs)
-        context["title"] = str(self.request.user.username) + " profile"
-        posts = Post.objects.filter(author=self.request.user)
+        username = self.kwargs.get("user")
+        context["username"] = username
+        user = User.objects.get(username=username)
+        context["title"] = "Overview for " + str(username)
+        posts = Post.objects.filter(author=user)
         context["posts_list"] = posts
-        comments = Comment.objects.filter(author=self.request.user)
+        comments = Comment.objects.filter(author=user)
         context["comments_list"] = comments
         return context
 

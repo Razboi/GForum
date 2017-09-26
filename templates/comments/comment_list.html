@@ -16,7 +16,8 @@
   {% for comment in comment_list %}
     <!--- Comment info --->
     <div class="container-fluid commentContainer">
-      <span class="comment_identifier">#{{ comment.identifier }} </span><b class="comment_author">{{ comment.author }}</b>
+      <span class="comment_identifier">#{{ comment.identifier }} </span>
+      <b class="comment_author"><a href="{% url 'accounts:profile' user=comment.author.username %}">{{ comment.author }}</a></b>
       <span class="comment_info"> {{ comment.created|timesince }} ago</span>
 
       <!--- If its a reply show parent identifier and content on hover --->

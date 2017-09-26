@@ -300,9 +300,9 @@ header:after {
 	color: grey;
 }
 
-.comment_author {
-
+.comment_author a {
 	margin-right: 5px;
+	text-decoration: none;
 	color: #2A9CCD;
 }
 
@@ -412,7 +412,7 @@ header:after {
 }
 
 .create_message:hover {
-	background: #3447bf;
+	background: #2e3fab;
 }
 
 .message_labels_container {
@@ -435,4 +435,73 @@ header:after {
 	padding: 5px 5px 5px 10px;
 	margin: 15px;
 	margin-left: 5%;
+}
+
+/* -------------------------------------------------------------*/
+/* --------------------------- User Profile -------------------------*/
+
+.userprofile_comment {
+	padding: 5px;
+}
+
+.userprofile_post {
+	border: 1px solid lightgrey;
+	background: white;
+	padding: 5px;
+	margin-top: 30px;
+}
+
+.userprofile_post h3 a {
+	color: #2A9CCD;
+	text-decoration: none !important;
+}
+
+.post_info {
+	color: grey;
+}
+
+.userprofile_post p {
+	margin: 10px 0px 10px 7px;
+	font-size: 22px;
+}
+
+.post_comments {
+	color: grey;
+	margin-left: 5px;
+}
+
+.comment_info a {
+	text-decoration: none;
+	color: grey;
+}
+
+.contact_user_button {
+	float: right;
+	border-radius: 100%;
+	width: 55px;
+	height: 55px;
+	border: 2px solid lightgrey;
+	background: #3A4FD5;
+	color: white;
+}
+
+.contact_user_button:hover {
+	background: #2e3fab;
+}
+
+.contact_user_button i {
+	font-size: 24px;
+}
+
+.profile_username {
+	color: #3A4FD5;
+	margin: -50px 0px 40px 0px;
+}
+
+.comment_author {
+	color: #2A9CCD;
+}
+
+.empty_userprofile {
+	color: grey;
 }

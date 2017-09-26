@@ -10,7 +10,8 @@
 {% for object in object_list %}
 <ul id="post_list">
     <h1><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h1>
-    Submitted <b>{{ object.created|timesince }} ago</b> by <b>{{ object.author }}</b>
+    Submitted <b>{{ object.created|timesince }} ago</b> by
+    <b><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
     <br>
     <span>{{object.comment_set.all|length}} comments</span>
 

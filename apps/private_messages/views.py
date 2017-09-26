@@ -40,9 +40,19 @@ class CreatePM(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.author = self.request.user
         contact_username = form.cleaned_data.get("contact_username")
-        print(contact_username)
         instance.contact = User.objects.get(username__iexact=contact_username)
         return super(CreatePM, self).form_valid(form)
+
+class ProfilePM(LoginRequiredMixin, CreateView):
+    form_class = PMReplyForm
+    template_name = "snippets/form.html"
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.author = self.request.user
+        contact_username = self.kwargs.get("contact")
+        instance.contact = User.objects.get(username__iexact=contact_username)
+        return super(ProfilePM, self).form_valid(form)
 
 
 class DeletePM(LoginRequiredMixin, DeleteView):
