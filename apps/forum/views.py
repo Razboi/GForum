@@ -11,6 +11,13 @@ class ForumList(ListView):
     def get_queryset(self, **kwargs):
         return Forum.objects.all()
 
+    def get_context_data(self, **kwargs):
+        context = super(ForumList, self).get_context_data(**kwargs)
+        context["general_forums"] = Forum.objects.filter(category="General")
+        context["programming_forums"] = Forum.objects.filter(category="Programming")
+        context["title"] = "Forums index"
+        return context
+
 
 class ForumDetails(ListView):
 

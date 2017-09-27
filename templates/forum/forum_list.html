@@ -1,14 +1,27 @@
-{% extends "snippets/base.html" %}
-{% block title %}GForum{% endblock %}
-{% block content %}
+{% extends "snippets/base.html" %} {% block title %}GForum{% endblock %} {% block content %}
 
-<h1 id="forum_list_title">Categories</h1>
+<div class="container">
+  <div class="row">
 
-<ul id="forum_list">
-{% for object in object_list %}
+    <div class="col-sm-9 forum_list">
+      <div class="container general forums">
+        <h2>General</h2>
+        {% for forum in general_forums %}
+        <a href="{{forum.get_absolute_url}}">{% include "snippets/forum_categories.html" %}</a>
+        {% endfor %}
+      </div>
 
-    <li><a href="{{object.get_absolute_url}}">{{ object.name }}</a></li>
+      <div class="container programming forums">
+        <h2>Programming</h2>
+        {% for forum in programming_forums %}
+        <a href="{{forum.get_absolute_url}}">{% include "snippets/forum_categories.html" %}</a>
+        {% endfor %}
+      </div>
+    </div>
 
-{% endfor %}
-</ul>
-{% endblock %}
+    <div class="col-sm-3 tops">
+      <h3>Test</h3>
+    </div>
+
+  </div>
+</div>{% endblock %}

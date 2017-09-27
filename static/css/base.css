@@ -217,6 +217,43 @@ header:after {
 	100% { color: #3a4ed5; }
 }
 
+.tops {
+	margin: 0px;
+	border: 1px solid lightgrey;
+}
+
+.categories {
+	float: left;
+	background: white;
+	border: 1px solid lightgrey;
+	margin: 20px;
+}
+
+.categories i {
+	font-size: 25px;
+}
+
+.icon_col {
+	background: grey;
+}
+
+.category_col {
+	padding: 10px 10px 0px 10px;
+}
+
+.forum_list {
+	margin: 0px;
+	padding: 0px;
+}
+
+.programming {
+	margin-top: 10px;
+}
+
+.forums {
+	float: left;
+}
+
 /* -------------------------------------------------------------*/
 /* --------------------------- POST -------------------------*/
 
