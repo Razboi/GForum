@@ -1,11 +1,24 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from .forms import CommentCreateForm
 from apps.posts.models import Post
 from .models import Comment
+
+
+class Like(LoginRequiredMixin, View):
+    def get(self, request, **kwargs):
+        comment_pk = kwargs.get("pk")
+        comment = Comment.objects.get(pk=comment_pk)
+        score_list = comment.score.all()
+        if request.user not in score_list:
+            comment.score.add(self.request.user)
+        else:
+            comment.score.remove(self.request.user)
+
+        return redirect(comment.get_absolute_url())
 
 
 class CreateReply(LoginRequiredMixin, CreateView):

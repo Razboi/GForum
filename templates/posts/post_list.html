@@ -1,21 +1,16 @@
-{% extends "snippets/base.html" %}
-{% block title %}{{ title }}{% endblock %}
-{% block content %}
+{% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}{% block content %}
 <header class="forum_details_title">
   <h1>{{ title }}</h1>
 </header>
 
-<a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">
-  Create Post</button></a>
+<a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
 {% for object in object_list %}
-<ul id="post_list">
+<div class="post_list">
     <h1><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h1>
     Submitted <b>{{ object.created|timesince }} ago</b> by
     <b><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
     <br>
-    <span>{{object.comment_set.all|length}} comments</span>
-
-</ul>
-{% endfor %}
-
-{% endblock %}
+    <span class="post_list_likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
+    <span class="post_list_comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+</div>
+{% endfor %}{% endblock %}

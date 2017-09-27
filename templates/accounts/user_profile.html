@@ -27,7 +27,8 @@
           <b><a href="{% url 'post:update' slug=post.slug %}" class="edit_and_delete">Edit</a></b>
           <b><a href="{% url 'post:delete' slug=post.slug %}" class="edit_and_delete">Delete</a></b>
         {% endif %}
-        <span class="post_comments">{{post.comment_set.all|length}} comments</span>
+        <span class="post_list_likes">{{post.score.count}} <i class="fa fa-thumbs-up"></i></span>
+        <span class="post_list_comments">{{post.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
       </div>
       {% endfor %}
     </div>

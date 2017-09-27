@@ -161,13 +161,6 @@ header:after {
 }
 
 .forum_details_title h1{
-	/*margin-bottom: 20px;
-	margin-top: -15px;
-	color: #3A4FD5;
-	font-size: 47px;
-	text-align: center;
-	animation: fadein 2s;*/
-
 	position: relative;
 	padding: 0.25em 1em;
 	overflow: hidden;
@@ -227,22 +220,20 @@ header:after {
 /* -------------------------------------------------------------*/
 /* --------------------------- POST -------------------------*/
 
-#post_list {
-	list-style-type: none;
+.post_list {
 	margin-top: 85px;
 	padding: 20px;
-	width: 100%;
 	border: 1px solid lightgrey;
 	background-color: white;
 }
 
-#post_list a {
+.post_list a {
 	text-decoration: none;
 	color: #2A9CCD;
 }
 
-#post_list span {
-	color: grey;
+.post_list span {
+	color: #3A4FD5;
 }
 
 .post_content {
@@ -277,6 +268,19 @@ header:after {
 	color: grey;
 }
 
+.post_list_comments i {
+	color: #3A4FD5;
+}
+
+.post_list_comments {
+	margin-left: 7px;
+}
+
+.post_list_likes i {
+	color: #3A4FD5;
+}
+
+
 /* -------------------------------------------------------------*/
 /* --------------------------- COMMENT -------------------------*/
 
@@ -285,6 +289,8 @@ header:after {
 	border: 1px solid lightgrey;
 	background: white;
 	position: relative;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .commentContainer p {
@@ -344,6 +350,11 @@ header:after {
 
 .reply_form {
 	padding-bottom: 10px;
+	display: none;
+}
+
+.show_replies {
+	display: none;
 }
 
 .replies_link {
@@ -364,6 +375,29 @@ header:after {
 	padding: 5px 5px 5px 10px;
 	margin: 15px;
 	margin-left: 5%;
+}
+
+.comment_likes, .comment_likes_done {
+	margin-right: 10px;
+}
+
+.comment_likes i {
+	color: #3A4FD5;
+	font-size: 19px;
+}
+
+.comment_likes i:hover {
+	color: #2e3fab;
+}
+
+.comment_likes_done i {
+	color: #293899;
+	font-size: 18px;
+}
+
+.comment_likes_count {
+	color: #3A4FD5;
+	margin-left: 10px;
 }
 
 /* -------------------------------------------------------------*/

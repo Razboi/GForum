@@ -16,6 +16,7 @@ class Comment(models.Model):
     parent = models.ForeignKey("self", null=True, blank=True, related_name="replies")
     is_reply = models.BooleanField(default=False)
     identifier = models.IntegerField(null=True, blank=True)
+    score = models.ManyToManyField(User, related_name="comment_score")
 
     # this will redirect the user to the post in which they commented (created a comment)
     def get_absolute_url(self):

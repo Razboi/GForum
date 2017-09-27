@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Post
@@ -8,6 +8,19 @@ from apps.forum.models import Forum
 from apps.comments.models import Comment
 
 from apps.comments.forms import CommentCreateForm
+
+
+class Like(LoginRequiredMixin, View):
+    def get(self, request, **kwargs):
+        post_slug = kwargs.get("slug")
+        post = Post.objects.get(slug=post_slug)
+        score_list = post.score.all()
+        if request.user not in score_list:
+            post.score.add(self.request.user)
+        else:
+            post.score.remove(self.request.user)
+
+        return redirect(post.get_absolute_url())
 
 
 class PostSearch(ListView):

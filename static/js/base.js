@@ -1,6 +1,5 @@
+
 $(document).ready(function(){
-  $(".reply_form").hide();
-  $(".show_replies").hide();
 
   function showReplyForm()
   {

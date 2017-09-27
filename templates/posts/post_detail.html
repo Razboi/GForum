@@ -1,25 +1,26 @@
-{% extends "snippets/base.html" %}
-{% block title %}{{object.name}}{% endblock %}
-{% block content %}
+{% extends "snippets/base.html" %} {% block title %}{{object.name}}{% endblock %} {% block content %}
 
 <h1 class="back_to_forum"><a href="{% url 'forum:details' slug=slug %}"><i class="fa fa-step-backward"></i></a></h1>
 
 <div class="post_content">
   <span id="post_info">
-    <h1>{{ object.name }}</h1>Submitted <b>{{ object.created|timesince }} ago</b> by <b>{{ object.author }}</b>
+    <h1>{{ object.name }}</h1>
+    Submitted <b>{{ object.created|timesince }} ago</b> by <b>{{ object.author }}</b>
+    {% if object.score.count > 0 %}
+    <span class="comment_likes_count">{{ object.score.count }} likes</span>
+    {% endif %}
   </span>
   <p>{{ object.content }}</p>
-
-{% if user.is_authenticated and request.user == object.author %}
+  {% if user.is_authenticated %} {% if request.user != object.author %}
+  {% if request.user in object.score.all %}
+  <span class="comment_likes_done"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up"></i></a></span>
+  {% else %}
+  <span class="comment_likes"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up"></i></a></span>
+  {% endif %}
+  <b><a href="{% url 'reports:post' pk=object.pk %}" class="edit_and_delete">Report</a></b>
+  {% else %}
   <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete">Edit</a></b>
   <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete">Delete</a></b>
-{% else %}
-  <b><a href="{% url 'reports:post' pk=object.pk %}" class="edit_and_delete">Report</a></b>
-{% endif %}
+  {% endif %} {% endif %}
 </div>
-<hr>
-
-
-{% include "comments/comment_list.html" %}
-
-{% endblock %}
+<hr> {% include "comments/comment_list.html" %} {% endblock %}

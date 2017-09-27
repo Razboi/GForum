@@ -19,6 +19,9 @@
       <span class="comment_identifier">#{{ comment.identifier }} </span>
       <b class="comment_author"><a href="{% url 'accounts:profile' user=comment.author.username %}">{{ comment.author }}</a></b>
       <span class="comment_info"> {{ comment.created|timesince }} ago</span>
+      {% if comment.score.count > 0 %}
+      <span class="comment_likes_count">{{ comment.score.count }} likes</span>
+      {% endif %}
 
       <!--- If its a reply show parent identifier and content on hover --->
       {% if comment.is_reply %}
@@ -40,6 +43,11 @@
 
       <!--- Reply option and form --->
       {% if user.is_authenticated and comment.author != request.user %}
+      {% if request.user in comment.score.all %}
+      <span class="comment_likes_done"><a href="{% url 'comment:like' pk=comment.pk %}"><i class="fa fa-thumbs-up"></i></a></span>
+      {% else %}
+      <span class="comment_likes"><a href="{% url 'comment:like' pk=comment.pk %}"><i class="fa fa-thumbs-up"></i></a></span>
+      {% endif %}
         <b><a href="{% url 'reports:comment' pk=comment.pk %}" class="edit_and_delete report_link">Report</a></b>
         <b><a href="javascript:" class="edit_and_delete reply_link">Reply</a></b>
         <form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">{% csrf_token %}
