@@ -1,13 +1,29 @@
 {% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}{% block content %}
 
-<a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
-{% for object in object_list %}
-<div class="post_list">
-    <h1><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h1>
-    Submitted <b>{{ object.created|timesince }} ago</b> by
-    <b><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
-    <br>
-    <span class="post_list_likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
-    <span class="post_list_comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+<div class="container" id="forum_wrapper">
+  <a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
+
+  <div id="post_list">
+
+
+  {% for object in object_list %}
+  <div class="post container col-sm-12">
+    <div class="row">
+      <div class="main_info col-sm-11">
+        <h2><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h2>
+        <span class="post_info">
+          Submitted <b>{{ object.created|timesince }} ago</b> by
+          <b><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
+        </span>
+      </div>
+
+      <div class="secondary_info col-sm-1">
+        <span class="post_likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
+        <span class="post_comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
 </div>
-{% endfor %}{% endblock %}
+{% endblock %}

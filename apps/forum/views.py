@@ -17,7 +17,7 @@ class ForumList(ListView):
         context = super(ForumList, self).get_context_data(**kwargs)
         context["general_forums"] = Forum.objects.filter(category="General")
         context["programming_forums"] = Forum.objects.filter(category="Programming")
-        context["title"] = "Forums index"
+        context["title"] = "Forums"
         most_liked = Post.objects.annotate(num_likes=Count("score")).order_by("-num_likes")[:10]
         context["top_posts"] = most_liked
         return context

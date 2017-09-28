@@ -1,8 +1,6 @@
 /* --------------------------- GLOBAL -------------------------*/
 
 body {
-	margin: 0;
-	padding: 0;
 	background-color: #f9f8f4;
 	font-family: Lobster;
 }
@@ -12,38 +10,15 @@ p {
 }
 
 /* -------------------------------------------------------------*/
-/* --------------------------- BASE -------------------------*/
-
-#baseContainer {
-	margin-top: 50px;
-	margin-bottom: 70px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-#baseContainer li {
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid lightgrey;
-}
-
-#baseContainer li a {
-	display: block;
-	color: black;
-	padding: 8px 16px;
-  text-decoration: none;
-}
-
-/* -------------------------------------------------------------*/
 /* --------------------------- HEADER -------------------------*/
-
 
 .title {
 	background:#CB8C1D;
 	height: 50px;
-	border-top: 1px solid #CB8C1D;
-	border-bottom: 1px solid #F2EFE4;
+	border-top: 1px solid #daae60;
+	border-bottom: 1px solid #8e6214;
+
+	background: linear-gradient(#d5a34a, #a27017);
 }
 
 
@@ -54,10 +29,10 @@ p {
 }
 
 .header_title {
-	color: white;
+	color: #F2EFE4;
 	margin-top: 5px;
-}
 
+}
 
 /* -------------------------------------------------------------*/
 /* --------------------------- FOOTER -------------------------*/
@@ -74,10 +49,12 @@ p {
 
 .footer_info {
 	float: left;
+	padding: 0px;
 }
 
 .social_media {
 	float: right;
+	padding: 0px;
 }
 
 .footer_list {
@@ -181,28 +158,18 @@ p {
 	border-color: #CB8C1D;
 }
 
-/* -------------------------------------------------------------*/
-/* --------------------------- BUTTONS -------------------------*/
-
-.btn-default {
-	margin-bottom: 10px;
-	cursor: pointer;
-	border: 1px solid lightgrey;
-	background-color: white;
+.navbar-toggler {
+	color: white !important;
 }
 
-#create_post_button {
-	float: right;
-	margin-top: 35px;
-}
-
-.btn-default:hover {
-	background-color: #3A4FD5;
-	color: white;
-}
 
 /* -------------------------------------------------------------*/
 /* --------------------------- FORUM -------------------------*/
+
+#index_wrapper {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
 
 .tops_list {
 	margin: 0px;
@@ -279,23 +246,69 @@ p {
 }
 
 /* -------------------------------------------------------------*/
-/* --------------------------- POST -------------------------*/
+/* --------------------------- FORUM DETAILS | POSTS LIST -------------------------*/
 
-.post_list {
-	margin-top: 85px;
-	padding: 20px;
-	border: 1px solid lightgrey;
-	background-color: white;
+#forum_wrapper {
+	padding: 20px 0px 80px 0px;
 }
 
-.post_list a {
+#post_list {
+	margin: 60px 0px 0px 0px;
+}
+
+.post_info {
+	color: grey !important;
+}
+
+.post_info a {
+	color: #CB8C1D;
 	text-decoration: none;
-	color: #2A9CCD;
 }
 
-.post_list span {
-	color: #3A4FD5;
+.main_info {
+
 }
+
+.secondary_info {
+	float: right;
+	padding: 0px;
+	margin-top: 20px;
+}
+
+.post {
+	padding: 20px 20px 20px 20px;
+	background: white;
+	border: 1px solid lightgrey;
+}
+
+.post h2 a {
+	text-decoration: none;
+	color: black;
+
+}
+
+.post span {
+	color: #CB8C1D;
+}
+
+.post_comments i {
+	color: #CB8C1D;
+}
+
+.post_comments {
+	margin-left: 7px;
+}
+
+.post_likes i {
+	color: #CB8C1D;
+}
+
+#create_post_button {
+	float: right;
+}
+
+/* -------------------------------------------------------------*/
+/* --------------------------- POST DETAILS  -------------------------*/
 
 .post_content {
 	margin-top: 80px;
@@ -329,17 +342,6 @@ p {
 	color: grey;
 }
 
-.post_list_comments i {
-	color: #3A4FD5;
-}
-
-.post_list_comments {
-	margin-left: 7px;
-}
-
-.post_list_likes i {
-	color: #3A4FD5;
-}
 
 
 /* -------------------------------------------------------------*/
