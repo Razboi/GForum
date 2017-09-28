@@ -17,8 +17,18 @@ p {
 	height: 50px;
 	border-top: 1px solid #daae60;
 	border-bottom: 1px solid #8e6214;
-
 	background: linear-gradient(#d5a34a, #a27017);
+}
+
+.title img {
+	max-height: 35px;
+	max-width: 35px;
+}
+
+.title span {
+	color: #F2EFE4;
+	font-size: 25px;
+	margin-left: 5px;
 }
 
 
@@ -30,8 +40,7 @@ p {
 
 .header_title {
 	color: #F2EFE4;
-	margin-top: 5px;
-
+	margin: 5px 0px 0px 0px;
 }
 
 /* -------------------------------------------------------------*/
@@ -40,6 +49,7 @@ p {
 .footer_separator {
 	background: #F2EFE4;
 	height: 125px;
+	border-top: 1px solid #d9d7cd;
 }
 
 .main_footer {
@@ -142,7 +152,7 @@ p {
 }
 
 .nav_searchbar .form-control:focus {
-	border-color: #CB8C1D;
+	border-color: #d5a34a;
 }
 
 .nav_searchbar button {
@@ -154,12 +164,16 @@ p {
 }
 
 .nav_searchbar button:hover {
-	background-color: #a27017;
+	background-color: #d5a34a;
 	border-color: #CB8C1D;
 }
 
+.fa-bars {
+	color: white ;
+}
+
 .navbar-toggler {
-	color: white !important;
+	cursor: pointer;
 }
 
 
@@ -245,6 +259,23 @@ p {
 	float: left;
 }
 
+@media (max-width: 480px) {
+	.tops_list {
+		float: none;
+		margin-left: 25%;
+		margin-top: 50px;
+	}
+
+	.categories {
+		float: none;
+		margin-left: 50%;
+	}
+
+	.forums a {
+		text-decoration: none;
+	}
+}
+
 /* -------------------------------------------------------------*/
 /* --------------------------- FORUM DETAILS | POSTS LIST -------------------------*/
 
@@ -305,6 +336,13 @@ p {
 
 #create_post_button {
 	float: right;
+	background: #CB8C1D;
+	color: white;
+	cursor: pointer;
+}
+
+#create_post_button:hover {
+	background: #d5a34a;
 }
 
 /* -------------------------------------------------------------*/

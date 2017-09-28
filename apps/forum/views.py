@@ -36,6 +36,7 @@ class ForumDetails(ListView):
         slug = self.kwargs.get("slug")
         forum = Forum.objects.get(slug__iexact=slug)  # get the forum with the slug that we are using
         context["title"] = forum.name  # get the current forum name to use it as title
+        context["icon"] = forum.icon.url
 
         post = Post.objects.filter(forum__slug__iexact=slug)
         post_comments = Comment.objects.filter(post=post)
