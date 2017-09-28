@@ -3,25 +3,12 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #eeeeee;
+	background-color: #f9f8f4;
 	font-family: Lobster;
 }
 
 p {
 	word-wrap: break-word;
-}
-
-header {
-	display: flex;
-	color: black;
-}
-
-header:before,
-header:after {
-	content: "";
-	margin: auto 1em;
-	border-bottom: solid 2px;
-	flex: 1;
 }
 
 /* -------------------------------------------------------------*/
@@ -49,7 +36,87 @@ header:after {
 }
 
 /* -------------------------------------------------------------*/
+/* --------------------------- HEADER -------------------------*/
+
+
+.title {
+	background:#CB8C1D;
+	height: 50px;
+	border-top: 1px solid #CB8C1D;
+	border-bottom: 1px solid #F2EFE4;
+}
+
+
+.header_separator {
+	background: #F2EFE4;
+	height: 100px;
+
+}
+
+.header_title {
+	color: white;
+	margin-top: 5px;
+}
+
+
+/* -------------------------------------------------------------*/
+/* --------------------------- FOOTER -------------------------*/
+
+.footer_separator {
+	background: #F2EFE4;
+	height: 125px;
+}
+
+.main_footer {
+	background: #4C3327;
+	height: 200px;
+}
+
+.footer_info {
+	float: left;
+}
+
+.social_media {
+	float: right;
+}
+
+.footer_list {
+	list-style: none;
+	margin-top: 30px;
+}
+
+.footer_list a {
+	color: #F2EFE4;
+	text-decoration: none;
+}
+
+.footer_list li {
+	margin: 5px;
+}
+
+.footer_list li span {
+	color: white;
+}
+
+.fa-facebook {
+	color: #3b5998
+}
+
+.fa-twitter {
+	color: #1dcaff;
+}
+
+.fa-youtube {
+	color: #cc181e;
+}
+
+
+/* -------------------------------------------------------------*/
 /* --------------------------- NAVIGATION -------------------------*/
+
+.navbar {
+	background: #4C3327;
+}
 
 .navbar-nav li {
 	margin-right: 25px;
@@ -57,7 +124,7 @@ header:after {
 }
 
 .navbar-nav li:hover a {
-	border-bottom: 1px solid #5B6DDE !important;
+	border-bottom: 1px solid #CB8C1D; !important;
 }
 
 .navbar-nav i {
@@ -67,6 +134,7 @@ header:after {
 .navbar-brand {
 	font-size: 37px;
 	padding: 0;
+	color: white !important;
 }
 
 .navbar-brand img {
@@ -93,23 +161,24 @@ header:after {
 	max-width: 400px;
 	min-width: 200px;
 	border-radius: 0px;
+	border-color: #CB8C1D;
 }
 
 .nav_searchbar .form-control:focus {
-	border-color: #3A4FD5;
+	border-color: #CB8C1D;
 }
 
 .nav_searchbar button {
-	background-color: #3A4FD5;
-	border-color: #3A4FD5;
+	background-color: #CB8C1D;
+	border-color: #CB8C1D;
 	border-radius: 0px;
 	color: white;
 	cursor: pointer;
 }
 
 .nav_searchbar button:hover {
-	background-color: #3447bf;
-	border-color: #3447bf;
+	background-color: #a27017;
+	border-color: #CB8C1D;
 }
 
 /* -------------------------------------------------------------*/
@@ -135,91 +204,30 @@ header:after {
 /* -------------------------------------------------------------*/
 /* --------------------------- FORUM -------------------------*/
 
-#forum_list {
-	font-size: 25px;
-	list-style-type: none;
-	margin-top: 65px;
-	padding: 0;
-	width: 100%;
-	border: 10px solid transparent;
-	background-clip: padding-box, border-box;
-  background-origin: padding-box, border-box;
-  background-image: linear-gradient(45deg, #fff, #fff), linear-gradient(45deg, #3acfd5, #3a4ed5);
-}
-
-#forum_list li {
-	border-bottom: 1px solid lightgrey;
-}
-
-#forum_list li:hover {
-	border-bottom: 2px #3A4FD5 solid;
-
-}
-
-#forum_list li:hover a {
-	color: #3A4FD5;
-}
-
-.forum_details_title h1{
-	position: relative;
-	padding: 0.25em 1em;
-	overflow: hidden;
-	background: linear-gradient(black, black) no-repeat top center,
-	linear-gradient(black, black) no-repeat bottom center;
-  background-size: calc(100% - 1.65em) 1px;
-	color: #3A4FD5;
-	animation: fadein 2s;
-	font-size: 44px;
-	border-color: black !important;
-}
-
-.forum_details_title h1:before,
-.forum_details_title h1:after {
-	content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  border: solid black 1px;
-
-  border-top: none;
-  border-bottom: none;
-  transform: skew(45deg)
-}
-
-
-.forum_details_title h1:after {
-	transform: skew(-45deg)
-}
-
-
-
-@keyframes fadein {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-#forum_list_title {
-	text-align: center;
-	font-size: 45px;
-	-webkit-animation: color-change 17s infinite;
-}
-
-@-webkit-keyframes color-change {
-	0% { color: #3a4ed5; }
-  50% { color: #3acfd5; }
-	100% { color: #3a4ed5; }
-}
-
-.tops {
+.tops_list {
 	margin: 0px;
-	border: 1px solid lightgrey;
+	padding: 0px;
+}
+
+.top {
+	margin-top: 20px;
+	float: left;
+}
+
+.top a {
+	text-decoration: none;
+	color: black;
+	font-size: 20px;
+}
+
+.top_col {
+	margin: 0px;
+	padding: 10px 10px 10px 0px;
+}
+
+.top_col img {
+	max-height: 35px;
+	max-width: 35px;
 }
 
 .categories {
@@ -229,16 +237,32 @@ header:after {
 	margin: 20px;
 }
 
-.categories i {
-	font-size: 25px;
+.categories:hover {
+	background: #F2EFE4;
 }
 
 .icon_col {
-	background: grey;
+	background: #F2EFE4;
+}
+
+.icon_col img {
+	height: 38px;
+	width: 38px;
 }
 
 .category_col {
-	padding: 10px 10px 0px 10px;
+	padding: 10px 10px 5px 10px;
+}
+
+.category_col p {
+	margin: 0px;
+	color: grey;
+}
+
+.category_col h4 {
+	margin: 0px;
+	color: black;
+	font-size: 22px;
 }
 
 .forum_list {

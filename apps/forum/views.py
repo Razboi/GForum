@@ -1,5 +1,7 @@
+from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from operator import attrgetter
 
 from .models import Forum
 from apps.posts.models import Post
@@ -16,6 +18,8 @@ class ForumList(ListView):
         context["general_forums"] = Forum.objects.filter(category="General")
         context["programming_forums"] = Forum.objects.filter(category="Programming")
         context["title"] = "Forums index"
+        most_liked = Post.objects.annotate(num_likes=Count("score")).order_by("-num_likes")[:10]
+        context["top_posts"] = most_liked
         return context
 
 

@@ -13,6 +13,7 @@ class Forum(models.Model):
     slug = models.SlugField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     category = models.CharField(max_length=120, null=True, blank=True)
+    icon = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
