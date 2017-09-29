@@ -259,6 +259,11 @@ p {
 	float: left;
 }
 
+#tops_icon {
+	height: 28px;
+	width: 28px;
+}
+
 @media (max-width: 480px) {
 	.tops_list {
 		float: none;
@@ -339,10 +344,36 @@ p {
 	background: #CB8C1D;
 	color: white;
 	cursor: pointer;
+	border: 1px solid #a27017;
+	border-radius: 3px;
 }
 
 #create_post_button:hover {
 	background: #d5a34a;
+}
+
+.filter.active {
+	background: #3399cc;
+	color: white !important;
+	cursor: pointer;
+	border: 1px solid #287aa3 !important;
+	border-radius: 3px;
+}
+
+.filter.active:hover {
+	background: #2d89b7;
+}
+
+.filter {
+	background: white;
+	color: black;
+	border: 1px solid lightgrey;
+	cursor: pointer;
+}
+
+.filter:hover {
+	background: #F2EFE4;
+
 }
 
 /* -------------------------------------------------------------*/

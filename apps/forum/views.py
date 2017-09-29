@@ -28,7 +28,12 @@ class ForumDetails(ListView):
     # Creates the main queryset
     def get_queryset(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
-        return Post.objects.filter(forum__slug__iexact=slug)
+        filter_key = self.kwargs.get("filter")
+        if filter_key == "top":
+            posts = Post.objects.filter(forum__slug__iexact=slug)
+            most_liked = posts.annotate(num_likes=Count("score")).order_by("-num_likes")
+            return most_liked
+        return Post.objects.filter(forum__slug__iexact=slug).order_by("-created")
 
     # Adds context arguments to the queryset
     def get_context_data(self, *args, **kwargs):
@@ -37,6 +42,7 @@ class ForumDetails(ListView):
         forum = Forum.objects.get(slug__iexact=slug)  # get the forum with the slug that we are using
         context["title"] = forum.name  # get the current forum name to use it as title
         context["icon"] = forum.icon.url
+        context["slug"] = self.kwargs.get("slug")
 
         post = Post.objects.filter(forum__slug__iexact=slug)
         post_comments = Comment.objects.filter(post=post)

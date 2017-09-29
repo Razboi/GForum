@@ -1,29 +1,38 @@
-{% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}{% block content %}
+{% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}
 
+{% block content %}
 <div class="container" id="forum_wrapper">
   <a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
+  <a href="{% url 'forum:details' slug=slug %}" class="btn btn-default filter">New</a>
+  <a id="top" href="{% url 'forum:filter' slug=slug filter='top' %}" class="btn btn-default filter">Top</a>
 
   <div id="post_list">
+    {% for object in object_list %}
+    <div class="post container col-sm-12">
+      <div class="row">
+        <div class="main_info col-sm-11">
+          <h2><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h2>
+          <span class="post_info">
+            Submitted <b>{{ object.created|timesince }} ago</b> by
+            <b><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
+          </span>
+        </div>
 
-
-  {% for object in object_list %}
-  <div class="post container col-sm-12">
-    <div class="row">
-      <div class="main_info col-sm-11">
-        <h2><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h2>
-        <span class="post_info">
-          Submitted <b>{{ object.created|timesince }} ago</b> by
-          <b><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
-        </span>
-      </div>
-
-      <div class="secondary_info col-sm-1">
-        <span class="post_likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
-        <span class="post_comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+        <div class="secondary_info col-sm-1">
+          <span class="post_likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
+          <span class="post_comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+        </div>
       </div>
     </div>
-  </div>
-  {% endfor %}
+    {% endfor %}
   </div>
 </div>
+{%block head %}
+<script>
+  var loc = window.location.pathname;
+  $('#forum_wrapper').find('.filter').each(function() {
+    $(this).toggleClass('active', $(this).attr('href') == loc);
+  });
+</script>
+{% endblock %}
 {% endblock %}

@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
   function showReplyForm()
@@ -23,4 +22,18 @@ $(document).ready(function(){
 
   $(".replies_link").click(showReplies);
 
+  function activeFilter()
+  {
+    var path = window.location.href;
+    $(".filter").toggleClass.("active");
+  };
+
+
+
 });
+$(function() {
+    $("#top").on("click", function () {
+    $(this).addClass('active');
+    $(this).siblings().removeClass('active');
+    });
+  })
