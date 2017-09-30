@@ -22,18 +22,9 @@ $(document).ready(function(){
 
   $(".replies_link").click(showReplies);
 
-  function activeFilter()
+  $(".comment_toggler").click(function()
   {
-    var path = window.location.href;
-    $(".filter").toggleClass.("active");
-  };
-
-
+    $("#comment_form").toggle();
+  });
 
 });
-$(function() {
-    $("#top").on("click", function () {
-    $(this).addClass('active');
-    $(this).siblings().removeClass('active');
-    });
-  })

@@ -11,7 +11,7 @@
     <div class="post container col-sm-12">
       <div class="row">
         <div class="main_info col-sm-11">
-          <h2><a href="{{object.get_absolute_url}}">{{ object.name }}</a></h2>
+          <span class="post_title"><a href="{{object.get_absolute_url}}">{{ object.name }}</a></span><br />
           <span class="post_info">
             Submitted <b>{{ object.created|timesince }} ago</b> by
             <b><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>

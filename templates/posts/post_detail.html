@@ -1,26 +1,39 @@
 {% extends "snippets/base.html" %} {% block title %}{{object.name}}{% endblock %} {% block content %}
 
-<h1 class="back_to_forum"><a href="{% url 'forum:details' slug=slug %}"><i class="fa fa-step-backward"></i></a></h1>
-
-<div class="post_content">
-  <span id="post_info">
-    <h1>{{ object.name }}</h1>
-    Submitted <b>{{ object.created|timesince }} ago</b> by <b>{{ object.author }}</b>
+<div id="post_details_container" class="container">
+  <button type="button" class="btn btn-default comment_toggler" id="create_comment_button">Comment</button>
+  <!-- Post Content -->
+  <div id="post_content">
+    <!-- Title --><h1>{{ object.name }}</h1>
+    <!-- Author --><b id="post_author"><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
+    <!-- Time posted --><span id="post_info">{{ object.created|timesince }} ago</span>
     {% if object.score.count > 0 %}
-    <span class="comment_likes_count">{{ object.score.count }} likes</span>
+    <!-- Likes --><span class="comment_likes_count">{{ object.score.count }} likes</span>
     {% endif %}
-  </span>
-  <p>{{ object.content }}</p>
-  {% if user.is_authenticated %} {% if request.user != object.author %}
-  {% if request.user in object.score.all %}
-  <span class="comment_likes_done"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up"></i></a></span>
-  {% else %}
-  <span class="comment_likes"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up"></i></a></span>
-  {% endif %}
-  <b><a href="{% url 'reports:post' pk=object.pk %}" class="edit_and_delete">Report</a></b>
-  {% else %}
-  <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete">Edit</a></b>
-  <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete">Delete</a></b>
-  {% endif %} {% endif %}
-</div>
-<hr> {% include "comments/comment_list.html" %} {% endblock %}
+    <!-- Content --><p>{{ object.content }}</p>
+
+    <!-- Post Options -->
+    <!-- If the user is authenticated and is not the author -->
+    {% if user.is_authenticated %} {% if request.user != object.author %}
+    <!-- Like -->
+    <!-- If already liked -->
+    {% if request.user in object.score.all %}
+    <span class="comment_likes_done"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up"></i></a></span>
+    <!-- If not liked -->
+    {% else %}
+    <span class="comment_likes"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-o-up"></i></a></span>
+    {% endif %}
+    <!-- Report -->
+    <b><a href="{% url 'reports:post' pk=object.pk %}" class="edit_and_delete">Report</a></b>
+
+    <!-- If the user is the author of the post -->
+    {% else %}
+    <!-- Edit and Delete post -->
+    <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete">Edit</a></b>
+    <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete">Delete</a></b>
+    {% endif %} {% endif %}
+  </div>
+
+  <!-- Comment List -->
+  {% include "comments/comment_list.html" %}
+</div>{% endblock %}

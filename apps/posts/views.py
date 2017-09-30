@@ -45,11 +45,14 @@ class PostDetails(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(PostDetails, self).get_context_data(*args, **kwargs)
         slug = self.kwargs.get("slug")
-        post = Post.objects.filter(slug__iexact=slug)
+        post = Post.objects.get(slug__iexact=slug)
 
         forum = Forum.objects.get(post=post)
         forum_slug = forum.slug
         context["slug"] = forum_slug
+        context["title"] = post.name
+        context["icon"] = forum.icon.url
+        context["back_to_forum"] = forum.get_absolute_url
 
         comments = Comment.objects.filter(post=post)
         context["comment_list"] = comments

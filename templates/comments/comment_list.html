@@ -1,12 +1,15 @@
 <div class="container comments_section">
 
-  <h2>Comments<small> ({{object.comment_set.all|length}})</small></h2>
-
   {% if user.is_authenticated %}
+  <div id="comment_form">
+    <h4>New Comment</h4>
     <form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-default">Save</button>
+        <button type="submit" class="btn btn-default save_button">Save</button>
+        <button type="button" class="btn btn-secondary comment_toggler">Cancel</button>
     </form>
+  </div>
+
 
   {% else %}
     <b><a href="{% url 'accounts:login' %}">Login</a> to post comments</b>
@@ -46,13 +49,13 @@
       {% if request.user in comment.score.all %}
       <span class="comment_likes_done"><a href="{% url 'comment:like' pk=comment.pk %}"><i class="fa fa-thumbs-up"></i></a></span>
       {% else %}
-      <span class="comment_likes"><a href="{% url 'comment:like' pk=comment.pk %}"><i class="fa fa-thumbs-up"></i></a></span>
+      <span class="comment_likes"><a href="{% url 'comment:like' pk=comment.pk %}"><i class="fa fa-thumbs-o-up"></i></a></span>
       {% endif %}
         <b><a href="{% url 'reports:comment' pk=comment.pk %}" class="edit_and_delete report_link">Report</a></b>
         <b><a href="javascript:" class="edit_and_delete reply_link">Reply</a></b>
         <form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">{% csrf_token %}
             <span class="comment_form">{{ form.as_p }}</span>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-default save_button">Save</button>
             <button type="button" class="btn btn-secondary cancel_reply">Cancel</button>
         </form>
       {% endif %}
