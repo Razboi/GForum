@@ -33,6 +33,7 @@ class PostSearch(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(PostSearch, self).get_context_data(*args, **kwargs)
         context["title"] = "Search Results"
+        context["slug"] = None
         return context
 
 

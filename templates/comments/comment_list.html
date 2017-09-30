@@ -6,7 +6,7 @@
     <form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-default save_button">Save</button>
-        <button type="button" class="btn btn-secondary comment_toggler">Cancel</button>
+        <button type="button" class="btn btn-secondary cancel_button comment_toggler">Cancel</button>
     </form>
   </div>
 
@@ -56,7 +56,7 @@
         <form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">{% csrf_token %}
             <span class="comment_form">{{ form.as_p }}</span>
             <button type="submit" class="btn btn-default save_button">Save</button>
-            <button type="button" class="btn btn-secondary cancel_reply">Cancel</button>
+            <button type="button" class="btn btn-secondary cancel_button cancel_reply">Cancel</button>
         </form>
       {% endif %}
 

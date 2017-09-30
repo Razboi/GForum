@@ -28,6 +28,7 @@ class UserProfile(ListView):
         context["posts_list"] = posts
         comments = Comment.objects.filter(author=user)
         context["comments_list"] = comments
+        context["icon"] = user.userprofile.image.url
         return context
 
 

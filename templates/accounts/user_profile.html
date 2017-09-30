@@ -1,67 +1,70 @@
 {% extends "snippets/base.html" %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-<h1 class="profile_username">{{username}}</h1>
-{% if username != request.user.username %}
-<a href="{% url 'messages:profile_message' contact=username %}"><button type="button" class="btn btn-default contact_user_button">
-  <i class="fa fa-envelope-o"></i></button></a>
-{% endif %}
-<div class="container user_profile_wrapper">
-  <div class="row">
+<div class="container" id="profile_container">
+  {% if username != request.user.username %}
+  <a href="{% url 'messages:profile_message' contact=username %}"><button type="button" class="btn btn-default contact_user_button">
+    <i class="fa fa-envelope-o"></i></button></a>
+  {% endif %}
+  <div class="container user_profile_wrapper">
+    <div class="row">
 
-    <div class="col-sm-6 user_profile_posts">
-      <h1>Posts</h1>
-      {% if not posts_list.all%}
-      <h3 class="empty_userprofile">This user has no posts</h3>
-      {% endif %}
-
-      {% for post in posts_list %}
-      <div class="userprofile_post">
-        <h3><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h3>
-        <span class="post_info">Submitted <b>{{ post.created|timesince }} ago</b> by <b>{{ post.author }}</b></span>
-        <p>
-        {{ post.content }}
-        </p>
-
-        {% if user.is_authenticated and request.user == post.author %}
-          <b><a href="{% url 'post:update' slug=post.slug %}" class="edit_and_delete">Edit</a></b>
-          <b><a href="{% url 'post:delete' slug=post.slug %}" class="edit_and_delete">Delete</a></b>
+      <div class="col-sm-6 user_profile_posts">
+        <h1>Posts</h1>
+        {% if not posts_list.all%}
+        <h3 class="empty_userprofile">This user has no posts</h3>
         {% endif %}
-        <span class="post_list_likes">{{post.score.count}} <i class="fa fa-thumbs-up"></i></span>
-        <span class="post_list_comments">{{post.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+
+        {% for post in posts_list %}
+        <div class="userprofile_post">
+          <a href="{{post.forum.get_absolute_url}}"><img class="profile_post_icon" src="{{post.forum.icon.url}}" /></a>
+          <h3><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h3>
+          <span class="post_info">Submitted <b>{{ post.created|timesince }} ago</b></span>
+          <p>
+          {{ post.content }}
+          </p>
+
+          {% if user.is_authenticated and request.user == post.author %}
+            <b><a href="{% url 'post:update' slug=post.slug %}" class="profile_edit_and_delete">Edit</a></b>
+            <b><a href="{% url 'post:delete' slug=post.slug %}" class="profile_edit_and_delete">Delete</a></b>
+          {% endif %}
+          <span class="post_list_likes">{{post.score.count}} <i class="fa fa-thumbs-up"></i></span>
+          <span class="post_list_comments">{{post.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
-    </div>
 
-    <div class="col-sm-6 user_profile_comments">
-      <h1>Comments</h1>
-      {% for comment in comments_list %}
-      <div class="userprofile_comment commentContainer">
-        <span class="comment_identifier">#{{ comment.identifier }} </span>
-        <b class="comment_author">{{ comment.author }}</b>
-        <span class="comment_info"> {{ comment.created|timesince }} ago on <b><a href="{{comment.post.get_absolute_url}}">{{ comment.post.name }}</a></b></span>
+      <div class="col-sm-6 user_profile_comments">
+        <h1>Comments</h1>
+        {% for comment in comments_list %}
+        <div class="userprofile_comment commentContainer">
+          <span class="comment_identifier">#{{ comment.identifier }} </span>
+          <b class="comment_author">{{ comment.author }}</b>
+          <span class="comment_info"> {{ comment.created|timesince }} ago on <b><a href="{{comment.post.get_absolute_url}}">{{ comment.post.name }}</a></b></span>
 
-        <!--- If its a reply show parent identifier and content on hover --->
-        {% if comment.is_reply %}
-          <br /><div class="reply_parent">@{{ comment.parent.identifier }}</div>
-          <!--- Parent content --->
-          <div class="parent_content">
-            <b>{{ comment.parent.author }}</b>
-            <p>{{ comment.parent.content }}</p>
-          </div>
-        {% endif %}
+          <!--- If its a reply show parent identifier and content on hover --->
+          {% if comment.is_reply %}
+            <br /><div class="reply_parent">@{{ comment.parent.identifier }}</div>
+            <!--- Parent content --->
+            <div class="parent_content">
+              <b>{{ comment.parent.author }}</b>
+              <p>{{ comment.parent.content }}</p>
+            </div>
+          {% endif %}
 
-        <!--- Content --->
-        <p>{{ comment.content }}</p>
-        <!--- Options --->
-        {% if comment.author == request.user %}
-          <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete">Edit</a></b>
-          <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete">Delete</a></b>
-        {% endif %}
+          <!--- Content --->
+          <p>{{ comment.content }}</p>
+          <!--- Options --->
+          {% if comment.author == request.user %}
+            <b><a href="{% url 'comment:update' pk=comment.pk %}" class="profile_edit_and_delete">Edit</a></b>
+            <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="profile_edit_and_delete">Delete</a></b>
+          {% endif %}
+        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </div>
 </div>
+
 
 {% endblock %}
