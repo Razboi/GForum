@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container" id="forum_wrapper">
-  <a href="{% url 'post:create' %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
+  <a href="{% url 'post:create' slug=slug %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
   <a href="{% url 'forum:details' slug=slug %}" class="btn btn-default filter">New</a>
   <a id="top" href="{% url 'forum:filter' slug=slug filter='top' %}" class="btn btn-default filter">Top</a>
 

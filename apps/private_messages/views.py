@@ -16,7 +16,7 @@ class PMList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PMList, self).get_context_data(*args, **kwargs)
-        context["title"] = "Messages | Inbox"
+        context["title"] = "Inbox"
         context["form"] = PMReplyForm
         return context
 
@@ -27,7 +27,7 @@ class SentList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(SentList, self).get_context_data(*args, **kwargs)
-        context["title"] = "Messages | Sent"
+        context["title"] = "Sent Messages"
         context["sent"] = True
         return context
 
@@ -42,6 +42,11 @@ class CreatePM(LoginRequiredMixin, CreateView):
         contact_username = form.cleaned_data.get("contact_username")
         instance.contact = User.objects.get(username__iexact=contact_username)
         return super(CreatePM, self).form_valid(form)
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CreatePM, self).get_context_data(*args, **kwargs)
+        context["title"] = "New Message"
+        return context
 
 class ProfilePM(LoginRequiredMixin, CreateView):
     form_class = PMReplyForm

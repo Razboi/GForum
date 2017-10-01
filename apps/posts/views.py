@@ -70,11 +70,18 @@ class CreatePost(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.author = self.request.user
+        slug = self.kwargs.get("slug")
+        forum = Forum.objects.get(slug=slug)
+        instance.forum = forum
         return super(CreatePost, self).form_valid(form)
 
     def get_context_data(self, *args, **kwargs):
         context = super(CreatePost, self).get_context_data(*args, **kwargs)
         context["title"] = "New Post"
+        slug = self.kwargs.get("slug")
+        forum = Forum.objects.get(slug=slug)
+        context["icon"] = forum.icon.url
+        context["back_to_forum"] = forum.get_absolute_url
         return context
 
 

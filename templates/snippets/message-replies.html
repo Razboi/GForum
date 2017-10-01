@@ -1,0 +1,7 @@
+<div class="thread_message">
+  <h3 class="message_title">{{ reply.subject }}</h3>
+  <span class="message_info">from <b class="author">{{ reply.author }}</b> to <b class="contact">{{ reply.contact }}</b> {{ reply.created|timesince }} ago</span>
+  <p class="message_content">
+    {{ reply.content }}
+  </p>
+</div>

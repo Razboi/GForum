@@ -4,7 +4,7 @@ from .views import PostDetails, CreatePost, UpdatePost, DeletePost, PostSearch, 
 
 urlpatterns = [
     url(r'^update/(?P<slug>[\w-]+)/$', UpdatePost.as_view(), name="update"),
-    url(r'^create/$', CreatePost.as_view(), name="create"),
+    url(r'^create/(?P<slug>[\w-]+)/$', CreatePost.as_view(), name="create"),
     url(r'^delete/(?P<slug>[\w-]+)/$', DeletePost.as_view(), name="delete"),
     url(r'^search/$', PostSearch.as_view(), name="search"),
     url(r'^like/(?P<slug>[\w-]+)/$', Like.as_view(), name="like"),

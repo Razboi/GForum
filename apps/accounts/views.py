@@ -24,11 +24,11 @@ class UserProfile(ListView):
         context["username"] = username
         user = User.objects.get(username=username)
         context["title"] = "Overview for " + str(username)
-        posts = Post.objects.filter(author=user)
+        posts = Post.objects.filter(author=user).order_by("-created")
         context["posts_list"] = posts
-        comments = Comment.objects.filter(author=user)
+        comments = Comment.objects.filter(author=user).order_by("-created")
         context["comments_list"] = comments
-        context["icon"] = user.userprofile.image.url
+        context["profile_picture"] = user.userprofile.image.url
         return context
 
 

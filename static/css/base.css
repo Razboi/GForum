@@ -20,21 +20,27 @@ p {
 	background: linear-gradient(#d5a34a, #a27017);
 }
 
+.title .container {
+	padding: 10px;
+}
+
 .title img {
 	max-height: 35px;
 	max-width: 35px;
+	margin-bottom: 10px;
 }
 
 .title span {
 	color: #F2EFE4;
 	font-size: 25px;
 	margin-left: 5px;
+	margin-bottom: 5px;
 }
 
 
 .header_separator {
 	background: #F2EFE4;
-	height: 100px;
+	height: 170px;
 
 }
 
@@ -103,6 +109,7 @@ p {
 
 .navbar {
 	background: #4C3327;
+	height: 60px;
 }
 
 .navbar-nav li {
@@ -119,7 +126,7 @@ p {
 }
 
 .navbar-brand {
-	font-size: 37px;
+	font-size: 30px;
 	padding: 0;
 	color: white !important;
 }
@@ -141,7 +148,6 @@ p {
 /* SearchBar */
 .nav_searchbar {
 	margin-left: 60px;
-	margin-top: 5px;
 }
 
 .nav_searchbar .form-control {
@@ -176,12 +182,25 @@ p {
 	cursor: pointer;
 }
 
+@media (max-width: 580px) {
+	.navbar {
+		height: auto;
+	}
+
+	.nav_searchbar {
+		width: auto;
+		height: auto;
+		margin: 0px;
+	}
+
+}
+
 
 /* -------------------------------------------------------------*/
 /* --------------------------- FORUM -------------------------*/
 
 #index_wrapper {
-  padding-top: 80px;
+  padding-top: 60px;
   padding-bottom: 80px;
 }
 
@@ -320,7 +339,7 @@ p {
 
 .post_title a {
 	text-decoration: none;
-	color: black;
+	color: #3399cc;
 	font-size: 25px;
 }
 
@@ -584,8 +603,38 @@ p {
 /* -------------------------------------------------------------*/
 /* --------------------------- Private Messages -------------------------*/
 
-.message_list_container {
-	margin-top: 60px;
+#messages_container {
+	padding: 30px 0px 80px 0px;
+}
+
+#message_labels_container {
+	list-style: none;
+	padding-top: 35px;
+	margin-bottom: 0px;
+}
+
+#message_labels_container .active {
+	background: #3399cc;
+	border: 1px solid #287aa3;
+	color: white;
+}
+
+#message_labels_container a {
+	text-decoration: none;
+}
+
+#message_labels_container .active:hover {
+	background: #2d89b7;
+}
+
+.label {
+	background: white;
+	border: 1px solid lightgrey;
+	cursor: pointer;
+	display: inline-block;
+	border-bottom: 0px !important;
+	padding: 5px;
+	color: black;
 }
 
 .message_container {
@@ -595,58 +644,47 @@ p {
 }
 
 .message_title {
-	color: #2A9CCD;
+	color: #3399cc;
 }
 
 .message_content {
-	margin: 20px 0px 20px 15px;
-	font-size: 22px;
-}
-
-.message_author {
-	color: grey;
-}
-
-.message_author b {
-	color: #2A9CCD;
+	margin: 10px 0px 10px 15px;
+	font-size: 20px;
 }
 
 .message_info {
 	color: grey;
+	text-decoration: none;
 }
 
-.create_message {
-	border-radius: 100%;
-	height: 50px;
-	width: 50px;
-	background: #3A4FD5;
+.message_info a {
+	text-decoration: none;
+}
+
+.message_info .author {
+	color: #3399cc;
+}
+
+.message_info .contact {
+	color: #CB8C1D;
+}
+
+#create_message {
+	border-radius: 3px;
+	background: #CB8C1D;
 	color: white;
-	border: 2px solid lightgrey;
+	border: 1px solid #a27017;
 	float: right;
-	margin-top: -10px;
+	cursor: pointer;
 }
 
-.create_message:hover {
-	background: #2e3fab;
-}
-
-.message_labels_container {
-	list-style: none;
-	margin-bottom: -60px;
-	padding: none;
-}
-
-.message_labels_container li {
-	display: inline-block;
-	border: 1px solid lightgrey;
-	border-bottom: 0px !important;
-	background: white;
-	padding: 0px !important;
+#create_message:hover {
+	background: #d5a34a;
 }
 
 .thread_message {
-	border: 1px solid lightgrey;
-	border-left: 5px solid grey;
+	border-left: 5px solid #3399cc;
+	background: #f5f3ec;
 	padding: 5px 5px 5px 10px;
 	margin: 15px;
 	margin-left: 5%;
@@ -657,6 +695,10 @@ p {
 
 #profile_container {
 	padding: 20px 0px 50px 0px;
+}
+
+#profile_picture {
+	border-radius: 5px;
 }
 
 .profile_post_icon {
@@ -741,4 +783,20 @@ p {
 
 .profile_edit_and_delete:hover {
 	color: #47a3d1;
+}
+
+/* -------------------------------------------------------------*/
+/* --------------------------- Snippets -------------------------*/
+
+#form_container {
+	padding: 60px 0px 60px 0px;
+}
+
+#delete_confirmation_container {
+	margin-top: 20px;
+	margin-bottom: 80px;
+}
+
+#login_register_container {
+	padding: 50px;
 }

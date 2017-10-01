@@ -1,10 +1,10 @@
 {% extends "snippets/base.html" %}
 {% block content %}
-
-<form action="" method="post">{% csrf_token %}
+<div class="container" id="delete_confirmation_container">
+  <form action="" method="post">{% csrf_token %}
     <p>Are you sure you want to <b>delete</b> it?</p>
     <button type="submit" class="btn btn-danger">Confirm</button>
     <a href="{{ object.get_absolute_url }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-</form>
-
+  </form>
+</div>
 {% endblock %}
