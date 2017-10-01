@@ -2,24 +2,62 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.core.urlresolvers import reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import PasswordChangeForm
 
-from .forms import UserLoginForm, UserRegisterForm
+from .forms import UserLoginForm, UserRegisterForm, ProfileImageForm
+from .models import UserProfile
 from apps.posts.models import Post
 from apps.comments.models import Comment
 
 User = get_user_model()
 
 
-class UserProfile(ListView):
+class UpdateProfile(LoginRequiredMixin, View):
+    template_name = "accounts/settings.html"
+
+    def get(self, request, *args, **kwargs):
+        password_update = PasswordChangeForm(user=request.user)
+        image_update = ProfileImageForm
+        context = {
+            "password_form": password_update,
+            "image_form": image_update,
+            "title": "Settings",
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        image_form = ProfileImageForm(request.POST, request.FILES)
+        print(image_form)
+        password_form = PasswordChangeForm(data=request.POST, user=request.user)
+        if password_form.is_valid():
+            password_form.save()
+            return redirect("index")
+
+        if image_form.is_valid():
+            profile = UserProfile.objects.get(user=request.user)
+            profile.image = image_form.cleaned_data["image"]
+            profile.save()
+            return redirect("index")
+
+        context = {
+            "password_form": PasswordChangeForm(user=request.user),
+            "image_form": ProfileImageForm,
+            "title": "Settings",
+        }
+        return render(request, self.template_name, context)
+
+
+class UserProfileView(ListView):
     template_name = "accounts/user_profile.html"
 
     def get_queryset(self):
         return None
 
     def get_context_data(self, **kwargs):
-        context = super(UserProfile, self).get_context_data(**kwargs)
+        context = super(UserProfileView, self).get_context_data(**kwargs)
         username = self.kwargs.get("user")
         context["username"] = username
         user = User.objects.get(username=username)

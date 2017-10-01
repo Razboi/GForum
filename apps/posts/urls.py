@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^create/(?P<slug>[\w-]+)/$', CreatePost.as_view(), name="create"),
     url(r'^delete/(?P<slug>[\w-]+)/$', DeletePost.as_view(), name="delete"),
     url(r'^search/$', PostSearch.as_view(), name="search"),
+    # url(r'^search/(?P<filter>[\w-]+)/$', PostSearch.as_view(), name="search"),
     url(r'^like/(?P<slug>[\w-]+)/$', Like.as_view(), name="like"),
 
     # to avoid mismatches this url should be always the last one

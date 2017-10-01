@@ -33,8 +33,6 @@ class ForumDetails(ListView):
             posts = Post.objects.filter(forum__slug__iexact=slug)
             most_liked = posts.annotate(num_likes=Count("score")).order_by("-num_likes")
             return most_liked
-        if slug is None:
-            returnPost.objects.all()
         return Post.objects.filter(forum__slug__iexact=slug).order_by("-created")
 
     # Adds context arguments to the queryset

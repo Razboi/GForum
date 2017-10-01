@@ -39,7 +39,7 @@ p {
 
 
 .header_separator {
-	background: #F2EFE4;
+	background: #fff4e6;
 	height: 170px;
 
 }
@@ -180,6 +180,18 @@ p {
 
 .navbar-toggler {
 	cursor: pointer;
+}
+
+.dropdown-toggle {
+	color: #CB8C1D !important;
+}
+
+.dropdown-item {
+	border: none !important;
+}
+
+.dropdown-item:active {
+	background: #CB8C1D;
 }
 
 @media (max-width: 580px) {
@@ -799,4 +811,23 @@ p {
 
 #login_register_container {
 	padding: 50px;
+}
+
+#settings_container {
+	margin: 80px auto;
+}
+
+#password_form {
+	margin-top: 70px;
+}
+
+.update_button {
+	cursor: pointer;
+	color: white;
+	background: #3399cc;
+	border: 1px solid #287aa3;
+}
+
+.update_button:hover {
+	background: #2d89b7;
 }

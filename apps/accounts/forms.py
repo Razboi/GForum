@@ -1,7 +1,19 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model, login, logout
 
+from .models import UserProfile
+
 User = get_user_model()
+
+
+class ProfileImageForm(forms.ModelForm):
+    image = forms.ImageField(label="")
+
+    class Meta:
+        model = User
+        fields = [
+            "image",
+        ]
 
 
 class UserLoginForm(forms.Form):

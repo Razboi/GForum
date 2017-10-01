@@ -48,6 +48,7 @@ class CreatePM(LoginRequiredMixin, CreateView):
         context["title"] = "New Message"
         return context
 
+
 class ProfilePM(LoginRequiredMixin, CreateView):
     form_class = PMReplyForm
     template_name = "snippets/form.html"
@@ -58,6 +59,11 @@ class ProfilePM(LoginRequiredMixin, CreateView):
         contact_username = self.kwargs.get("contact")
         instance.contact = User.objects.get(username__iexact=contact_username)
         return super(ProfilePM, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfilePM, self).get_context_data(**kwargs)
+        context["title"] = "New message to " + self.kwargs.get("contact")
+        return context
 
 
 class DeletePM(LoginRequiredMixin, DeleteView):

@@ -1,7 +1,9 @@
 {% extends "snippets/base.html" %} {% block title %}{{object.name}}{% endblock %} {% block content %}
 
 <div id="post_details_container" class="container">
+  {% if user.is_authenticated %}
   <button type="button" class="btn btn-default comment_toggler" id="create_comment_button">Comment</button>
+  {% endif %}
   <!-- Post Content -->
   <div id="post_content">
     <!-- Title --><h1>{{ object.name }}</h1>

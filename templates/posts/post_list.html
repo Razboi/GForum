@@ -2,9 +2,13 @@
 
 {% block content %}
 <div class="container" id="forum_wrapper">
+
+  <!-- If its a search use search filters else use forum filters -->
+  {% if not search %}
   <a href="{% url 'post:create' slug=slug %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
   <a href="{% url 'forum:details' slug=slug %}" class="btn btn-default filter">New</a>
   <a id="top" href="{% url 'forum:filter' slug=slug filter='top' %}" class="btn btn-default filter">Top</a>
+  {% endif %}
 
   <div id="post_list">
     {% for object in object_list %}

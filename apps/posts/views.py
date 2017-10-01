@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 
 from .models import Post
 from .forms import PostCreateForm
@@ -27,13 +28,13 @@ class PostSearch(ListView):
 
     def get_queryset(self, **kwargs):
         search = self.request.GET.get("q")
-        results = Post.objects.filter(name__icontains=search)
+        results = Post.objects.filter(name__icontains=search).order_by("-created")
         return results
 
     def get_context_data(self, *args, **kwargs):
         context = super(PostSearch, self).get_context_data(*args, **kwargs)
         context["title"] = "Search Results"
-        context["slug"] = None
+        context["search"] = True
         return context
 
 
