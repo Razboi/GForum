@@ -39,7 +39,7 @@ p {
 
 
 .header_separator {
-	background: #fff4e6;
+	background: #261913;
 	height: 170px;
 
 }
@@ -59,7 +59,7 @@ p {
 }
 
 .main_footer {
-	background: #4C3327;
+	background: #261913;
 	height: 200px;
 }
 
@@ -108,13 +108,13 @@ p {
 /* --------------------------- NAVIGATION -------------------------*/
 
 .navbar {
-	background: #4C3327;
-	height: 60px;
+	background: #3c281f;
+	height: 55px;
 }
 
 .navbar-nav li {
 	margin-right: 25px;
-	border-bottom: 1px solid transparent;
+	border-bottom: 2px solid transparent !important;
 }
 
 .navbar-nav li:hover a {
@@ -151,10 +151,9 @@ p {
 }
 
 .nav_searchbar .form-control {
-	max-width: 400px;
-	min-width: 200px;
 	border-radius: 0px;
 	border-color: #CB8C1D;
+	height: 37px;
 }
 
 .nav_searchbar .form-control:focus {
@@ -167,6 +166,7 @@ p {
 	border-radius: 0px;
 	color: white;
 	cursor: pointer;
+	height: 37px;
 }
 
 .nav_searchbar button:hover {
@@ -809,9 +809,14 @@ p {
 	margin-bottom: 80px;
 }
 
-#login_register_container {
-	padding: 50px;
+#LoginModal {
+	padding: 50px auto;
 }
+
+#register_container {
+	padding: 50px auto;
+}
+
 
 #settings_container {
 	margin: 80px auto;

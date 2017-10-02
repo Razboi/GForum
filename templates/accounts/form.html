@@ -1,13 +1,12 @@
 {% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}{% block content %}
-
-<div class="container" id="login_register_container">
+<div class="container" id="login_container">
   <form method="post" action="">
+
   {% csrf_token %}
   {{ form.as_p }}
 
-  <input type="submit" value="{{ title }}" />
+  <input type="submit" value="{{title}}" />
   <input type="hidden" name="next" value="{{ next }}" />
   </form>
 </div>
-
 {% endblock %}

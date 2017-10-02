@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^register/$', register_view, name="register"),
     url(r'^profile/(?P<user>[\w-]+)/$', UserProfileView.as_view(), name="profile"),
     url(r'^profile/settings/(?P<user>[\w-]+)/$', UpdateProfile.as_view(), name="settings"),
+
 ]

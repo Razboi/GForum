@@ -20,6 +20,7 @@ class ForumList(ListView):
         context["title"] = "Forums"
         most_liked = Post.objects.annotate(num_likes=Count("score")).order_by("-num_likes")[:10]
         context["top_posts"] = most_liked
+        context["icon"] = None
         return context
 
 

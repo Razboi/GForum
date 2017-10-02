@@ -24,7 +24,12 @@
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="nav_username">
+                    {% if user.userprofile.image %}
                     <img class="rounded-circle" src="{{ user.userprofile.image.url }}">
+                    {% else %}
+                    {% load static %}
+                    <img class="rounded-circle" src="{% static 'images/default-profile.png' %}">
+                    {% endif %}
                     <span class="sr-only">(current)</span></a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'accounts:profile' user=request.user.username %}">Profile</a>

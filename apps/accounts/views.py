@@ -11,6 +11,7 @@ from .forms import UserLoginForm, UserRegisterForm, ProfileImageForm
 from .models import UserProfile
 from apps.posts.models import Post
 from apps.comments.models import Comment
+from apps.forum.views import ForumList
 
 User = get_user_model()
 
@@ -66,7 +67,8 @@ class UserProfileView(ListView):
         context["posts_list"] = posts
         comments = Comment.objects.filter(author=user).order_by("-created")
         context["comments_list"] = comments
-        context["profile_picture"] = user.userprofile.image.url
+        if user.userprofile.image:
+            context["profile_picture"] = user.userprofile.image.url
         return context
 
 
@@ -89,7 +91,6 @@ def login_view(request):
             return redirect("index")
 
     return render(request, template_name, context)
-
 
 def register_view(request):
     form = UserRegisterForm(request.POST or None)

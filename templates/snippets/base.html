@@ -21,10 +21,11 @@
     <div class="title">
       <div class="container">
         {% if icon %}
-        <a href="{{ back_to_forum }}"><img src="{{icon}}"/></a> <span class="forum_title">{{title}}</span>
+        <a href="{{ back_to_forum }}"><img src="{{icon}}"/></a>
         {% else %}
-        <img id="profile_picture" src="{{profile_picture}}"/> <span class="forum_title">{{title}}</span>
+        <img id="profile_picture" src="{{profile_picture}}"/>
         {% endif %}
+        <span class="forum_title">{{title}}</span>
       </div>
     </div>
   </header>
