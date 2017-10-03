@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
+from django.db.models import F
 
 from .models import Post
 from .forms import PostCreateForm
@@ -42,6 +43,8 @@ class PostDetails(DetailView):
 
     def get_queryset(self, **kwargs):
         slug = self.kwargs.get("slug")
+        post = Post.objects.filter(slug__iexact=slug).update(post_views=F("post_views")+1)
+
         return Post.objects.filter(slug__iexact=slug)
 
     def get_context_data(self, *args, **kwargs):
@@ -55,7 +58,6 @@ class PostDetails(DetailView):
         context["title"] = post.name
         context["icon"] = forum.icon.url
         context["back_to_forum"] = forum.get_absolute_url
-
         comments = Comment.objects.filter(post=post)
         context["comment_list"] = comments
 

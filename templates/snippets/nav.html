@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="mainNavbar">
 
       <!-- Left searchbar -->
-      <div class="nav_searchbar">
+      <div id="nav_searchbar">
         <form class="form-inline" method="get" action="{% url 'post:search' %}">
           <input class="form-control" type="text" name="q" placeholder="What are you looking for?"
           aria-label="Search" value="{{ request.GET.q }}">
@@ -25,22 +25,25 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="nav_username">
                     {% if user.userprofile.image %}
-                    <img class="rounded-circle" src="{{ user.userprofile.image.url }}">
+                    <img class="rounded-circle navbar-pic" src="{{ user.userprofile.image.url }}">
                     {% else %}
                     {% load static %}
-                    <img class="rounded-circle" src="{% static 'images/default-profile.png' %}">
+                    <img class="rounded-circle navbar-pic" src="{% static 'images/default-profile.png' %}">
                     {% endif %}
+                    {{user.username}}
                     <span class="sr-only">(current)</span></a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'accounts:profile' user=request.user.username %}">Profile</a>
                   <a class="dropdown-item" href="{% url 'accounts:settings' user=request.user.username %}">Settings</a>
+                  <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'messages:inbox' %}"><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a class="nav-link" href="#"><i class="fa fa-exclamation-circle fa-2x"></i></a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fa fa-sign-out fa-2x"></i></a>
+                <a class="nav-link" href="{% url 'messages:inbox' %}"><i class="fa fa-envelope-o fa-2x"></i></a>
             </li>
             {% else %}
             <li class="nav-item">

@@ -14,7 +14,7 @@
     {% for object in object_list %}
     <div class="post container col-sm-12">
       <div class="row">
-        <div class="main_info col-sm-11">
+        <div class="main_info col-sm-10">
           <span class="post_title"><a href="{{object.get_absolute_url}}">{{ object.name }}</a></span><br />
           <span class="post_info">
             Submitted <b>{{ object.created|timesince }} ago</b> by
@@ -22,9 +22,10 @@
           </span>
         </div>
 
-        <div class="secondary_info col-sm-1">
-          <span class="post_likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
-          <span class="post_comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
+        <div class="secondary_info col-sm-2">
+          <span class="post_info_icon views">{{object.post_views}} <i class="fa fa-eye"></i></span>
+          <span class="post_info_icon likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
+          <span class="post_info_icon comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />
         </div>
       </div>
     </div>

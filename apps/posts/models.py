@@ -18,6 +18,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     slug = models.SlugField(null=True, blank=True)
     score = models.ManyToManyField(User, related_name="post_score", blank=True)
+    post_views = models.IntegerField(blank=True, default=0)
 
     def __str__(self):
         return self.name

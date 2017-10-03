@@ -18,8 +18,10 @@ class ForumList(ListView):
         context["general_forums"] = Forum.objects.filter(category="General")
         context["programming_forums"] = Forum.objects.filter(category="Programming")
         context["title"] = "Forums"
-        most_liked = Post.objects.annotate(num_likes=Count("score")).order_by("-num_likes")[:10]
+        most_liked = Post.objects.annotate(num_likes=Count("score")).order_by("-num_likes")[:7]
         context["top_posts"] = most_liked
+        new_posts = Post.objects.order_by("-created")[:8]
+        context["new_posts"] = new_posts
         context["icon"] = None
         return context
 

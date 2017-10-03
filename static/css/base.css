@@ -27,7 +27,7 @@ p {
 }
 
 .title .container {
-	padding: 10px;
+	padding: 10px 0px 0px 0px;
 }
 
 .title img {
@@ -133,6 +133,7 @@ p {
 
 .navbar-nav i {
 	color: white;
+  font-size: 30px;
 }
 
 .navbar-brand {
@@ -151,37 +152,35 @@ p {
 }
 
 #nav_username img {
-	height: 40px;
-	max-width: 40px;
+	height: 35px;
+	max-width: 35px;
+  margin-right: 3px;
 }
 
 /* SearchBar */
-.nav_searchbar {
+#nav_searchbar {
 	margin-left: 60px;
 }
 
-.nav_searchbar .form-control {
-	border-radius: 0px;
-	border-color: #CB8C1D;
-	height: 37px;
+#nav_searchbar .form-control {
+	border-radius: 3px;
+  border: none;
+	height: 29px;
+  font-size: 15px;
+  padding: 0px 5px;
+  background: #302018 !important;
+  color: white !important;
 }
 
-.nav_searchbar .form-control:focus {
-	border-color: #d5a34a;
-}
-
-.nav_searchbar button {
-	background-color: #CB8C1D;
-	border-color: #CB8C1D;
+#nav_searchbar button {
+	background-color: transparent;
 	border-radius: 0px;
 	color: white;
 	cursor: pointer;
-	height: 37px;
-}
-
-.nav_searchbar button:hover {
-	background-color: #d5a34a;
-	border-color: #CB8C1D;
+	height: 40px;
+  width: 40px;
+  padding: 5px;
+  font-size: 18px;
 }
 
 .fa-bars {
@@ -222,33 +221,58 @@ p {
 /* --------------------------- INDEX -------------------------*/
 
 #index_wrapper {
-  padding-top: 60px;
+  padding-top: 30px;
   padding-bottom: 80px;
 }
 
-.tops_list {
-	margin: 0px;
-	padding: 0px;
+.sub-title {
+  font-size: 24px;
+  padding-left: 8px;
 }
 
-.top {
-	margin-top: 20px;
+.tops {
+  padding-left: 0px;
+
+}
+
+.new {
+  padding-left: 0px;
+}
+
+#new_list_container {
+  float: right;
+  padding-bottom: 20px;
+}
+
+#top_list_container {
+  padding-top: 20px;
+  float: right;
+  border-top: 1px solid lightgrey;
+}
+
+.side_posts_list {
+	margin: 0px;
+	padding: 0px 0px 20px 0px;
+}
+
+.side_post {
+	margin-top: 5px;
 	margin-left: 5px;
 	float: left;
 }
 
-.top a {
+.side_post a {
 	text-decoration: none;
 	color: black;
-	font-size: 20px;
+	font-size: 18px;
 }
 
-.top_col {
+.side_post_col {
 	margin: 0px;
 	padding: 10px 10px 10px 0px;
 }
 
-.top_col img {
+.side_post_col img {
 	max-height: 35px;
 	max-width: 35px;
 }
@@ -257,7 +281,7 @@ p {
 	float: left;
 	background: white;
 	border: 1px solid lightgrey;
-	margin: 20px;
+	margin: 15px;
 }
 
 .categories:hover {
@@ -299,6 +323,7 @@ p {
 
 .forums {
 	float: left;
+  padding: 0px;
 }
 
 #tops_icon {
@@ -307,7 +332,7 @@ p {
 }
 
 @media (max-width: 580px) {
-	.tops_list {
+	.side_posts_list {
 		float: none;
 		margin-left: 25%;
 		margin-top: 50px;
@@ -343,15 +368,19 @@ p {
 	text-decoration: none;
 }
 
-.main_info {
-
+.post_info_icon {
+  padding: 7px;
+  color: #246d92 !important;
 }
 
 .secondary_info {
 	float: right;
 	padding: 0px;
 	margin-top: 20px;
+
 }
+
+
 
 .post {
 	padding: 20px 20px 20px 20px;
@@ -369,17 +398,7 @@ p {
 	color: #CB8C1D;
 }
 
-.post_comments i {
-	color: #CB8C1D;
-}
 
-.post_comments {
-	margin-left: 7px;
-}
-
-.post_likes i {
-	color: #CB8C1D;
-}
 
 #create_post_button {
 	float: right;
@@ -511,12 +530,12 @@ p {
 	border: 1px solid lightgrey;
 	background: white;
 	position: relative;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .commentContainer p {
-	margin: 10px 0px 10px 5px;
+	margin: 15px 0px 20px 7px;
 	font-size: 19px;
 }
 
@@ -526,6 +545,17 @@ p {
 
 .comment_info {
 	color: grey;
+}
+
+.comment_pic {
+  height: 64px;
+  width: 64px;
+  border-radius: 3px;
+  float: left;
+}
+
+.comment_body {
+  margin-left: 77px;
 }
 
 .comment_author a {
@@ -541,15 +571,26 @@ p {
 
 .parent_content {
 	color: white;
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.905);
 	display: none;
 	z-index: 2;
 	position: absolute;
 	padding: 10px;
 	border-radius: 5px;
-	opacity: 0.9;
 	min-width: 150px;
+  max-width: 350px;
 	top: 80px;
+  max-height: 203px;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}
+
+.parent_content p {
+  font-size: 13px;
+}
+
+.parent_content b {
+  font-size: 15px;
 }
 
 .reply_parent {
@@ -631,8 +672,11 @@ p {
 
 #message_labels_container {
 	list-style: none;
-	padding-top: 35px;
-	margin-bottom: 0px;
+	padding: 0px;
+}
+
+#pm_list {
+  margin-top: 50px;
 }
 
 #message_labels_container .active {
@@ -654,9 +698,8 @@ p {
 	border: 1px solid lightgrey;
 	cursor: pointer;
 	display: inline-block;
-	border-bottom: 0px !important;
-	padding: 5px;
 	color: black;
+  border-radius: 3px;
 }
 
 .message_container {
@@ -872,7 +915,7 @@ p {
 /* --------------------------- Settings -------------------------*/
 
 #settings_container {
-	margin: 80px auto;
+	padding: 40px 0px;;
 }
 
 #password_form {
