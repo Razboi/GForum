@@ -74,9 +74,11 @@ class UserProfileView(ListView):
 
 def login_view(request):
     form = UserLoginForm(request.POST or None)
+    is_login = True
     context = {
         "form": form,
-        "title": "Login"
+        "title": "Login",
+        "login": is_login,
     }
     template_name = "accounts/form.html"
     if form.is_valid():

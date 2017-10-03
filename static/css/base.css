@@ -1,8 +1,14 @@
 /* --------------------------- GLOBAL -------------------------*/
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
 	background-color: #f9f8f4;
 	font-family: Lobster;
+	margin-bottom: 325px;
 }
 
 p {
@@ -51,7 +57,11 @@ p {
 
 /* -------------------------------------------------------------*/
 /* --------------------------- FOOTER -------------------------*/
-
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
 .footer_separator {
 	background: #F2EFE4;
 	height: 125px;
@@ -209,7 +219,7 @@ p {
 
 
 /* -------------------------------------------------------------*/
-/* --------------------------- FORUM -------------------------*/
+/* --------------------------- INDEX -------------------------*/
 
 #index_wrapper {
   padding-top: 60px;
@@ -313,7 +323,7 @@ p {
 	}
 }
 
-/* -------------------------------------------------------------*/
+/* --------------------------------------------------------------------------------*/
 /* --------------------------- FORUM DETAILS | POSTS LIST -------------------------*/
 
 #forum_wrapper {
@@ -798,25 +808,68 @@ p {
 }
 
 /* -------------------------------------------------------------*/
-/* --------------------------- Snippets -------------------------*/
+/* --------------------------- Login/Register -------------------------*/
 
-#form_container {
-	padding: 60px 0px 60px 0px;
+#login_register_wrapper {
+	padding-top: 20px;
+	padding-bottom: 50px;
 }
 
-#delete_confirmation_container {
-	margin-top: 20px;
-	margin-bottom: 80px;
+#login_register_container {
+	width: 100%;
+	background: white;
+	padding: 15px 0px 20px 0px;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
 }
 
-#LoginModal {
-	padding: 50px auto;
+.main_form {
+	margin: auto;
+	padding: 50px 0px 20px 0px;
+	width: 25%;
+	height: 100%;
 }
 
-#register_container {
-	padding: 50px auto;
+.reverse_option a {
+	color: #3399cc;
+	text-decoration: none;
 }
 
+.forgot_pass {
+	color: grey !important;
+	text-decoration: none !important;
+}
+
+#terms_policy {
+	padding-top: 20px;
+	margin-left: 10px;
+	color: grey;
+}
+
+#terms_policy a {
+	text-decoration: none;
+	color: #3399cc;
+}
+
+#login_register_misc {
+	margin: auto;
+	width: 25%;
+	padding: 10px 0px 10px 0px;;
+}
+
+#login_register_button {
+	background: #3399cc;
+	color: white;
+	border: 1px solid #287aa3;
+	cursor: pointer;
+}
+
+#login_register_button:hover {
+	background: #2d89b7;
+}
+
+/* -------------------------------------------------------------*/
+/* --------------------------- Settings -------------------------*/
 
 #settings_container {
 	margin: 80px auto;
@@ -835,4 +888,16 @@ p {
 
 .update_button:hover {
 	background: #2d89b7;
+}
+
+/* -------------------------------------------------------------*/
+/* --------------------------- Snippets -------------------------*/
+
+#form_container {
+	padding: 60px 0px 60px 0px;
+}
+
+#delete_confirmation_container {
+	margin-top: 20px;
+	margin-bottom: 80px;
 }

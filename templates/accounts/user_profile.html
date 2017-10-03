@@ -36,6 +36,9 @@
 
       <div class="col-sm-6 user_profile_comments">
         <h1>Comments</h1>
+        {% if not comments_list.all%}
+        <h3 class="empty_userprofile">This user has no comments</h3>
+        {% endif %}
         {% for comment in comments_list %}
         <div class="userprofile_comment commentContainer">
           <span class="comment_identifier">#{{ comment.identifier }} </span>

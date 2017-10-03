@@ -28,7 +28,7 @@ class UserLoginForm(forms.Form):
             raise forms.ValidationError("Incorrect username or password.")
         if not user.is_active:
             raise forms.ValidationError("This user is not longer active.")
-        
+
         return super(UserLoginForm, self).clean(*args, **kwargs)
 
 
@@ -36,6 +36,7 @@ class UserRegisterForm(forms.ModelForm):
     username = forms.CharField(label="", max_length=25, widget=forms.TextInput(attrs={"placeholder": "Username"}))
     password = forms.CharField(label="", widget=forms.PasswordInput(attrs={"placeholder": "Password"}))
     password2 = forms.CharField(label="", widget=forms.PasswordInput(attrs={"placeholder": "Password Confirmation"}))
+    email = forms.EmailField(label="", widget=forms.TextInput(attrs={"placeholder": "Email"}))
 
     class Meta:
         model = User
