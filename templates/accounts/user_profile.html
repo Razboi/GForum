@@ -18,7 +18,7 @@
         {% for post in posts_list %}
         <div class="userprofile_post">
           <a href="{{post.forum.get_absolute_url}}"><img class="profile_post_icon" src="{{post.forum.icon.url}}" /></a>
-          <h3><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h3>
+          <h4><a href="{{ post.get_absolute_url }}">{{ post.name }}</a></h4>
           <span class="post_info">Submitted <b>{{ post.created|timesince }} ago</b></span>
           <p>
           {{ post.content }}

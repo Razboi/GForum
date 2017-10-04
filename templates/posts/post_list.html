@@ -3,18 +3,26 @@
 {% block content %}
 <div class="container" id="forum_wrapper">
 
-  <!-- If its a search use search filters else use forum filters -->
+  <!-- If its a search hide filters else use forum filters -->
   {% if not search %}
   <a href="{% url 'post:create' slug=slug %}"><button type="button" class="btn btn-default" id="create_post_button">Create Post</button></a>
   <a href="{% url 'forum:details' slug=slug %}" class="btn btn-default filter">New</a>
   <a id="top" href="{% url 'forum:filter' slug=slug filter='top' %}" class="btn btn-default filter">Top</a>
   {% endif %}
 
+  <div id="table">
+    <span id="table_left">Title | Author | Date</span>
+    <span id=table_right>
+      <span>Views</span>
+      <span>Likes</span>
+      <span>Comments</span>
+    </span>
+  </div>
   <div id="post_list">
     {% for object in object_list %}
     <div class="post container col-sm-12">
       <div class="row">
-        <div class="main_info col-sm-10">
+        <div class="main_info col-sm-9">
           <span class="post_title"><a href="{{object.get_absolute_url}}">{{ object.name }}</a></span><br />
           <span class="post_info">
             Submitted <b>{{ object.created|timesince }} ago</b> by
@@ -22,7 +30,7 @@
           </span>
         </div>
 
-        <div class="secondary_info col-sm-2">
+        <div class="secondary_info col-sm-3">
           <span class="post_info_icon views">{{object.post_views}} <i class="fa fa-eye"></i></span>
           <span class="post_info_icon likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
           <span class="post_info_icon comments">{{object.comment_set.all|length}} <i class="fa fa-comment"></i></span><br />

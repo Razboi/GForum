@@ -13,7 +13,7 @@
   <div id="pm_list">
     {% for object in object_list reversed %}
     <div class="message_container">
-      <!-- Title --><h2 class="message_title">{{ object.subject }}</h2>
+      <!-- Title --><h3 class="message_title">{{ object.subject }}</h3>
       <!-- If inbox show author, if sent show contact -->
       {% if sent %}
       <span class="message_info">
@@ -29,20 +29,9 @@
       <!-- Content -->
       <p class="message_content">{{ object.content }}</p>
 
-      <!-- If inbox show options -->
-      {% if not sent %}
-      <b><a href="{% url 'messages:delete' pk=object.pk %}" class="edit_and_delete">Delete</a></b>
-      <b><a href="javascript:" class="edit_and_delete reply_pm">Reply</a></b>
-
-      <form class="reply_form" action="{% url 'messages:reply' contact=object.author.username pk=object.pk %}" method="post">{% csrf_token %} {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary cancel_reply">Cancel</button>
-      </form>
-      {% endif %}
-
       <!-- If the object or the parent have replies (a thread) show option -->
       {% if object.replies.all or object.parent.replies.all %}
-      <a href="javascript:" class="replies_link">Show Thread<i class="fa fa-caret-down"></i></a>
+      <a href="javascript:" class="replies_link messages_thread">Show Thread<i class="fa fa-caret-down"></i></a>
 
       <!-- Replies -->
       <div class="show_replies">
@@ -64,6 +53,18 @@
         {% include 'snippets/message-replies.html' %}
         {% endfor %} {% endif %}
       </div>{% endif %}
+
+      <!-- If inbox show options -->
+      {% if not sent %}
+      <b><a href="{% url 'messages:delete' pk=object.pk %}" class="edit_and_delete options">Delete</a></b>
+      <b><a href="javascript:" class="edit_and_delete reply_pm options">Reply</a></b>
+
+      <form class="reply_form" action="{% url 'messages:reply' contact=object.author.username pk=object.pk %}" method="post">{% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary cancel_reply">Cancel</button>
+      </form>
+      {% endif %}
+
     </div>{% endfor %}
   </div>
 

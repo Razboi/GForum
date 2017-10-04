@@ -21,7 +21,12 @@
       <!--- Comment info --->
       <div class="container-fluid commentContainer">
 
+        {% if comment.author.userprofile.image %}
         <img class="comment_pic" src="{{comment.author.userprofile.image.url}}" />
+        {% else %}
+        {% load static %}
+        <img class="comment_pic" src="{% static 'images/default-profile.png' %}">
+        {% endif %}
         <div class="comment_body">
           <span class="comment_identifier">#{{ comment.identifier }} </span>
           <b class="comment_author"><a href="{% url 'accounts:profile' user=comment.author.username %}">{{ comment.author }}</a></b>

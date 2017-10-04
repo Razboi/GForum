@@ -13,6 +13,7 @@ body {
 
 p {
 	word-wrap: break-word;
+  font-family: 'Arimo', 'Open Sans', "Roboto Condensed", "Lato", "Ubuntu", sans-serif;
 }
 
 /* -------------------------------------------------------------*/
@@ -264,7 +265,7 @@ p {
 .side_post a {
 	text-decoration: none;
 	color: black;
-	font-size: 18px;
+	font-size: 17px;
 }
 
 .side_post_col {
@@ -356,7 +357,26 @@ p {
 }
 
 #post_list {
-	margin: 60px 0px 0px 0px;
+	margin: 0px;
+  padding: 15px;
+  background: #F2EFE4;
+  border: 1px solid lightgrey;
+
+}
+
+#table {
+  border: 1px solid lightgrey;
+  margin-top: 60px;
+  padding: 5px 5px 5px 40px;
+}
+
+#table_right {
+  float: right;
+  margin-right: 60px;
+}
+
+#table_right span {
+  padding: 17px;
 }
 
 .post_info {
@@ -369,7 +389,7 @@ p {
 }
 
 .post_info_icon {
-  padding: 7px;
+  padding: 20px;
   color: #246d92 !important;
 }
 
@@ -377,15 +397,12 @@ p {
 	float: right;
 	padding: 0px;
 	margin-top: 20px;
-
 }
-
-
 
 .post {
 	padding: 20px 20px 20px 20px;
 	background: white;
-	border: 1px solid #d9d7cd;
+  margin-top: 20px;
 }
 
 .post_title a {
@@ -397,8 +414,6 @@ p {
 .post span {
 	color: #CB8C1D;
 }
-
-
 
 #create_post_button {
 	float: right;
@@ -451,13 +466,17 @@ p {
 	border: 1px solid #d9d7cd;
 }
 
+#post_content:hover .options {
+	visibility: visible;
+}
+
 #post_content h1 {
 	color: #CB8C1D;
 }
 
 #post_content p {
 	margin: 20px 0px 20px 7px;
-	font-size: 22px;
+	font-size: 17px;
 }
 
 .edit_and_delete {
@@ -521,6 +540,7 @@ p {
   background: #F2EFE4;
   padding: 15px;
   border-radius: 3px;
+  border: 1px solid lightgrey;
 }
 
 .num_likes {
@@ -555,7 +575,7 @@ p {
 
 .commentContainer {
 	margin-top: 20px;
-	border: 1px solid lightgrey;
+	border: 1px solid #d9d7cd;
 	background: white;
 	position: relative;
 	padding-top: 10px;
@@ -568,7 +588,7 @@ p {
 
 .commentContainer p {
 	margin: 15px 0px 20px 7px;
-	font-size: 19px;
+	font-size: 16px;
 }
 
 .comments_section {
@@ -741,13 +761,22 @@ p {
 	padding: 10px 20px 5px 20px;
 }
 
+.message_container:hover .options {
+  visibility: visible;
+}
+
 .message_title {
 	color: #3399cc;
 }
 
 .message_content {
-	margin: 10px 0px 10px 15px;
-	font-size: 20px;
+	padding: 10px 0px 20px 15px;
+	font-size: 17px;
+  margin: 0px;
+}
+
+.messages_thread {
+  float: none;
 }
 
 .message_info {
@@ -760,7 +789,7 @@ p {
 }
 
 .message_info .author {
-	color: #3399cc;
+	color: #CB8C1D;
 }
 
 .message_info .contact {
@@ -813,10 +842,10 @@ p {
 	border: 1px solid lightgrey;
 	background: white;
 	padding: 5px;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
-.userprofile_post h3 a {
+.userprofile_post h4 a {
 	color: #3399cc;
 	text-decoration: none !important;
 }
@@ -827,7 +856,7 @@ p {
 
 .userprofile_post p {
 	margin: 10px 0px 10px 7px;
-	font-size: 22px;
+	font-size: 16px;
 }
 
 .post_comments {
