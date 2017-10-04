@@ -27,4 +27,10 @@ $(document).ready(function(){
     $("#comment_form").toggle();
   });
 
+  $(".parent_content_body").text(function(index, currentText) {
+    if (currentText.length > 350) {
+      return currentText.substr(0,350) + " ...";
+    }
+  });
+
 });

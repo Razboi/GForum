@@ -467,8 +467,16 @@ p {
 	cursor: pointer;
 }
 
+.options {
+  visibility: hidden;
+}
+
 .edit_and_delete:hover {
 	color: #d5a34a;
+}
+
+#post_content:hover .edit_and_delete {
+  visibility: visible;
 }
 
 .back_to_forum {
@@ -509,6 +517,26 @@ p {
 	color: #3399cc;
 }
 
+#comments_list {
+  background: #F2EFE4;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.num_likes {
+  float: right;
+  color: grey;
+  margin-right: 15px;
+}
+
+.num_likes .fa-stack {
+  font-size: 15px;
+}
+
+.num_likes .fa-circle {
+  color: #287aa3;
+}
+
 .save_button {
 	background: #3399cc;
 	color: white;
@@ -526,12 +554,16 @@ p {
 }
 
 .commentContainer {
-	margin-top: 30px;
+	margin-top: 20px;
 	border: 1px solid lightgrey;
 	background: white;
 	position: relative;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.commentContainer:hover .options {
+  visibility: visible;
 }
 
 .commentContainer p {
@@ -571,7 +603,7 @@ p {
 
 .parent_content {
 	color: white;
-	background: rgba(0, 0, 0, 0.905);
+	background: rgba(0, 0, 0, 0.9);
 	display: none;
 	z-index: 2;
 	position: absolute;
@@ -622,9 +654,10 @@ p {
 
 .replies_link {
 	color: grey !important;
-	margin-left: 10px;
+	margin-right: 15px;
 	cursor: pointer;
 	text-decoration: none !important;
+  float: right;
 }
 
 .replies_link i {

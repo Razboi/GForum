@@ -6,34 +6,36 @@
   {% endif %}
   <!-- Post Content -->
   <div id="post_content">
-    <!-- Title --><h1>{{ object.name }}</h1>
-    <!-- Author --><b id="post_author"><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
-    <!-- Time posted --><span id="post_info">{{ object.created|timesince }} ago</span>
-    {% if object.score.count > 0 %}
-    <!-- Likes --><span class="comment_likes_count">{{ object.score.count }} likes</span>
-    {% endif %}
-    <!-- Content --><p>{{ object.content }}</p>
+    <img class="comment_pic" src="{{object.author.userprofile.image.url}}" />
+    <div class="comment_body">
+      <!-- Author --><b id="post_author"><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
+      <!-- Time posted --><span id="post_info">{{ object.created|timesince }} ago</span>
+      {% if object.score.count > 0 %}
+      <!-- Likes --><span class="comment_likes_count">{{ object.score.count }} likes</span>
+      {% endif %}
+      <!-- Content --><p>{{ object.content }}</p>
 
-    <!-- Post Options -->
-    <!-- If the user is authenticated and is not the author -->
-    {% if user.is_authenticated %} {% if request.user != object.author %}
-    <!-- Like -->
-    <!-- If already liked -->
-    {% if request.user in object.score.all %}
-    <span class="comment_likes_done"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up"></i></a></span>
-    <!-- If not liked -->
-    {% else %}
-    <span class="comment_likes"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-o-up"></i></a></span>
-    {% endif %}
-    <!-- Report -->
-    <b><a href="{% url 'reports:post' pk=object.pk %}" class="edit_and_delete">Report</a></b>
+      <!-- Post Options -->
+      <!-- If the user is authenticated and is not the author -->
+      {% if user.is_authenticated %} {% if request.user != object.author %}
+      <!-- Like -->
+      <!-- If already liked -->
+      {% if request.user in object.score.all %}
+      <span class="comment_likes_done"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up options"></i></a></span>
+      <!-- If not liked -->
+      {% else %}
+      <span class="comment_likes"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-o-up options"></i></a></span>
+      {% endif %}
+      <!-- Report -->
+      <b><a href="{% url 'reports:post' pk=object.pk %}" class="edit_and_delete options">Report</a></b>
 
-    <!-- If the user is the author of the post -->
-    {% else %}
-    <!-- Edit and Delete post -->
-    <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete">Edit</a></b>
-    <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete">Delete</a></b>
-    {% endif %} {% endif %}
+      <!-- If the user is the author of the post -->
+      {% else %}
+      <!-- Edit and Delete post -->
+      <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete options">Edit</a></b>
+      <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete options">Delete</a></b>
+      {% endif %} {% endif %}
+    </div>
   </div>
 
   <!-- Comment List -->
