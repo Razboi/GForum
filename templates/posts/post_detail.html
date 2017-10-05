@@ -13,7 +13,7 @@
       {% if object.score.count > 0 %}
       <!-- Likes --><span class="comment_likes_count">{{ object.score.count }} likes</span>
       {% endif %}
-      <!-- Content --><p>{{ object.content }}</p>
+      <!-- Content --><p>{{ object.content|safe }}</p>
 
       <!-- Post Options -->
       <!-- If the user is authenticated and is not the author -->

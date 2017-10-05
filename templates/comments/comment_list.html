@@ -41,10 +41,13 @@
             <b>{{ comment.parent.author }}</b>
             <p class="parent_content_body">{{ comment.parent.content }}</p>
           </div>
-          {% endif %}
+
 
           <!--- Content --->
-          <p>{{ comment.content }}</p>
+          <p class="comment_reply_content">{{ comment.content|safe }}</p>
+          {% else %}
+          <p>{{ comment.content|safe }}</p>
+          {% endif %}
           <!--- Options --->
           {% if comment.author == request.user %}
           <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete options">Edit</a></b>
@@ -78,7 +81,7 @@
                 <span class="comment_info"> {{ reply.created|timesince }} ago</span>
 
                 <!--- Content --->
-                <p>{{ reply.content }}</p>
+                <p>{{ reply.content|safe }}</p>
               </div>
               {% endfor %}
             </div>

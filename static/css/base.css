@@ -470,10 +470,6 @@ p {
 	visibility: visible;
 }
 
-#post_content h1 {
-	color: #CB8C1D;
-}
-
 #post_content p {
 	margin: 20px 0px 20px 7px;
 	font-size: 17px;
@@ -580,6 +576,9 @@ p {
 	position: relative;
 	padding-top: 10px;
 	padding-bottom: 10px;
+  min-height: 129px;
+  max-width: 1078px;
+  max-height: 1500px;
 }
 
 .commentContainer:hover .options {
@@ -589,6 +588,10 @@ p {
 .commentContainer p {
 	margin: 15px 0px 20px 7px;
 	font-size: 16px;
+}
+
+.comment_reply_content {
+  margin-bottom: 0px !important;
 }
 
 .comments_section {
