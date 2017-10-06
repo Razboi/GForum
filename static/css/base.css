@@ -148,6 +148,10 @@ p {
 	width: 40px;
 }
 
+#user_name {
+  color: white;
+}
+
 #nav_username {
 	border: none !important;
 }
@@ -526,6 +530,7 @@ p {
 
 #comment_form {
 	display: none;
+  margin-bottom: 10px;
 }
 
 #comment_form h4 {
@@ -1008,4 +1013,38 @@ p {
 #delete_confirmation_container {
 	margin-top: 20px;
 	margin-bottom: 80px;
+}
+
+/* -------------------------------------------------------------*/
+/* --------------------------- Notifications -------------------------*/
+
+#notifications_popup {
+  background: white;
+  width: 20%;
+  height: 400px;
+  border: 1px solid lightgrey;
+  position: absolute;
+  z-index: 2;
+  right: 80px;
+  top: 55px;
+  box-shadow: 0px 2px 5px grey;
+  padding: 5px 0px 5px 0px;
+  border-radius: 3px;
+}
+
+#notifications_popup span {
+  padding: 5px;
+}
+
+#notifications_popup_list {
+  padding: 5px;
+  background: #F2EFE4;
+  height: 90%;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  padding-top: 10px;
+}
+
+.notification_container {
+  padding: 5px 0px 0px 5px;
 }

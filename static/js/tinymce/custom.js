@@ -1,6 +1,12 @@
 tinymce.init({
   selector: '.richtext',
+  setup: function (richtext) {
+    richtext.on('submit', function (e) {
+        richtext.save();
+    });
+  },
   height: "500",
+  width: "1000",
   content_style: "p {word-wrap: break-word; overflow-x: hidden;}",
   media_dimensions: false,
   image_dimensions: false,

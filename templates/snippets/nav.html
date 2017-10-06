@@ -30,7 +30,7 @@
                     {% load static %}
                     <img class="rounded-circle navbar-pic" src="{% static 'images/default-profile.png' %}">
                     {% endif %}
-                    {{user.username}}
+                    <span id="user_name">{{user.username}}</span>
                     <span class="sr-only">(current)</span></a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'accounts:profile' user=request.user.username %}">Profile</a>

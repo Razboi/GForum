@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.private_messages',
     'apps.reports',
-    'tinymce',
+    'apps.notifications',
 ]
 
 MIDDLEWARE = [
