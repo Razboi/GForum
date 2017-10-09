@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 
 from .forms import CommentCreateForm
 from apps.posts.models import Post
+from apps.notifications.models import Notification
 from .models import Comment
 
 
@@ -15,6 +16,10 @@ class Like(LoginRequiredMixin, View):
         score_list = comment.score.all()
         if request.user not in score_list:
             comment.score.add(self.request.user)
+            notification_content = str(request.user.username) + " liked your comment"
+            notification = Notification(target=comment.author, content=notification_content,
+                                        comment=comment, author=request.user)
+            notification.save()
         else:
             comment.score.remove(self.request.user)
 
@@ -39,8 +44,8 @@ class CreateReply(LoginRequiredMixin, CreateView):
         instance.parent = Comment.objects.get(pk=parent_pk)
         # set identifier
         instance.identifier = len(Comment.objects.filter(post=instance.post)) +1
-        return super(CreateReply, self).form_valid(form)
 
+        return super(CreateReply, self).form_valid(form)
 
 
 class CreateComment(LoginRequiredMixin, CreateView):

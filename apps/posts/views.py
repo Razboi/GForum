@@ -8,6 +8,7 @@ from .models import Post
 from .forms import PostCreateForm
 from apps.forum.models import Forum
 from apps.comments.models import Comment
+from apps.notifications.models import Notification
 
 from apps.comments.forms import CommentCreateForm
 
@@ -19,6 +20,10 @@ class Like(LoginRequiredMixin, View):
         score_list = post.score.all()
         if request.user not in score_list:
             post.score.add(self.request.user)
+            notification_content = str(request.user.username) + " liked your post"
+            notification = Notification(target=post.author, content=notification_content,
+                                        post=post, author=request.user, is_comment=False)
+            notification.save()
         else:
             post.score.remove(self.request.user)
 

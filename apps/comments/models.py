@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.db.models.signals import post_save
 
 from apps.posts.models import Post
 
@@ -27,3 +28,4 @@ class Comment(models.Model):
     def __str__(self):
         basic_description = str(self.author) + " | " + str(self.post.name)
         return basic_description
+

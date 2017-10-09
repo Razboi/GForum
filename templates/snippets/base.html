@@ -25,18 +25,6 @@
     </div>
   </header>
 
-  <div id="notifications_popup">
-    <span>Notifications</span>
-    <div id="notifications_popup_list">
-      {% for notification in user.user_notifications.all %}
-      <div class="notification_container">
-        {{notification.content}}
-      </div>
-
-      {% endfor %}
-    </div>
-  </div>
-
 {% block content %}{% endblock %}
 
 </body>

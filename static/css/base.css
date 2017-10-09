@@ -128,8 +128,9 @@ p {
 	border-bottom: 2px solid transparent !important;
 }
 
-.navbar-nav li:hover a {
+.navbar-nav li:hover .nav-link {
 	border-bottom: 1px solid #CB8C1D; !important;
+  cursor: pointer;
 }
 
 .navbar-nav i {
@@ -1018,7 +1019,7 @@ p {
 /* -------------------------------------------------------------*/
 /* --------------------------- Notifications -------------------------*/
 
-#notifications_popup {
+#notifications_container {
   background: white;
   width: 20%;
   height: 400px;
@@ -1030,13 +1031,14 @@ p {
   box-shadow: 0px 2px 5px grey;
   padding: 5px 0px 5px 0px;
   border-radius: 3px;
+  display: none;
 }
 
-#notifications_popup span {
+#notifications_container span {
   padding: 5px;
 }
 
-#notifications_popup_list {
+#notifications_container_list {
   padding: 5px;
   background: #F2EFE4;
   height: 90%;
@@ -1045,6 +1047,16 @@ p {
   padding-top: 10px;
 }
 
-.notification_container {
+#notification_caret {
+  position: absolute;
+  color: white;
+  font-size: 35px;
+  z-index: 3;
+  top: 31px;
+  right: 123px;
+  display: none;
+}
+
+.notification_info {
   padding: 5px 0px 0px 5px;
 }

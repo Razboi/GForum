@@ -39,7 +39,24 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+                <i id="notifications_icon" class="fa fa-exclamation-circle fa-2x nav-link"></i>
+                <i id="notification_caret" class="fa fa-caret-up notifications_popup"></i>
+                <div id="notifications_container" class="notifications_popup">
+                  <span>Notifications</span>
+                  <div id="notifications_container_list">
+                    {% for notification in user.user_notifications.all %}
+                    <div class="notification_info">
+                      {% if notification.is_comment %}
+                      <a href="{{notification.comment.get_absolute_url}}">
+                      {% else %}
+                      <a href="{{notification.post.get_absolute_url}}">
+                      {% endif %}
+                        {{notification.content}}</a>
+                    </div>
+
+                    {% endfor %}
+                  </div>
+                </div>
             </li>
 
             <li class="nav-item">
