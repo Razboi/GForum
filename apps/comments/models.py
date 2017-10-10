@@ -36,12 +36,14 @@ def create_notification(sender, **kwargs):
         if comment.is_reply:
             notification_content = str(comment.author.username) + " replied to your comment"
             notification = comment.notification_comment.create(
-                target=comment.parent.author, content=notification_content, comment=comment, author=comment.author
+                target=comment.parent.author, content=notification_content, comment=comment, author=comment.author,
+                is_like=False
             )
         else:
             notification_content = str(comment.author.username) + " commented your post"
             notification = comment.notification_comment.create(
-                target=comment.post.author, content=notification_content, comment=comment, author=comment.author
+                target=comment.post.author, content=notification_content, comment=comment, author=comment.author,
+                is_like=False
             )
 
 

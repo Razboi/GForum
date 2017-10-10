@@ -40,18 +40,36 @@
             </li>
             <li class="nav-item">
                 <i id="notifications_icon" class="fa fa-exclamation-circle fa-2x nav-link"></i>
+                {% if user.user_notifications.active %}
+                <i id="notification_alert" class="fa fa-circle"></i>
+                {% endif %}
                 <i id="notification_caret" class="fa fa-caret-up notifications_popup"></i>
                 <div id="notifications_container" class="notifications_popup">
                   <span>Notifications</span>
                   <div id="notifications_container_list">
                     {% for notification in user.user_notifications.all %}
-                    <div class="notification_info">
-                      {% if notification.is_comment %}
-                      <a href="{{notification.comment.get_absolute_url}}#{{notification.comment.identifier}}">
-                      {% else %}
-                      <a href="{{notification.post.get_absolute_url}}">
-                      {% endif %}
-                        {{notification.content}}</a>
+                    {% if notification.active %}
+                    <div class="notification notification_active">
+                    {% else %}
+                    <div class="notification">
+                    {% endif %}
+                      <div class="row">
+                        <div class="notification_image col-sm-3">
+                          <img class="rounded-circle" src="{{notification.author.userprofile.image.url}}"/>
+                        </div>
+
+                        <div class="notification_info col-sm-9">
+                          <a href="{% url 'notification:details' pk=notification.pk %}">
+                            {{notification.content}}</a>
+                            <br />{% if notification.is_like %}
+                            <i class="fa fa-thumbs-up"></i>
+                            {% else %}
+                            <i class="fa fa-comment"></i>
+                            {% endif %}
+                            <span>{{notification.creation|timesince}} ago</span>
+                        </div>
+
+                      </div>
                     </div>
 
                     {% endfor %}

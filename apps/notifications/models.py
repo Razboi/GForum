@@ -13,8 +13,12 @@ class Notification(models.Model):
     active = models.BooleanField(default=True)
     comment = models.ForeignKey(Comment, null=True, related_name="notification_comment")
     is_comment = models.BooleanField(default=True)
-    post = models.ForeignKey(Post, null=True)
+    is_like = models.BooleanField(default=True)
+    post = models.ForeignKey(Post, null=True, blank=True)
     author = models.ForeignKey(User, related_name="notification_author", null=True)
+
+    class Meta:
+        ordering = ["-creation"]
 
     def __str__(self):
         return str(self.target) + " | " + str(self.content)
