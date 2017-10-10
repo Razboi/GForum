@@ -22,6 +22,9 @@ class Like(LoginRequiredMixin, View):
             notification.save()
         else:
             comment.score.remove(self.request.user)
+            notification = Notification.objects.filter(target=comment.author, comment=comment, author=request.user)
+            if notification:
+                notification.delete()
 
         return redirect(comment.get_absolute_url())
 

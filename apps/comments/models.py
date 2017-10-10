@@ -29,3 +29,21 @@ class Comment(models.Model):
         basic_description = str(self.author) + " | " + str(self.post.name)
         return basic_description
 
+
+def create_notification(sender, **kwargs):
+    if kwargs["created"]:
+        comment = kwargs["instance"]
+        if comment.is_reply:
+            notification_content = str(comment.author.username) + " replied to your comment"
+            notification = comment.notification_comment.create(
+                target=comment.parent.author, content=notification_content, comment=comment, author=comment.author
+            )
+        else:
+            notification_content = str(comment.author.username) + " commented your post"
+            notification = comment.notification_comment.create(
+                target=comment.post.author, content=notification_content, comment=comment, author=comment.author
+            )
+
+
+post_save.connect(create_notification, sender=Comment)
+

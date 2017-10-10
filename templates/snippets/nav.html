@@ -47,7 +47,7 @@
                     {% for notification in user.user_notifications.all %}
                     <div class="notification_info">
                       {% if notification.is_comment %}
-                      <a href="{{notification.comment.get_absolute_url}}">
+                      <a href="{{notification.comment.get_absolute_url}}#{{notification.comment.identifier}}">
                       {% else %}
                       <a href="{{notification.post.get_absolute_url}}">
                       {% endif %}

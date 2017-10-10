@@ -11,7 +11,7 @@ class Notification(models.Model):
     content = models.CharField(max_length=200)
     creation = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
-    comment = models.ForeignKey(Comment, null=True)
+    comment = models.ForeignKey(Comment, null=True, related_name="notification_comment")
     is_comment = models.BooleanField(default=True)
     post = models.ForeignKey(Post, null=True)
     author = models.ForeignKey(User, related_name="notification_author", null=True)

@@ -43,15 +43,20 @@ $(document).ready(function(){
 
 // ---------------------------------------------------
 
-$("html").click(function() {
-  $(".notifications_popup").hide();
-});
+  $("html").click(function() {
+    $(".notifications_popup").hide();
+  });
 
 
-$("#notifications_icon").click(function(event)
-{
-  event.stopPropagation();
-  $(".notifications_popup").toggle();
-})
+  $("#notifications_icon").click(function(event)
+  {
+    event.stopPropagation();
+    $(".notifications_popup").toggle();
+  });
+
+  $("#notifications_container").click(function(event)
+  {
+    event.stopPropagation();
+  });
 
 });
