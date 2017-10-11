@@ -727,7 +727,7 @@ p {
 
 .comment_anchor  {
   position: relative;
-  top: -200px;
+  top: -37px;
 }
 
 /* -------------------------------------------------------------*/
@@ -1044,8 +1044,8 @@ p {
 }
 
 #notifications_container_list {
-  background: #f9f8f4;
-  height: 90%;
+  background: white;
+  height: 89%;
   border-top: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
   overflow-y: auto;
@@ -1098,4 +1098,24 @@ p {
 
 .notification_active {
   background: #f2efe4;
+}
+
+#notification_alert {
+  position: absolute;
+  right: 109px;
+  top: 6px;
+  background: #d5a34a;
+  padding: 0px 5px 0px 5px;
+  height: 23px;
+  border-radius: 3px;
+}
+
+#notification_alert_text {
+  color: white;
+  padding: 0px;
+  margin: 0px;
+}
+
+#notification_wrapper {
+
 }
