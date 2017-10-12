@@ -40,12 +40,12 @@ def create_notification(sender, **kwargs):
                 is_like=False
             )
         else:
-            notification_content = str(comment.author.username) + " commented your post"
-            notification = comment.notification_comment.create(
-                target=comment.post.author, content=notification_content, comment=comment, author=comment.author,
-                is_like=False
-            )
+            if comment.post.author != comment.author:
+                notification_content = str(comment.author.username) + " commented your post"
+                notification = comment.notification_comment.create(
+                    target=comment.post.author, content=notification_content, comment=comment, author=comment.author,
+                    is_like=False
+                )
 
 
 post_save.connect(create_notification, sender=Comment)
-

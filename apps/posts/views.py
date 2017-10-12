@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.db.models import F
+from django.contrib import messages
 
 from .models import Post
 from .forms import PostCreateForm
@@ -68,8 +69,9 @@ class PostDetails(DetailView):
         context["back_to_forum"] = forum.get_absolute_url
         comments = Comment.objects.filter(post=post)
         context["comment_list"] = comments
-
         context["form"] = CommentCreateForm
+        storage = messages.get_messages(self.request)
+        context["messages"] = storage
         return context
 
 

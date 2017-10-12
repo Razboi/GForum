@@ -2,6 +2,7 @@ from django.shortcuts import reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 from .models import PrivateMessage
 from .forms import PMCreateForm, PMReplyForm
@@ -31,6 +32,8 @@ class SentList(LoginRequiredMixin, ListView):
         context = super(SentList, self).get_context_data(*args, **kwargs)
         context["title"] = "Sent Messages"
         context["sent"] = True
+        storage = messages.get_messages(self.request)
+        context["messages"] = storage
         return context
 
 
@@ -43,6 +46,7 @@ class CreatePM(LoginRequiredMixin, CreateView):
         instance.author = self.request.user
         contact_username = form.cleaned_data.get("contact_username")
         instance.contact = User.objects.get(username__iexact=contact_username)
+        messages.success(self.request, "Your message has been sent.")
         return super(CreatePM, self).form_valid(form)
 
     def get_context_data(self, *args, **kwargs):
@@ -60,6 +64,7 @@ class ProfilePM(LoginRequiredMixin, CreateView):
         instance.author = self.request.user
         contact_username = self.kwargs.get("contact")
         instance.contact = User.objects.get(username__iexact=contact_username)
+        messages.success(self.request, "Your message has been sent.")
         return super(ProfilePM, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -94,4 +99,5 @@ class ReplyPM(LoginRequiredMixin, CreateView):
         if parent.is_reply:
             parent = parent.parent
         instance.parent = parent
+        messages.success(self.request, "Your reply has been sent.")
         return super(ReplyPM, self).form_valid(form)

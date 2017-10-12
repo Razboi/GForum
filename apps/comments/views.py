@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 from .forms import CommentCreateForm
 from apps.posts.models import Post
@@ -48,6 +49,7 @@ class CreateReply(LoginRequiredMixin, CreateView):
         # set identifier
         instance.identifier = len(Comment.objects.filter(post=instance.post)) +1
 
+        messages.success(self.request, "Your reply has been created.")
         return super(CreateReply, self).form_valid(form)
 
 
@@ -61,6 +63,8 @@ class CreateComment(LoginRequiredMixin, CreateView):
         slug = self.kwargs.get("slug")
         instance.post = Post.objects.get(slug=slug)
         instance.identifier = len(Comment.objects.filter(post=instance.post)) +1
+
+        messages.success(self.request, "Your comment has been created.")
         return super(CreateComment, self).form_valid(form)
 
 
