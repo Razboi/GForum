@@ -14,6 +14,7 @@ class PrivateMessage(models.Model):
     updated = models.DateTimeField(auto_now=True)
     parent = models.ForeignKey("self", null=True, blank=True, related_name="replies")
     is_reply = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         basic_description = str(self.author) + " to " + str(self.contact) + " | " + str(self.subject)

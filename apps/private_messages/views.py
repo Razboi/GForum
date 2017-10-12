@@ -12,7 +12,9 @@ User = get_user_model()
 class PMList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
-        return PrivateMessage.objects.filter(contact=self.request.user)
+        pms = PrivateMessage.objects.filter(contact=self.request.user)
+        pms.update(active=False)
+        return pms
 
     def get_context_data(self, *args, **kwargs):
         context = super(PMList, self).get_context_data(*args, **kwargs)

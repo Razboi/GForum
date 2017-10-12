@@ -78,11 +78,15 @@
                     {% endfor %}
                   </div>
                 </div>
-                
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'messages:inbox' %}"><i class="fa fa-envelope-o fa-2x"></i></a>
+                {% if active_messages %}
+                <div id="messages_alert">
+                  <span id="messages_alert_text">{{active_messages|length}}</span>
+                </div>
+                {% endif %}
             </li>
             {% else %}
             <li class="nav-item">

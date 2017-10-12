@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "apps.notifications.context_processors.active_notifications_processor",
+                "apps.private_messages.context_processors.active_messages_processor",
             ],
         },
     },
