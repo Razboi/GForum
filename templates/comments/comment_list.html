@@ -2,6 +2,7 @@
 
   {% if user.is_authenticated %}
   <div id="comment_form">
+    <span id="comment_form_anchor"></span>
     <h4>New Comment</h4>
     <form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}
         {{ form.as_p }}

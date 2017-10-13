@@ -58,7 +58,12 @@
                     {% endif %}
                       <div class="row">
                         <div class="notification_image col-sm-3">
+                          {% if notification.author.userprofile.image %}
                           <img class="rounded-circle" src="{{notification.author.userprofile.image.url}}"/>
+                          {% else %}
+                          {% load static %}
+                          <img class="rounded-circle" src="{% static 'images/default-profile.png' %}">
+                          {% endif %}
                         </div>
 
                         <div class="notification_info col-sm-9">
