@@ -741,7 +741,7 @@ p {
 /* --------------------------- Private Messages -------------------------*/
 
 #messages_container {
-	padding: 30px 0px 80px 0px;
+	padding: 27px 0px 80px 0px;
 }
 
 #message_labels_container {
@@ -750,7 +750,10 @@ p {
 }
 
 #pm_list {
-  margin-top: 50px;
+  margin-top: 27px;
+  background: #F2EFE4;
+  padding: 15px;
+  border: 1px solid lightgrey;
 }
 
 #message_labels_container .active {
@@ -778,8 +781,10 @@ p {
 
 .message_container {
 	background: white;
-	border: 1px solid lightgrey;
-	padding: 10px 20px 5px 20px;
+  margin-top: 15px;
+	padding: 5px 0px 5px 17px;
+  overflow: hidden;
+  border-bottom: 1px solid #c1bfb6;
 }
 
 .message_container:hover .options {
@@ -791,13 +796,13 @@ p {
 }
 
 .message_content {
-	padding: 10px 0px 20px 15px;
+	padding: 10px 0px 10px 15px;
 	font-size: 17px;
   margin: 0px;
 }
 
 .messages_thread {
-  float: none;
+  float: right;
 }
 
 .message_info {
