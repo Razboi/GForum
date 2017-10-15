@@ -214,11 +214,18 @@ p {
 		height: auto;
 	}
 
-	.nav_searchbar {
-		width: auto;
-		height: auto;
-		margin: 0px;
+	#nav_searchbar {
+		margin-left: 0px !important;
 	}
+
+  #nav_searchbar .form-control {
+    width: 80%;
+  }
+
+  .nav-link {
+    border-bottom: none !important;
+  }
+
 
 }
 
@@ -340,18 +347,27 @@ p {
 @media (max-width: 580px) {
 	.side_posts_list {
 		float: none;
-		margin-left: 25%;
-		margin-top: 50px;
+    padding: 0px 10px 0px 10px;
+    margin-top: 25px;
 	}
+
+  .side_post {
+    margin-left: 0px;
+
+  }
 
 	.categories {
 		float: none;
-		margin-left: 50%;
+    margin-left: 0px;
 	}
 
 	.forums a {
 		text-decoration: none;
 	}
+
+  .forum_list {
+    padding: 0px 10px 0px 10px;
+  }
 }
 
 /* --------------------------------------------------------------------------------*/
@@ -454,7 +470,20 @@ p {
 
 .filter:hover {
 	background: #F2EFE4;
+}
 
+@media (max-width: 580px) {
+  #table {
+    display: none;
+  }
+
+  #post_list {
+    margin-top: 40px;
+  }
+
+  #forum_options {
+    padding: 0px 10px 0px 10px;
+  }
 }
 
 /* -------------------------------------------------------------*/
@@ -524,6 +553,68 @@ p {
 
 #create_comment_button:hover {
 	background: #d5a34a;
+}
+
+@media (max-width: 580px) {
+  #post_details_container {
+  }
+
+  #post_content {
+    padding-left: 5px;
+    overflow: hidden;
+  }
+
+  .comment_pic {
+    height: 45px !important;
+    width: 45px !important;
+    margin-right: 10px;
+  }
+
+  .comment_body {
+    margin-left: 0px !important;
+  }
+
+  .comment_body p {
+    float: left;
+    font-size: 14px !important;
+  }
+
+  .comments_section {
+    padding: 0px;
+  }
+
+  #comments_list {
+    padding: 10px !important;
+  }
+
+  .edit_and_delete {
+    float: left;
+    font-size: 15px;
+  }
+
+  .num_likes {
+    margin: 0px !important;
+  }
+
+  .replies_link {
+    margin-right: 5px !important;
+    font-size: 15px;
+  }
+
+  .commentContainer p {
+    padding: 10px !important;
+    width: 100%;
+    font-size: 13px !important;
+  }
+
+  .comment_likes {
+    float: left;
+  }
+
+  .comment_likes_done {
+    float: left;
+  }
+
 }
 
 /* -------------------------------------------------------------*/
@@ -1142,4 +1233,35 @@ p {
   color: white;
   padding: 0px;
   margin: 0px;
+}
+
+@media (max-width: 580px) {
+
+  #notification_wrapper {
+    position: relative;
+  }
+
+	#notification_alert {
+    top: 0px;
+    left: 17px;
+    right: auto;
+  }
+
+  #notifications_container {
+    width: 120%;
+    right: -35px;
+  }
+
+  .notification_image {
+    padding: 0px 10px 0px 0px;
+  }
+
+  .notification_info {
+    padding: 0px;
+  }
+
+  #notification_caret {
+    left: 0px;
+  }
+
 }

@@ -57,7 +57,7 @@
                     <div class="notification">
                     {% endif %}
                       <div class="row">
-                        <div class="notification_image col-sm-3">
+                        <div class="notification_image col-3">
                           {% if notification.author.userprofile.image %}
                           <img class="rounded-circle" src="{{notification.author.userprofile.image.url}}"/>
                           {% else %}
@@ -66,7 +66,7 @@
                           {% endif %}
                         </div>
 
-                        <div class="notification_info col-sm-9">
+                        <div class="notification_info col-9">
                           <a href="{% url 'notification:details' pk=notification.pk %}">
                             {{notification.content}}</a>
                             <br />{% if notification.is_like %}
@@ -86,7 +86,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'messages:inbox' %}"><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="{% url 'messages:inbox' %}"><i class="fa fa-envelope-o fa-2x nav-link"></i></a>
                 {% if active_messages %}
                 <div id="messages_alert">
                   <span id="messages_alert_text">{{active_messages|length}}</span>
