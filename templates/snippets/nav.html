@@ -32,7 +32,7 @@
                     {% endif %}
                     <span id="user_name">{{user.username}}</span>
                     <span class="sr-only">(current)</span></a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" id="user_dropdown">
                   <a class="dropdown-item" href="{% url 'accounts:profile' user=request.user.username %}">Profile</a>
                   <a class="dropdown-item" href="{% url 'accounts:settings' user=request.user.username %}">Settings</a>
                   <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
@@ -85,7 +85,7 @@
                 </div>
             </li>
 
-            <li class="nav-item">
+            <li id="messages_wrapper" class="nav-item">
                 <a href="{% url 'messages:inbox' %}"><i class="fa fa-envelope-o fa-2x nav-link"></i></a>
                 {% if active_messages %}
                 <div id="messages_alert">

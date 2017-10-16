@@ -3,7 +3,7 @@
 <div class="container" id="index_wrapper">
   <div class="row">
 
-    <div class="col-lg-9 col-12 forum_list">
+    <div class="col-lg-9 col-sm-8 col-12 forum_list">
       <div class="container general forums">
         <h2 class="sub-title">General</h2>
         {% for forum in general_forums %}
@@ -19,17 +19,17 @@
       </div>
     </div>
 
-    <div class="col-12 col-lg-3 side_posts_list container">
+    <div class="col-12 col-sm-4 col-lg-3 side_posts_list container">
 
       <div id="new_list_container">
         <h3 class="sub-title new"><i class="fa fa-newspaper-o"></i> New Posts</h3>
         {% for post in new_posts %}
         <div class="col-12 side_post">
           <div class="row">
-            <div class="col-2 side_post_col">
+            <div class="col-2 col-sm-3 side_post_col">
             <a href="{{ post.forum.get_absolute_url }}"><img src="{{ post.forum.icon.url }}" /></a>
             </div>
-            <div class="col-10 side_post_col info_col">
+            <div class="col-10 col-sm-9 side_post_col info_col">
             <a href="{{ post.get_absolute_url }}" class="side_posts_text">{{ post.title }}</a>
             </div>
           </div>
@@ -42,10 +42,10 @@
         {% for post in top_posts %}
         <div class="col-12 side_post">
           <div class="row">
-            <div class="col-2 side_post_col">
+            <div class="col-2 col-sm-3 side_post_col">
             <a href="{{ post.forum.get_absolute_url }}"><img src="{{ post.forum.icon.url }}" /></a>
             </div>
-            <div class="col-10 side_post_col info_col">
+            <div class="col-10 col-sm-9 side_post_col info_col">
             <a href="{{ post.get_absolute_url }}" class="side_posts_text">{{ post.title }}</a>
             </div>
           </div>
