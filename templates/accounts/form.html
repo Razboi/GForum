@@ -12,7 +12,7 @@
     <div id="login_register_misc">
       {% if login %}
       <span class="reverse_option">Don't have an account?<b><a href="{% url 'accounts:register' %}">Sign up</a></b></span>
-      <br/><a href="#" class="forgot_pass"><span>Forgot your password?</span></a>
+      <br/><a href="{% url 'accounts:password_reset' %}" class="forgot_pass"><span>Forgot your password?</span></a>
       {% else %}
       <span class="reverse_option">Already have an account?<b><a href="{% url 'accounts:login' %}">Login</a></b></span>
       {% endif %}
