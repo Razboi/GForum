@@ -1,35 +1,35 @@
 {% extends "snippets/base.html" %} {% block title %}{{object.name}}{% endblock %} {% block content %}
 
-<!-- Django Messages -->
-
-
-<!-- Content -->
 <div id="post_details_container" class="container">
+  <!-- If the user is authenticated show the button to comment -->
   {% if user.is_authenticated %}
-  <a href="#comment_form_anchor">
+  <a href="#comment_form_anchor"> <!-- Comment anchor for notifications link -->
     <button type="button" class="btn btn-default comment_toggler" id="create_comment_button">Comment</button>
   </a>
   {% endif %}
+
   <!-- Post Content -->
   <div id="post_content">
     <img class="comment_pic" src="{{object.author.userprofile.image.url}}" />
     <div class="comment_body">
-      <!-- Author --><b id="post_author"><a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a></b>
-      <!-- Time posted --><span id="post_info">{{ object.created|timesince }} ago</span>
-      {% if object.score.count > 0 %}
-      <!-- Likes --><span class="comment_likes_count">{{ object.score.count }} likes</span>
-      {% endif %}
-      <!-- Content --><p>{{ object.content|safe }}</p>
+      <!-- Author -->
+      <b id="post_author">
+        <a href="{% url 'accounts:profile' user=object.author.username %}">{{ object.author }}</a>
+      </b>
+      <!-- Time posted -->
+      <span id="post_info">{{ object.created|timesince }} ago</span>
+      <!-- Content -->
+      <p>{{ object.content|safe }}</p>
 
       <!-- Post Options -->
-      <!-- If the user is authenticated and is not the author -->
-      {% if user.is_authenticated %} {% if request.user != object.author %}
+      {% if user.is_authenticated %}
+
+      <!-- If the user is not the author -->
+      {% if request.user != object.author %}
       <!-- Like -->
-      <!-- If already liked -->
-      {% if request.user in object.score.all %}
+      {% if request.user in object.score.all %}<!-- If already liked -->
       <span class="comment_likes_done"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-up options"></i></a></span>
-      <!-- If not liked -->
-      {% else %}
+      {% else %}<!-- If not liked -->
       <span class="comment_likes"><a href="{% url 'post:like' slug=object.slug %}"><i class="fa fa-thumbs-o-up options"></i></a></span>
       {% endif %}
       <!-- Report -->
@@ -41,6 +41,18 @@
       <b><a href="{% url 'post:update' slug=object.slug %}" class="edit_and_delete options">Edit</a></b>
       <b><a href="{% url 'post:delete' slug=object.slug %}" class="edit_and_delete options">Delete</a></b>
       {% endif %} {% endif %}
+
+      <!-- If the post has likes show the count -->
+      {% if object.score.count > 0 %}
+      <!-- Likes -->
+      <span class="num_likes">
+        {{ object.score.count }}
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
+        </span>
+      </span>
+      {% endif %}
     </div>
   </div>
 

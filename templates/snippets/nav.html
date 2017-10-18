@@ -2,12 +2,13 @@
     <!-- Brand and toggle -->
     <a class="navbar-brand" href="{% url 'index' %}">
       {% load static %}<img src="{% static 'images/world-logo.png' %}" alt="Logo"/>GForum</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fa fa-bars"></span>
     </button>
 
     <!-- Wrapper -->
-    <div class="collapse navbar-collapse" id="mainNavbar">
+    <div class="collapse navbar-collapse" id="main_navbar"><!-- Target of the toggler -->
 
       <!-- Left searchbar -->
       <div id="nav_searchbar">
@@ -21,87 +22,67 @@
 
         <!-- Right elements -->
         <ul class="navbar-nav ml-auto">
+          <!-- If the user is authenticated show user options -->
             {% if user.is_authenticated %}
+            <!-- User -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="nav_username">
-                    {% if user.userprofile.image %}
-                    <img class="rounded-circle navbar-pic" src="{{ user.userprofile.image.url }}">
-                    {% else %}
-                    {% load static %}
-                    <img class="rounded-circle navbar-pic" src="{% static 'images/default-profile.png' %}">
-                    {% endif %}
-                    <span id="user_name">{{user.username}}</span>
-                    <span class="sr-only">(current)</span></a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="nav_username">
+                  <!-- If the user has image use it, else use the default image -->
+                  {% if user.userprofile.image %}
+                  <img class="rounded-circle navbar-pic" src="{{ user.userprofile.image.url }}">
+                  {% else %}
+
+                  {% load static %}
+                  <img class="rounded-circle navbar-pic" src="{% static 'images/default-profile.png' %}">
+                  {% endif %}
+
+                  <span id="user_name">{{user.username}}</span>
+                  <span class="sr-only">(current)</span>
+                </a>
+                <!-- Dropdown Options -->
                 <div class="dropdown-menu" id="user_dropdown">
                   <a class="dropdown-item" href="{% url 'accounts:profile' user=request.user.username %}">Profile</a>
                   <a class="dropdown-item" href="{% url 'accounts:settings' user=request.user.username %}">Settings</a>
                   <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
                 </div>
             </li>
+
+            <!-- Notifications -->
             <li class="nav-item" id="notification_wrapper">
                 <i id="notifications_icon" class="fa fa-exclamation-circle fa-2x nav-link"></i>
+                <!-- If there are active notifications show the alert -->
                 {% if active_notifications %}
                 <div id="notification_alert">
                   <span id="notification_alert_text">{{active_notifications|length}}</span>
                 </div>
                 {% endif %}
-
-                <i id="notification_caret" class="fa fa-caret-up notifications_popup"></i>
-                <div id="notifications_container" class="notifications_popup">
-                  <span>Notifications</span>
-                  <div id="notifications_container_list">
-                    {% for notification in user.user_notifications.all %}
-                    {% if notification.active %}
-                    <div class="notification notification_active">
-                    {% else %}
-                    <div class="notification">
-                    {% endif %}
-                      <div class="row">
-                        <div class="notification_image col-3">
-                          {% if notification.author.userprofile.image %}
-                          <img class="rounded-circle" src="{{notification.author.userprofile.image.url}}"/>
-                          {% else %}
-                          {% load static %}
-                          <img class="rounded-circle" src="{% static 'images/default-profile.png' %}">
-                          {% endif %}
-                        </div>
-
-                        <div class="notification_info col-9">
-                          <a href="{% url 'notification:details' pk=notification.pk %}">
-                            {{notification.content}}</a>
-                            <br />{% if notification.is_like %}
-                            <i class="fa fa-thumbs-up"></i>
-                            {% else %}
-                            <i class="fa fa-comment"></i>
-                            {% endif %}
-                            <span>{{notification.creation|timesince}} ago</span>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    {% endfor %}
-                  </div>
-                </div>
+                <!-- Notifications Popup -->
+                {% include "snippets/notifications_popup.html" %}
             </li>
 
+            <!-- Messages -->
             <li id="messages_wrapper" class="nav-item">
                 <a href="{% url 'messages:inbox' %}"><i class="fa fa-envelope-o fa-2x nav-link"></i></a>
+                <!-- If there are active messages show the alert -->
                 {% if active_messages %}
                 <div id="messages_alert">
                   <span id="messages_alert_text">{{active_messages|length}}</span>
                 </div>
                 {% endif %}
             </li>
+
+            <!-- If the user is not authenticated show login and register options -->
             {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:login' %}"><i class="fa fa-sign-in fa-2x"></i></a>
+                <a class="nav-link" href="{% url 'accounts:login' %}">
+                  <i class="fa fa-sign-in fa-2x"></i></a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'accounts:register' %}"><i class="fa fa-user-plus fa-2x"></i></a>
+                <a class="nav-link" href="{% url 'accounts:register' %}">
+                  <i class="fa fa-user-plus fa-2x"></i></a>
             </li>
             {% endif %}
         </ul>
-
     </div>
 </nav>

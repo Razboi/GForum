@@ -180,7 +180,6 @@ p {
 
 #nav_searchbar button {
 	background-color: transparent;
-	border-radius: 0px;
 	color: white;
 	cursor: pointer;
 	height: 40px;
@@ -266,7 +265,7 @@ p {
   border-top: 1px solid lightgrey;
 }
 
-.side_posts_list {
+#side_posts_list {
 	margin: 0px;
 	padding: 0px 0px 20px 0px;
 }
@@ -328,7 +327,7 @@ p {
 	font-size: 22px;
 }
 
-.forum_list {
+#forum_list {
 	margin: 0px;
 	padding: 0px;
 }
@@ -352,7 +351,7 @@ p {
 }
 
 @media (max-width: 580px) {
-	.side_posts_list {
+	#side_posts_list {
 		float: none;
     padding: 0px 10px 0px 10px;
     margin-top: 25px;
@@ -372,7 +371,7 @@ p {
 		text-decoration: none;
 	}
 
-  .forum_list {
+  #forum_list {
     padding: 0px 10px 0px 10px;
   }
 }
@@ -505,6 +504,7 @@ p {
 	background: white;
 	padding: 10px 0px 10px 20px;
 	border: 1px solid #d9d7cd;
+  overflow: hidden;
 }
 
 #post_content:hover .options {
@@ -957,6 +957,10 @@ p {
 	margin-left: 5%;
 }
 
+.time_info {
+  color: grey;
+}
+
 /* -------------------------------------------------------------*/
 /* --------------------------- User Profile -------------------------*/
 
@@ -1171,6 +1175,27 @@ p {
 #delete_confirmation_container {
 	margin-top: 20px;
 	margin-bottom: 80px;
+}
+
+/* -------------------------------------------------------------*/
+/* -------------------- Register/Password Reset ------------------*/
+
+#password_reset_container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#password_reset_container .form-row span {
+  display: block;
+}
+
+#password_reset_container .field-password1 {
+  padding-top: 20px;
+}
+
+#password_reset_container .field-password2 {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /* -------------------------------------------------------------*/

@@ -29,6 +29,7 @@ class UpdateProfile(LoginRequiredMixin, View):
         image_update = ProfileImageForm
         context = {
             "password_form": password_update,
+            "errors": password_update.errors,
             "image_form": image_update,
             "title": "Settings",
         }

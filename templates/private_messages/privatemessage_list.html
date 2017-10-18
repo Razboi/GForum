@@ -1,6 +1,7 @@
 {% extends "snippets/base.html" %} {% block title %}{{ title }}{% endblock %} {% block content %}
 
 <div id="messages_container" class="container">
+
   <!-- New message button -->
   <a href="{% url 'messages:create' %}"><button class="btn btn-default" type="button" id="create_message">
     <i class="fa fa-pencil"></i></button></a>
@@ -9,23 +10,29 @@
     <a href="{% url 'messages:inbox' %}" class="btn btn-default label active">Inbox</a>
     <a href="{% url 'messages:sent' %}" class="btn btn-default label">Sent</a>
   </div>
-  <!-- Private Messages -->
+
+  <!-- Private Messages List -->
   <div id="pm_list">
     {% for object in object_list reversed %}
+    <!-- Private Message -->
     <div class="message_container">
-      <!-- Title --><h3 class="message_title">{{ object.subject }}</h3>
+      <!-- Title -->
+      <h3 class="message_title">{{ object.subject }}</h3>
       <!-- If inbox show author, if sent show contact -->
       {% if sent %}
       <span class="message_info">
-        to <a href="{% url 'accounts:profile' user=object.contact.username %}"><b class="contact">{{ object.contact }}</b></a>
-         {{ object.created|timesince }} ago
+        to <a href="{% url 'accounts:profile' user=object.contact.username %}">
+        <b class="contact">{{ object.contact }}</b></a>
       </span>
       {% else %}
       <span class="message_info">
-        from <a href="{% url 'accounts:profile' user=object.author.username %}"><b class="author">{{ object.author }}</b></a>
-        {{ object.created|timesince }} ago
+        from <a href="{% url 'accounts:profile' user=object.author.username %}">
+        <b class="author">{{ object.author }}</b></a>
       </span>
       {% endif %}
+      <!-- Time since -->
+      <span class="time_info">{{ object.created|timesince }} ago</span>
+
       <!-- Content -->
       <p class="message_content">{{ object.content }}</p>
 
@@ -35,15 +42,21 @@
 
       <!-- Replies -->
       <div class="show_replies">
-        <!-- If the object don't have a parent (it is the parent) show the replies -->
-        {% if not object.parent %} {% for reply in object.replies.all %}
+        <!-- If the object don't have a parent (it is the parent) show all the replies -->
+        {% if not object.parent %}
+
+        {% for reply in object.replies.all %}
         {% include 'snippets/message-replies.html' %}
+        {% endfor %}
+
         <!-- If the object has a parent show the parent and then the replies -->
-        {% endfor %} {% else %}
+        {% else %}
         <!-- Parent -->
         <div class="thread_message">
           <h3 class="message_title">{{ object.parent.subject }}</h3>
-          <span class="message_info">from <b class="author">{{ object.parent.author }}</b> to <b class="contact">{{ object.parent.contact }}</b> {{ object.parent.created|timesince }} ago</span>
+          <span class="message_info">from <b class="author">{{ object.parent.author }}</b>
+             to <b class="contact">{{ object.parent.contact }}</b>
+             {{ object.parent.created|timesince }} ago</span>
           <p class="message_content">
             {{ object.parent.content }}
           </p>
@@ -51,25 +64,31 @@
         <!-- Replies -->
         {% for reply in object.parent.replies.all %}
         {% include 'snippets/message-replies.html' %}
-        {% endfor %} {% endif %}
-      </div>{% endif %}
+        {% endfor %}
+
+        {% endif %}
+      </div>
+      {% endif %}
 
       <!-- If inbox show options -->
       {% if not sent %}
       <b><a href="{% url 'messages:delete' pk=object.pk %}" class="edit_and_delete options">Delete</a></b>
       <b><a href="javascript:" class="edit_and_delete reply_pm options">Reply</a></b>
 
-      <form class="reply_form" action="{% url 'messages:reply' contact=object.author.username pk=object.pk %}" method="post">{% csrf_token %} {{ form.as_p }}
+      <form class="reply_form" action="{% url 'messages:reply' contact=object.author.username pk=object.pk %}" method="post">
+        {% csrf_token %} {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary cancel_reply">Cancel</button>
       </form>
       {% endif %}
 
-    </div>{% endfor %}
+    </div>
+    {% endfor %}
   </div>
-
 </div>
+
 {%block head %}
+<!-- Selected filter activation -->
 <script>
   var loc = window.location.pathname;
   $('#message_labels_container').find('.label').each(function() {

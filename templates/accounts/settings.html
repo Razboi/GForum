@@ -2,25 +2,23 @@
 
 <div class="container" id="settings_container">
 
+  <!-- Update Image -->
   <div id="image_form">
     <h4>Update Image</h4>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ image_form.as_p }}
-
       <input type="submit" value="Update" class="btn btn-default update_button"/>
-      <input type="hidden" name="next" value="{{ next }}" />
     </form>
   </div>
 
+  <!-- Update Password -->
   <div id="password_form">
     <h4>Update Password</h4>
     <form method="post" action="">
       {% csrf_token %}
       {{ password_form.as_p }}
-
       <input type="submit" value="Update" class="btn btn-default update_button"/>
-      <input type="hidden" name="next" value="{{ next }}" />
     </form>
   </div>
 

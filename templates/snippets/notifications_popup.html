@@ -1,0 +1,46 @@
+<i id="notification_caret" class="fa fa-caret-up notifications_popup"></i>
+
+<div id="notifications_container" class="notifications_popup"> <!-- Wrapper -->
+  <span>Notifications</span>
+
+  <div id="notifications_container_list"> <!-- List of notifications -->
+
+    {% for notification in user.user_notifications.all %}
+    <!-- If the notification is active apply an extra class/style -->
+    {% if notification.active %}
+    <div class="notification notification_active">
+    {% else %}
+    <div class="notification">
+    {% endif %}
+
+      <!-- Notification -->
+      <div class="row">
+        <!-- Notification Image -->
+        <div class="notification_image col-3">
+          {% if notification.author.userprofile.image %}
+          <img class="rounded-circle" src="{{notification.author.userprofile.image.url}}"/>
+          {% else %}
+          {% load static %}
+          <img class="rounded-circle" src="{% static 'images/default-profile.png' %}">
+          {% endif %}
+        </div>
+
+        <!-- Notification Info -->
+        <div class="notification_info col-9">
+          <a href="{% url 'notification:details' pk=notification.pk %}">
+            {{notification.content}}
+          </a>
+          <!-- Show different icons for like/comment events -->
+          <br />{% if notification.is_like %}
+          <i class="fa fa-thumbs-up"></i>
+          {% else %}
+          <i class="fa fa-comment"></i>
+          {% endif %}
+          <!-- Time ago since the notification was created -->
+          <span>{{notification.creation|timesince}} ago</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

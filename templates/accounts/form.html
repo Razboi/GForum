@@ -1,27 +1,33 @@
 {% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}{% block content %}
+
 <div class="container" id="login_register_wrapper">
   <div id="login_register_container">
+
+    <!-- Login/Register Form -->
     <form method="post" class="main_form">
       {% csrf_token %}
       {{ form.as_p }}
-
       <input id="login_register_button" class="btn btn-default" type="submit" value="{{title}}" />
       <input type="hidden" name="next" value="{{ next }}" />
-
     </form>
+
+    <!-- Second option -->
     <div id="login_register_misc">
-      {% if login %}
-      <span class="reverse_option">Don't have an account?<b><a href="{% url 'accounts:register' %}">Sign up</a></b></span>
-      <br/><a href="{% url 'accounts:password_reset' %}" class="forgot_pass"><span>Forgot your password?</span></a>
-      {% else %}
-      <span class="reverse_option">Already have an account?<b><a href="{% url 'accounts:login' %}">Login</a></b></span>
+      {% if login %} <!-- If login show option to register -->
+      <span class="reverse_option">Don't have an account?
+        <b><a href="{% url 'accounts:register' %}">Sign up</a></b>
+      </span>
+      <br/>
+      <a href="{% url 'accounts:password_reset' %}" class="forgot_pass"><span>Forgot your password?</span></a>
+      {% else %}<!-- If register show option to login -->
+      <span class="reverse_option">Already have an account?
+        <b><a href="{% url 'accounts:login' %}">Login</a></b>
+      </span>
       {% endif %}
-
-
-
     </div>
 
   </div>
+  <!-- Terms and Conditions -->
   {% if not login %}
   <span id="terms_policy">
     By signing up, you agree to our <a href="#">Terms</a> and that you have read our <a href="#">Privacy Policy</a>

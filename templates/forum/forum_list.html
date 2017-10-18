@@ -3,7 +3,9 @@
 <div class="container" id="index_wrapper">
   <div class="row">
 
-    <div class="col-lg-9 col-sm-8 col-12 forum_list">
+    <!-- Forums -->
+    <div class="col-lg-9 col-sm-8 col-12" id="forum_list">
+      <!-- General Forums -->
       <div class="container general forums">
         <h2 class="sub-title">General</h2>
         {% for forum in general_forums %}
@@ -11,6 +13,7 @@
         {% endfor %}
       </div>
 
+      <!-- Programming Forums -->
       <div class="container programming forums">
         <h2 class="sub-title">Programming</h2>
         {% for forum in programming_forums %}
@@ -19,16 +22,22 @@
       </div>
     </div>
 
-    <div class="col-12 col-sm-4 col-lg-3 side_posts_list container">
+    <!-- Side Posts -->
+    <div class="col-12 col-sm-4 col-lg-3 container" id="side_posts_list">
 
+      <!-- New Posts List -->
       <div id="new_list_container">
         <h3 class="sub-title new"><i class="fa fa-newspaper-o"></i> New Posts</h3>
         {% for post in new_posts %}
+        <!-- Post -->
         <div class="col-12 side_post">
           <div class="row">
+            <!-- Icon -->
             <div class="col-2 col-sm-3 side_post_col">
             <a href="{{ post.forum.get_absolute_url }}"><img src="{{ post.forum.icon.url }}" /></a>
             </div>
+
+            <!-- Title -->
             <div class="col-10 col-sm-9 side_post_col info_col">
             <a href="{{ post.get_absolute_url }}" class="side_posts_text">{{ post.title }}</a>
             </div>
@@ -37,14 +46,21 @@
         {% endfor %}
       </div>
 
+      <!-- Most Liked Posts List -->
       <div id="top_list_container">
-        <h3 class="sub-title tops">{% load static %}<img src="{% static 'images/star-icon.png' %}" id="tops_icon" /> Top Posts</h3>
+        <h3 class="sub-title tops">{% load static %}
+          <img src="{% static 'images/star-icon.png' %}" id="tops_icon" /> Top Posts</h3>
         {% for post in top_posts %}
+
+        <!-- Post -->
         <div class="col-12 side_post">
           <div class="row">
+            <!-- Icon -->
             <div class="col-2 col-sm-3 side_post_col">
             <a href="{{ post.forum.get_absolute_url }}"><img src="{{ post.forum.icon.url }}" /></a>
             </div>
+
+            <!-- Title -->
             <div class="col-10 col-sm-9 side_post_col info_col">
             <a href="{{ post.get_absolute_url }}" class="side_posts_text">{{ post.title }}</a>
             </div>
@@ -52,8 +68,6 @@
         </div>
         {% endfor %}
       </div>
-
     </div>
-
   </div>
 </div>{% endblock %}

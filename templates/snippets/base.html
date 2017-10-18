@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<!-- Header and Navbar -->
   <header id="header">
     {% include "snippets/nav.html" %}
     <div class="header_separator"></div>
@@ -28,9 +29,11 @@
   <!-- Display Django Messages -->
   {% include "snippets/display_messages.html" %}
 
+  <!-- Main Content -->
   {% block content %}{% endblock %}
 </body>
 
+<!-- Footer -->
 <footer id="footer" class="footer">
   <div class="footer_separator"></div>
   <div class="main_footer container-fluid">

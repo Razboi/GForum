@@ -1,5 +1,6 @@
 <div class="container comments_section">
 
+  <!-- If the user is authenticated make the comment form available -->
   {% if user.is_authenticated %}
   <div id="comment_form">
     <span id="comment_form_anchor"></span>
@@ -10,31 +11,38 @@
         <button type="button" class="btn btn-secondary cancel_button comment_toggler">Cancel</button>
     </form>
   </div>
-
-
+  <!-- Else show link to login -->
   {% else %}
-    <b><a href="{% url 'accounts:login' %}">Login</a> to post comments</b>
+  <b><a href="{% url 'accounts:login' %}">Login</a> to post comments</b>
   {% endif %}
 
-  <!--- Comments --->
+  <!--- Comments List --->
   <div id="comments_list">
     {% for comment in comment_list %}
+    <!-- Comment -->
     <span id={{comment.identifier}} class="comment_anchor"></span>
       <!--- Comment info --->
       <div class="comment_wrapper"> <!-- Needed to allow the parent content popup to overflow -->
         <div class="container-fluid commentContainer">
 
+          <!-- If the use has image use it -->
           {% if comment.author.userprofile.image %}
           <img class="comment_pic" src="{{comment.author.userprofile.image.url}}" />
           {% else %}
+          <!-- Else use the default image -->
           {% load static %}
           <img class="comment_pic" src="{% static 'images/default-profile.png' %}">
           {% endif %}
+          <!-- Comment content -->
           <div class="comment_body">
+            <!-- Identifier -->
             <span class="comment_identifier">#{{ comment.identifier }} </span>
-            <b class="comment_author"><a href="{% url 'accounts:profile' user=comment.author.username %}">{{ comment.author }}</a></b>
+            <!-- Author username and profile link -->
+            <b class="comment_author">
+              <a href="{% url 'accounts:profile' user=comment.author.username %}">{{ comment.author }}</a>
+            </b>
+            <!-- Time since -->
             <span class="comment_info"> {{ comment.created|timesince }} ago</span>
-
 
             <!--- If its a reply show parent identifier and content on hover --->
             {% if comment.is_reply %}
@@ -44,68 +52,17 @@
               <b>{{ comment.parent.author }}</b>
               <p class="parent_content_body">{{ comment.parent.content }}</p>
             </div>
-
+            {% endif %}
 
             <!--- Content --->
-            <p>{{ comment.content|safe }}</p>
-            {% else %}
-            <p>{{ comment.content|safe }}</p>
-            {% endif %}
+            <p>{{ comment.content }}</p>
+
             <!--- Options --->
-            {% if comment.author == request.user %}
-            <b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete options">Edit</a></b>
-            <b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete options">Delete</a></b>
-            {% endif %}
-
-            <!--- Reply option and form --->
-            {% if user.is_authenticated and comment.author != request.user %}
-            {% if request.user in comment.score.all %}
-            <span class="comment_likes_done options"><a href="{% url 'comment:like' pk=comment.pk %}"><i class="fa fa-thumbs-up"></i></a></span>
-            {% else %}
-            <span class="comment_likes options"><a href="{% url 'comment:like' pk=comment.pk %}"><i class="fa fa-thumbs-o-up"></i></a></span>
-            {% endif %}
-            <b><a href="{% url 'reports:comment' pk=comment.pk %}" class="edit_and_delete report_link options">Report</a></b>
-            <b><a href="javascript:" class="edit_and_delete reply_link options">Reply</a></b>
-            <form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">{% csrf_token %}
-                <span class="comment_form">{{ form.as_p }}</span>
-                <button type="submit" class="btn btn-default save_button">Save</button>
-                <button type="button" class="btn btn-secondary cancel_button cancel_reply">Cancel</button>
-            </form>
-            {% endif %}
-
-              {% if comment.score.count > 0 %}
-              <span class="num_likes">
-                {{ comment.score.count }}
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
-                </span>
-              </span>
-              {% endif %}
-
-              {% if comment.replies.all %}
-                <a href="javascript:" class=replies_link>{{comment.replies.all|length}}
-                  {% if comment.replies.all|length > 1 %}Replies{% else %}Reply{% endif %} <i class="fa fa-caret-down"></i></a>
-              {% endif %}
-                <div class="show_replies">
-                  {% for reply in comment.replies.all %}
-                  <div class="reply_container">
-                    <span class="comment_identifier">#{{ reply.identifier }} </span><b class="comment_author">{{ reply.author }}</b>
-                    <span class="comment_info"> {{ reply.created|timesince }} ago</span>
-
-                    <!--- Content --->
-                    <p>{{ reply.content|safe }}</p>
-                  </div>
-                  {% endfor %}
-                </div>
-
-
+            {% include "snippets/comment_options.html" %}
 
           </div>
         </div>
       </div>
-
     {% endfor %}
   </div>
-
 </div>

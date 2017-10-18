@@ -1,0 +1,65 @@
+<!--- If the user is the author show edit and delete --->
+{% if comment.author == request.user %}
+<b><a href="{% url 'comment:update' pk=comment.pk %}" class="edit_and_delete options">Edit</a></b>
+<b><a href="{% url 'comment:delete' pk=comment.pk %}" class="edit_and_delete options">Delete</a></b>
+{% endif %}
+
+<!--- If the user is not the author and is authenticated show like and reply options --->
+{% if user.is_authenticated and comment.author != request.user %}
+<!--- Like option --->
+<!--- If you already liked the comment show one icon else show another --->
+{% if request.user in comment.score.all %}
+<span class="comment_likes_done options"><a href="{% url 'comment:like' pk=comment.pk %}">
+  <i class="fa fa-thumbs-up"></i></a>
+</span>
+{% else %}
+<span class="comment_likes options"><a href="{% url 'comment:like' pk=comment.pk %}">
+  <i class="fa fa-thumbs-o-up"></i></a>
+</span>
+{% endif %}
+
+<!--- Report Option --->
+<b><a href="{% url 'reports:comment' pk=comment.pk %}" class="edit_and_delete report_link options">
+  Report</a></b>
+
+<!--- Reply Option and form --->
+<b><a href="javascript:" class="edit_and_delete reply_link options">Reply</a></b>
+<form class="reply_form" method="post" action="{% url 'comment:reply' slug=object.slug pk=comment.pk %}">
+  {% csrf_token %}
+  <span class="comment_form">{{ form.as_p }}</span>
+  <button type="submit" class="btn btn-default save_button">Save</button>
+  <button type="button" class="btn btn-secondary cancel_button cancel_reply">Cancel</button>
+</form>
+{% endif %}
+
+<!--- If there are likes show the count --->
+{% if comment.score.count > 0 %}
+<span class="num_likes">
+  {{ comment.score.count }}
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-thumbs-o-up fa-stack-1x fa-inverse"></i>
+  </span>
+</span>
+{% endif %}
+
+<!--- If there are replies show the option to display them --->
+{% if comment.replies.all %}
+  <a href="javascript:" class=replies_link>{{comment.replies.all|length}}
+    {% if comment.replies.all|length > 1 %}Replies{% else %}Reply{% endif %}
+    <i class="fa fa-caret-down"></i>
+  </a>
+{% endif %}
+
+<!--- Replies Container --->
+<div class="show_replies">
+  {% for reply in comment.replies.all %}
+  <!--- Reply --->
+  <div class="reply_container">
+    <span class="comment_identifier">#{{ reply.identifier }} </span>
+    <b class="comment_author">{{ reply.author }}</b>
+    <span class="comment_info"> {{ reply.created|timesince }} ago</span>
+    <p>{{ reply.content }}</p>
+  </div>
+  {% endfor %}
+</div>

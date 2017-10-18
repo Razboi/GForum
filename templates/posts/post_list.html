@@ -1,6 +1,5 @@
-{% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}
+{% extends "snippets/base.html" %}{% block title %}{{ title }}{% endblock %}{% block content %}
 
-{% block content %}
 <div class="container" id="forum_wrapper">
 
   <div id="forum_options">
@@ -12,6 +11,7 @@
     {% endif %}
   </div>
 
+  <!-- Table -->
   <div id="table">
     <span id="table_left">Title | Author | Date</span>
     <span id=table_right>
@@ -20,10 +20,14 @@
       <span>Comments</span>
     </span>
   </div>
+
+  <!-- Posts List -->
   <div id="post_list">
     {% for object in object_list %}
+    <!-- Post -->
     <div class="post container col-sm-12">
       <div class="row">
+        <!-- Title and Info -->
         <div class="main_info col-sm-9">
           <span class="post_title"><a href="{{object.get_absolute_url}}">{{ object.name }}</a></span><br />
           <span class="post_info">
@@ -32,6 +36,7 @@
           </span>
         </div>
 
+        <!-- Views/Likes/Comments -->
         <div class="secondary_info col-sm-3">
           <span class="post_info_icon views">{{object.post_views}} <i class="fa fa-eye"></i></span>
           <span class="post_info_icon likes">{{object.score.count}} <i class="fa fa-thumbs-up"></i></span>
@@ -42,7 +47,9 @@
     {% endfor %}
   </div>
 </div>
+
 {%block head %}
+<!-- Selected filter activation -->
 <script>
   var loc = window.location.pathname;
   $('#forum_wrapper').find('.filter').each(function() {
