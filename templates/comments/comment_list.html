@@ -2,7 +2,7 @@
 
   <!-- If the user is authenticated make the comment form available -->
   {% if user.is_authenticated %}
-  <div id="comment_form">
+  <div id="comment_form_container">
     <span id="comment_form_anchor"></span>
     <h4>New Comment</h4>
     <form method="post" action="{% url 'comment:create' slug=object.slug %}">{% csrf_token %}

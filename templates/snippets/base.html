@@ -16,12 +16,14 @@
     <div class="header_separator"></div>
     <div class="title">
       <div class="container">
+        <!-- If there is a forum icon display it, else display profile picture
+        (will display only on a users profile) -->
         {% if icon %}
         <a href="{{ back_to_forum }}"><img src="{{icon}}"/></a>
         {% else %}
         <img id="profile_picture" src="{{profile_picture}}"/>
         {% endif %}
-        <span class="forum_title">{{title}}</span>
+        <span id="forum_title">{{title}}</span>
       </div>
     </div>
   </header>

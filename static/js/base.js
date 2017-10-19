@@ -30,7 +30,7 @@ $(document).ready(function(){
 
   $(".comment_toggler").click(function()
   {
-    $("#comment_form").toggle();
+    $("#comment_form_container").toggle();
   });
 
 // ---------------------------------------------------
