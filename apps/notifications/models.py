@@ -18,7 +18,7 @@ class Notification(models.Model):
     author = models.ForeignKey(User, related_name="notification_author", null=True)
 
     class Meta:
-        ordering = ["-creation"]
+        ordering = ["-creation"]  # orders the notifications by newest
 
     def __str__(self):
         return str(self.target) + " | " + str(self.content)

@@ -1,13 +1,12 @@
 from django.db.models import Count
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from operator import attrgetter
+from django.views.generic import ListView
 
 from .models import Forum
 from apps.posts.models import Post
 from apps.comments.models import Comment
 
 
+# returns all the forums, new/top posts and extra context to the index
 class ForumList(ListView):
 
     def get_queryset(self, **kwargs):
@@ -22,21 +21,23 @@ class ForumList(ListView):
         context["top_posts"] = most_liked
         new_posts = Post.objects.order_by("-created")[:8]
         context["new_posts"] = new_posts
-        context["icon"] = None
+        context["icon"] = None  # the index doesn't have a title icon
         return context
 
 
+# forum details (posts list)
 class ForumDetails(ListView):
 
     # Creates the main queryset
     def get_queryset(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
-        filter_key = self.kwargs.get("filter")
-        if filter_key == "top":
-            posts = Post.objects.filter(forum__slug__iexact=slug)
+        posts = Post.objects.filter(forum__slug__iexact=slug)
+        filter_key = self.kwargs.get("filter")  # if there is a filter kwarg get it
+        if filter_key == "top":  # if the filter kwarg is top, return the posts ordered by most liked
             most_liked = posts.annotate(num_likes=Count("score")).order_by("-num_likes")
             return most_liked
-        return Post.objects.filter(forum__slug__iexact=slug).order_by("-created")
+        # else return the posts ordered by newest
+        return posts.order_by("-created")
 
     # Adds context arguments to the queryset
     def get_context_data(self, *args, **kwargs):

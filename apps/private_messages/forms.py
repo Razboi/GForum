@@ -20,6 +20,7 @@ class PMCreateForm(forms.ModelForm):
         "content"
         ]
 
+    # id the contact username does not exist raise a validation error
     def clean(self, *args, **kwargs):
         contact = self.cleaned_data.get("contact_username")
         try:

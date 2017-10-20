@@ -31,8 +31,10 @@ class Post(models.Model):
         return self.name
 
 
+# when a post is created generates a new slug for that post
 def pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
+
 
 pre_save.connect(pre_save_receiver, sender=Post)

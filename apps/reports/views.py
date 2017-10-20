@@ -1,5 +1,5 @@
-from django.shortcuts import reverse, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
+from django.shortcuts import redirect
+from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 
@@ -11,8 +11,10 @@ from apps.comments.models import Comment
 User = get_user_model()
 
 
-class CreatePostReport(LoginRequiredMixin, View):
+# the reports will be displayed on the django admin
 
+# creates a post report
+class CreatePostReport(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         post_pk = self.kwargs.get("pk")
         post = Post.objects.get(pk=post_pk)
@@ -22,6 +24,7 @@ class CreatePostReport(LoginRequiredMixin, View):
         return redirect(post.get_absolute_url())
 
 
+# creates a comment report
 class CreateCommentReport(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         comment_pk = self.kwargs.get("pk")

@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    # When a user is created, create his profile
     def create_profile(sender, **kwargs):
         if kwargs["created"]:
             user_profile = UserProfile.objects.create(user=kwargs["instance"])

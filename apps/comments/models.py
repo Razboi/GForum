@@ -14,10 +14,11 @@ class Comment(models.Model):
     post = models.ForeignKey(Post)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    # only will have a parent if its a reply
     parent = models.ForeignKey("self", null=True, blank=True, related_name="replies")
     is_reply = models.BooleanField(default=False)
     identifier = models.IntegerField(null=True, blank=True)
-    score = models.ManyToManyField(User, related_name="comment_score")
+    score = models.ManyToManyField(User, related_name="comment_score")  # likes list
 
     # this will redirect the user to the post in which they commented (created a comment)
     def get_absolute_url(self):
@@ -30,15 +31,18 @@ class Comment(models.Model):
         return basic_description
 
 
+# create a notification when a comment is created
 def create_notification(sender, **kwargs):
     if kwargs["created"]:
         comment = kwargs["instance"]
+        # reply notification
         if comment.is_reply:
             notification_content = str(comment.author.username) + " replied to your comment"
             notification = comment.notification_comment.create(
                 target=comment.parent.author, content=notification_content, comment=comment, author=comment.author,
                 is_like=False
             )
+        # comment notification to post author
         else:
             if comment.post.author != comment.author:
                 notification_content = str(comment.author.username) + " commented your post"

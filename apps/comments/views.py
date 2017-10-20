@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
+from django.shortcuts import redirect
+from django.views.generic import CreateView, UpdateView, DeleteView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
 from django.contrib import messages
 
 from .forms import CommentCreateForm
@@ -10,17 +9,21 @@ from apps.notifications.models import Notification
 from .models import Comment
 
 
+# view to like/unlike a comment
 class Like(LoginRequiredMixin, View):
     def get(self, request, **kwargs):
         comment_pk = kwargs.get("pk")
         comment = Comment.objects.get(pk=comment_pk)
         score_list = comment.score.all()
+        # if the like author is not in the likes list add him and create a notification to the comment author
         if request.user not in score_list:
             comment.score.add(self.request.user)
             notification_content = str(request.user.username) + " liked your comment"
             notification = Notification(target=comment.author, content=notification_content,
                                         comment=comment, author=request.user)
             notification.save()
+
+        # else remove him from the list (unlike) and delete the notification
         else:
             comment.score.remove(self.request.user)
             notification = Notification.objects.filter(target=comment.author, comment=comment, author=request.user)
@@ -30,6 +33,7 @@ class Like(LoginRequiredMixin, View):
         return redirect(comment.get_absolute_url())
 
 
+# create a reply for a comment
 class CreateReply(LoginRequiredMixin, CreateView):
     form_class = CommentCreateForm
     template_name = "snippets/form.html"
@@ -53,10 +57,12 @@ class CreateReply(LoginRequiredMixin, CreateView):
         return super(CreateReply, self).form_valid(form)
 
 
+# create a new comment
 class CreateComment(LoginRequiredMixin, CreateView):
     form_class = CommentCreateForm
     template_name = "snippets/form.html"
 
+    # if the form is valid set the object variables and save it
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.author = self.request.user
@@ -68,6 +74,7 @@ class CreateComment(LoginRequiredMixin, CreateView):
         return super(CreateComment, self).form_valid(form)
 
 
+# update a comment
 class UpdateComment(LoginRequiredMixin, UpdateView):
     form_class = CommentCreateForm
     template_name = "snippets/form.html"
@@ -82,6 +89,7 @@ class UpdateComment(LoginRequiredMixin, UpdateView):
         return context
 
 
+# delete a comment
 class DeleteComment(LoginRequiredMixin, DeleteView):
     model = Comment
     template_name = "snippets/delete_confirmation.html"
