@@ -10,7 +10,14 @@
 
   <!-- Post Content -->
   <div id="post_content">
+    <!-- If the user has image use it -->
+    {% if object.author.userprofile.image %}
     <img class="comment_pic" src="{{object.author.userprofile.image.url}}" />
+    {% else %}
+    <!-- Else use the default image -->
+    {% load static %}
+    <img class="comment_pic" src="{% static 'images/default-profile.png' %}">
+    {% endif %}
     <div class="comment_body">
       <!-- Author -->
       <b id="post_author">

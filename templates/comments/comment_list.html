@@ -25,7 +25,7 @@
       <div class="comment_wrapper"> <!-- Needed to allow the parent content popup to overflow -->
         <div class="container-fluid commentContainer">
 
-          <!-- If the use has image use it -->
+          <!-- If the user has image use it -->
           {% if comment.author.userprofile.image %}
           <img class="comment_pic" src="{{comment.author.userprofile.image.url}}" />
           {% else %}
