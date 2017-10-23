@@ -1,5 +1,4 @@
 import os
-# from ..aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -119,25 +118,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-
-# Paths where django will look for static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# Folder that in production will be host in another server dedicated to serve static/media files
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
-
-# The urls that you use to dynamically refer to the files
-MEDIA_URL = '/media/'
-STATIC_URL = '/static/'
-
-
+# email
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'noreply.gforum@gmail.com'
@@ -145,7 +126,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
 
-
+# SSL
 CORS_REPLACE_HTTPS_REFERER      = True
 HOST_SCHEME                     = "https://"
 SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -155,3 +136,27 @@ CSRF_COOKIE_SECURE              = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
 SECURE_HSTS_SECONDS             = 1000000
 SECURE_FRAME_DENY               = True
+
+# aws
+DEFAULT_FILE_STORAGE = “storages.backends.s3boto3.S3Boto3Storage”
+STATICFILES_STORAGE = “storages.backends.s3boto3.S3Boto3Storage”
+
+AWS_ACCESS_KEY_ID = os.environ.get(“AWS_ACCESS_KEY_ID”)
+AWS_SECRET_ACCESS_KEY = os.environ.get(“AWS_SECRET_ACCESS_KEY”)
+AWS_STORAGE_BUCKET_NAME = os.environ.get(“AWS_STORAGE_BUCKET_NAME”)
+
+AWS_QUERYSTRING_AUTH = False //This will make sure that the file URL does not have unnecessary parameters like your access key.
+
+AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + ‘.s3.amazonaws.com’
+
+#static media settings
+STATIC_URL = ‘https://' + AWS_STORAGE_BUCKET_NAME + ‘.s3.amazonaws.com/’
+MEDIA_URL = STATIC_URL + ‘media/’
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, “static”), )
+STATIC_ROOT = ‘staticfiles’
+ADMIN_MEDIA_PREFIX = STATIC_URL + ‘admin/’
+
+STATICFILES_FINDERS = (
+‘django.contrib.staticfiles.finders.FileSystemFinder’,
+‘django.contrib.staticfiles.finders.AppDirectoriesFinder’,
+)
