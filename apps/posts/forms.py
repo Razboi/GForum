@@ -4,7 +4,7 @@ from .models import Post
 
 
 class PostCreateForm(forms.ModelForm):
-    name = forms.CharField(label="", max_length=120, widget=forms.TextInput(attrs={"placeholder": "Title"}))
+    name = forms.CharField(label="", widget=forms.TextInput(attrs={"placeholder": "Title"}))
     content = forms.CharField(label="", widget=forms.Textarea(
                                 attrs={"class": "form-control message-form", "placeholder": "Post content"}))
 
