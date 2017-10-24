@@ -353,6 +353,14 @@ p {
 	font-size: 22px;
 }
 
+.side_posts_text {
+  word-wrap: break-word;
+}
+
+.side_post_col + .info_col {
+  max-width: 210px;
+}
+
 @media (max-width: 580px) {
 	#side_posts_list {
     padding: 0px 10px;
@@ -993,6 +1001,7 @@ p {
 .userprofile_post h4 a {
 	color: #3399cc;
 	text-decoration: none !important;
+  word-wrap: break-word;
 }
 
 .userprofile_post p {
