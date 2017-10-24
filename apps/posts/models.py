@@ -10,7 +10,7 @@ User = settings.AUTH_USER_MODEL
 
 
 class Post(models.Model):
-    name = models.CharField(max_length=65)
+    name = models.TextField()
     content = models.TextField()
     author = models.ForeignKey(User)
     forum = models.ForeignKey(Forum)

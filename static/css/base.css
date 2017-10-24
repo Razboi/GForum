@@ -481,6 +481,14 @@ p {
 	background: #F2EFE4;
 }
 
+.post-title-form {
+  width: 52%;
+}
+
+.message-form {
+  width: 80%;
+}
+
 @media (max-width: 580px) {
   #table {
     display: none; /* For small devices remove the table */
@@ -492,6 +500,14 @@ p {
 
   #forum_options {
     padding: 0px 10px 0px 10px;
+  }
+
+  .post-title-form {
+    width: 100%;
+  }
+
+  .message-form {
+    width: 100%;
   }
 }
 
