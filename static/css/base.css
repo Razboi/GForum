@@ -259,6 +259,7 @@ p {
 #top_list_container {
   padding-top: 20px;
   float: right;
+  clear: right;
   border-top: 1px solid #D3D3D3;
 }
 
