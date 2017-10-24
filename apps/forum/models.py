@@ -10,7 +10,7 @@ User = settings.AUTH_USER_MODEL
 
 class Forum(models.Model):
     name = models.CharField(max_length=120)
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True, max_length=170)
     description = models.TextField(null=True, blank=True)
     category = models.CharField(max_length=120, null=True, blank=True)
     icon = models.ImageField(null=True, blank=True)
