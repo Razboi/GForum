@@ -17,9 +17,9 @@ class ForumList(ListView):
         context["general_forums"] = Forum.objects.filter(category="General")
         context["programming_forums"] = Forum.objects.filter(category="Programming")
         context["title"] = "Forums"
-        most_liked = Post.objects.annotate(num_likes=Count("score")).order_by("-num_likes")[:7]
+        most_liked = Post.objects.annotate(num_likes=Count("score")).order_by("-num_likes")[:5]
         context["top_posts"] = most_liked
-        new_posts = Post.objects.order_by("-created")[:8]
+        new_posts = Post.objects.order_by("-created")[:5]
         context["new_posts"] = new_posts
         context["icon"] = None  # the index doesn't have a title icon
         return context

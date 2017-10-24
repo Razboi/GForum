@@ -41,6 +41,12 @@ $(document).ready(function(){
     }
   });
 
+  $("#forum_title").text(function(index, currentText) {
+    if (currentText.length > 94) {
+      return currentText.substr(0,94) + " ...";
+    }
+  });
+
 // ---------------------------------------------------
 
   $("html").click(function() {

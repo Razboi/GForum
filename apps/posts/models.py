@@ -16,7 +16,7 @@ class Post(models.Model):
     forum = models.ForeignKey(Forum)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(null=True, blank=True, max_length=70)
+    slug = models.SlugField(null=True, blank=True, max_length=170)
     score = models.ManyToManyField(User, related_name="post_score", blank=True)
     post_views = models.IntegerField(blank=True, default=0)
 

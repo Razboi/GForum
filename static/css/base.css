@@ -26,6 +26,8 @@ p {
 	border-top: 1px solid #daae60;
 	border-bottom: 1px solid #8e6214;
 	background: linear-gradient(#d5a34a, #a27017);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title .container {
@@ -43,6 +45,7 @@ p {
 	font-size: 25px;
 	margin-left: 5px;
 	margin-bottom: 5px;
+  width: 100%;
 }
 
 /* navbar and title separator */
@@ -279,12 +282,12 @@ p {
 .side_post a {
 	text-decoration: none;
 	color: #000000;
-	font-size: 17px;
+	font-size: 16px;
 }
 
 .side_post_col {
 	margin: 0px;
-	padding: 10px 10px 10px 0px;
+	padding: 10px 0px;
 }
 
 .side_post_col img {
@@ -443,6 +446,7 @@ p {
 	text-decoration: none;
 	color: #3399cc;
 	font-size: 25px;
+  word-wrap: break-word;
 }
 
 /* Buttons */
