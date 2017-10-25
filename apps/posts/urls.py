@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^like/(?P<slug>[\w-]+)/$', Like.as_view(), name="like"),
 
     # to avoid mismatches this url should be always the last one
-    url(r'^(?P<forum>[\w-]+)/(?P<slug>[\w-]+)/$', PostDetails.as_view(), name="details"),
+    url(r'^(?P<slug>[\w-]+)/$', PostDetails.as_view(), name="details"),
 ]

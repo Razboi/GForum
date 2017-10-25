@@ -118,6 +118,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Django-messages tag translation to bootstrap class for style
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
 # email
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

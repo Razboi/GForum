@@ -23,8 +23,7 @@ class Comment(models.Model):
     # this will redirect the user to the post in which they commented (created a comment)
     def get_absolute_url(self):
         slug = self.post.slug
-        forum = self.post.forum
-        return redirect(reverse("post:details", kwargs={"slug": slug, "forum": forum}))
+        return reverse("post:details", kwargs={"slug": slug})
 
     def __str__(self):
         basic_description = str(self.author) + " | " + str(self.post.name)

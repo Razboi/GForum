@@ -153,6 +153,7 @@ EMAIL_HOST_USER = 'noreply.gforum@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 
+#Django-messages tag translation to bootstrap class for style
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
