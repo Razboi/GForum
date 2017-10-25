@@ -43,6 +43,7 @@ class UpdateProfile(LoginRequiredMixin, View):
         # if the password form is valid save it
         if password_form.is_valid():
             password_form.save()
+            messages.success(self.request, "Your password has been updated, please log in again.")
             return redirect("index")
 
         # if the image form is valid set the profile image to the submitted image and save it
