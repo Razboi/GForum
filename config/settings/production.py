@@ -173,3 +173,8 @@ STATICFILES_FINDERS = (
 "django.contrib.staticfiles.finders.FileSystemFinder",
 "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 )
+
+#TinyMCE config
+TINYMCE_JS_URL = STATIC_URL + "js/tinymce.js"
+TINYMCE_JS_ROOT = STATIC_URL + "tiny_mce/"
+TINYMCE_COMPRESSOR = True
