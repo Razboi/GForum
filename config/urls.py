@@ -30,8 +30,7 @@ urlpatterns = [
     url(r'^messages/', include("apps.private_messages.urls", namespace="messages")),
     url(r'^reports/', include("apps.reports.urls", namespace="reports")),
     url(r'^notification/', include("apps.notifications.urls", namespace="notification")),
-    # TinyMCE
-    url(r'^tinymce/', include('tinymce.urls')),
+
 ]
 
 if settings.DEBUG:

@@ -3,8 +3,6 @@ from django.conf import settings
 from django.shortcuts import redirect, reverse
 from django.db.models.signals import post_save
 
-from tinymce.models import HTMLField
-
 from apps.posts.models import Post
 
 User = settings.AUTH_USER_MODEL
@@ -12,7 +10,7 @@ User = settings.AUTH_USER_MODEL
 
 class Comment(models.Model):
     author = models.ForeignKey(User)
-    content = HTMLField()
+    content = models.TextField()
     post = models.ForeignKey(Post)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

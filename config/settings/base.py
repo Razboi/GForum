@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'apps.reports',
     'apps.notifications',
     "storages",
-    "tinymce",
 
 ]
 
