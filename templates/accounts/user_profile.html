@@ -31,7 +31,7 @@
           <!-- Time Since -->
           <span class="post_info">Submitted <b>{{ post.created|timesince }} ago</b></span>
           <!-- Content -->
-          <p>{{ post.content }}</p>
+          <p>{{ post.content |safe }}</p>
 
           <!-- Options -->
           {% if user.is_authenticated and request.user == post.author %}
@@ -74,12 +74,12 @@
               <!--- Parent content --->
               <div class="parent_content">
                 <b>{{ comment.parent.author }}</b>
-                <p class="parent_content_body">{{ comment.parent.content }}</p>
+                <p class="parent_content_body">{{ comment.parent.content | safe }}</p>
               </div>
             {% endif %}
 
             <!--- Content --->
-            <p>{{ comment.content }}</p>
+            <p>{{ comment.content | safe }}</p>
             <!--- Options --->
             {% if comment.author == request.user %}
               <b><a href="{% url 'comment:update' pk=comment.pk %}" class="profile_edit_and_delete">Edit</a></b>

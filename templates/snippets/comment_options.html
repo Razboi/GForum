@@ -59,7 +59,7 @@
     <span class="comment_identifier">#{{ reply.identifier }} </span>
     <b class="comment_author">{{ reply.author }}</b>
     <span class="comment_info"> {{ reply.created|timesince }} ago</span>
-    <p>{{ reply.content }}</p>
+    <p>{{ reply.content | safe }}</p>
   </div>
   {% endfor %}
 </div>

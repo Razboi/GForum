@@ -605,12 +605,13 @@ p {
 #comment_form_container {
 	display: none;
   margin-bottom: 10px;
+  max-width: 500px;
+  padding: 5px;
 }
 
 /* TextArea */
 .comment-form {
-	max-width: 400px;
-	height: 150px;
+	height: 200px;
 }
 
 .save_button {
@@ -667,7 +668,6 @@ p {
 	padding-top: 10px;
 	padding-bottom: 0px;
   min-height: 120px;
-  max-height: 1500px;
   overflow: hidden; /* Avoids overflow */
 }
 
@@ -678,6 +678,7 @@ p {
 .commentContainer p {
 	margin: 15px 0px 20px 7px;
 	font-size: 16px;
+  max-height: 2000px;
 }
 
 .comments_section {

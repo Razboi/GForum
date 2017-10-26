@@ -3,9 +3,9 @@
 
 <div class="container" id="form_container">
 
-  <form method="post">{% csrf_token %}
+  <form method="POST">{% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Save</button>
+      <button type="submit" onclick="tinyMCE.triggerSave();">Save</button>
   </form>
 </div>
 

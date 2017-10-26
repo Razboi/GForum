@@ -34,7 +34,7 @@
       <span class="time_info">{{ object.created|timesince }} ago</span>
 
       <!-- Content -->
-      <p class="message_content">{{ object.content }}</p>
+      <p class="message_content">{{ object.content | safe }}</p>
 
       <!-- If the object or the parent have replies (a thread) show option -->
       {% if object.replies.all or object.parent.replies.all %}

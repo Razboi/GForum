@@ -111,3 +111,4 @@ gradle.xml
 libraries
 dataSources.ids
 datasources.xml
+tinymce_key.html
